@@ -1,5 +1,7 @@
 package se306.team7;
 
+import se306.team7.Digraph.Node;
+
 public class PartialSchedule {
 
     public int _numOfProcessors;
