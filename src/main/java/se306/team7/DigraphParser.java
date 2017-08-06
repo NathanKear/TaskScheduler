@@ -1,14 +1,53 @@
 package se306.team7;
 
 
-public class DigraphParser implements IDigraphParser{
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public static class DigraphParser implements IDigraphParser{
+
+    /**
+     * Returns newly constructed Digraph from input file
+     * @param filename
+     * @return
+     */
+    public static Digraph parseDigraph(String fileName) throws IOException{
+        Digraph d = null;
+        BufferedReader reader = null;
+
+        try {
+
+            reader = FileUtilities.readInputFileToDigraph(fileName);
+
+            String name = reader.readLine();
+            name = name.split("\"")[1];
+            d = new Digraph(name);
+
+            String line;
+            while ((line = reader.readLine()) != "}") {
+                d = parseLine(d, line);
+            }
+
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }finally{
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return d;
+    }
+
     /**
      * Returns Digraph copy with an added Node/Link object
      * @param d
      * @param line
      * @return
      */
-    public Digraph parseLine(Digraph d, String line){
+    private static Digraph parseLine(Digraph d, String line){
 
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
