@@ -8,14 +8,25 @@ public class StopWatch implements IStopWatch {
     private final int SECONDS_IN_MINUTE = 60;
     private final int MINUTES_IN_HOUR = 60;
 
+    /**
+     * Create a new stop watch
+     * @param unit Returns timed results in the given units
+     */
     public StopWatch(TimeUnit unit) {
         _unit = unit;
     }
 
+    /**
+     * Start timing
+     */
     public void Start() {
         _startTime = System.currentTimeMillis();
     }
 
+    /**
+     * Stops timing and returns the time difference between the most recent Start() call and now
+     * @ Time difference in units specified by constructor
+     */
     public double Stop() {
         long currentTime = System.currentTimeMillis();
         long timeDifference = currentTime - _startTime;
