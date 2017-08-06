@@ -9,20 +9,35 @@ import java.util.Iterator;
 public class Digraph {
 
     private String _digraphName;
-    private List<Node> _firstNodes;
+    private List<Node> _headNodes;
     private HashMap<String, Node> _nodeMap;
 
+    /**
+     * Instantiates an instance of Digraph
+     * @param digraphName The name of the Digraph
+     */
     public Digraph (String digraphName) {
         _digraphName = digraphName;
-        _firstNodes = new ArrayList<Node>();
+        _headNodes = new ArrayList<Node>();
         _nodeMap = new HashMap<String, Node>();
     }
 
+    /**
+     * Creates a new node and adds it to the Digraph
+     * @param name The name of the node
+     * @param cost The time taken to complete the node's task
+     */
     public void AddNode (String name, int cost) {
         Node n = new Node(name, cost);
         _nodeMap.put(name, n);
     }
 
+    /**
+     * Adds a link between nodes in the digraph
+     * @param originName The name of the node where the link originates
+     * @param destinationName The name of the node where the link terminates
+     * @param cost The cost of transferring the origin node's return value(s) across processors to the destination node
+     */
     public void AddLink (String originName, String destinationName, int cost) {
         Node originNode = _nodeMap.get(originName);
         Node destinationNode = _nodeMap.get(destinationName);
@@ -31,6 +46,10 @@ public class Digraph {
         destinationNode.addLink(originNode, originName, destinationNode, cost);
     }
 
+    /**
+     * Calculates which nodes in the digraph are head nodes (nodes at level 0 of the digraph) and adds them to the
+     * list of head nodes (_headNodes)
+     */
     public void calculateHeadNodes () {
         Iterator it = _nodeMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -38,7 +57,7 @@ public class Digraph {
             Node n = (Node) nodePair.getValue();
 
             if (n.isHead()) {
-                _firstNodes.add(n);
+                _headNodes.add(n);
             }
 
             it.remove();
