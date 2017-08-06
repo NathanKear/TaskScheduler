@@ -44,31 +44,6 @@ public class TaskScheduler
         System.out.println( "Hello World!" );
     }
 
-    private static void /*Digraph*/ readInputFileToDigraph(String inputFileName) {
-
-        // Digraph digraph = new Digraph();
-
-        try {
-
-            BufferedReader bufferedReader = fileUtilities.createFileReader(inputFileName);
-            String inputLine = bufferedReader.readLine();
-
-            while (inputLine != null) {
-                // Send inputLine to DigraphParser
-                // digraph = DigraphParser.ParseLine(inputLine, digraph);
-            }
-
-        } catch (FileNotFoundException ex) {
-            logger.error("Command in incorrect format");
-            System.err.printf("Unable to find file %s", inputFileName);
-            System.exit(1);
-        } catch (IOException ex) {
-            logger.error("Command in incorrect format");
-            System.err.printf("Unable to read file %s", inputFileName);
-            System.exit(1);
-        }
-    }
-
     /**
      * Print helpful message for user about the format the command should be in
      */
