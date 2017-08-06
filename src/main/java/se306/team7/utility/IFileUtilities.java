@@ -4,6 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 public interface IFileUtilities {
-    boolean DoesFileExist(String fileName);
-    BufferedReader CreateFileReader(String filename) throws FileNotFoundException;
+    boolean doesFileExist(String fileName);
+    BufferedReader createFileReader(String filename) throws FileNotFoundException;
 }

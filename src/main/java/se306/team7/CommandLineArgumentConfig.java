@@ -26,7 +26,7 @@ public class CommandLineArgumentConfig {
      * Should the application display a visualisation
      * @return
      */
-    public boolean VisualisationOn() {
+    public boolean visualisationOn() {
         return _visualisationOn;
     }
 
@@ -34,7 +34,7 @@ public class CommandLineArgumentConfig {
      * File name of file containing input digraph
      * @return
      */
-    public String InputFileName() {
+    public String inputFileName() {
         return _inputFileName;
     }
 
@@ -42,7 +42,7 @@ public class CommandLineArgumentConfig {
      * File name to print output to
      * @return
      */
-    public String OutputFileName() {
+    public String outputFileName() {
         return _outputFileName;
     }
 
@@ -50,7 +50,7 @@ public class CommandLineArgumentConfig {
      * Number of processors that tasks in the schedule may be distributed over
      * @return
      */
-    public int ScheduleProcessors() {
+    public int scheduleProcessors() {
         return _scheduleProcessors;
     }
 
@@ -58,7 +58,7 @@ public class CommandLineArgumentConfig {
      * Number of processors this application should use to calculate schedule
      * @return
      */
-    public int ApplicationProcessors() {
+    public int applicationProcessors() {
         return _applicationProcessors;
     }
 }

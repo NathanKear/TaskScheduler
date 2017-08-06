@@ -28,7 +28,7 @@ public class TaskScheduler
         CommandLineArgumentConfig commandLineArgumentConfig;
 
         try {
-            commandLineArgumentConfig = commandLineArgumentParser.ParseCommandLineArguments(args);
+            commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());
@@ -69,6 +69,9 @@ public class TaskScheduler
         }
     }
 
+    /**
+     * Print helpful message for user about the format the command should be in
+     */
     private static void printCommandFormatInfo() {
         System.err.print("Expected command format:\n" +
                 "\n" +

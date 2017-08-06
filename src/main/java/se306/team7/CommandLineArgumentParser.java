@@ -12,11 +12,20 @@ public class CommandLineArgumentParser implements ICommandLineArgumentParser {
     private Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
     private IFileUtilities _fileUtilities;
 
+    /**
+     * Create a CommandLineArgumentParser using the specified FileUtilities implementation
+     * @param fileUtilities
+     */
     public CommandLineArgumentParser(IFileUtilities fileUtilities) {
         _fileUtilities = fileUtilities;
     }
 
-    public CommandLineArgumentConfig ParseCommandLineArguments(String[] args) {
+    /**
+     * Parse the given command line arguments into a data object
+     * @param args Command line arguments
+     * @return CommandLineArgumentConfig object containing the desire program configuration
+     */
+    public CommandLineArgumentConfig parseCommandLineArguments(String[] args) {
 
         boolean visualisationOn = false;
         String inputFileName;

@@ -27,14 +27,14 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
 
         // Assert
-        assertEquals("input.dot", config.InputFileName());
-        assertEquals(4, config.ScheduleProcessors());
-        assertEquals("input-output.dot", config.OutputFileName());
-        assertEquals(1, config.ApplicationProcessors());
-        assertEquals(false, config.VisualisationOn());
+        assertEquals("input.dot", config.inputFileName());
+        assertEquals(4, config.scheduleProcessors());
+        assertEquals("input-output.dot", config.outputFileName());
+        assertEquals(1, config.applicationProcessors());
+        assertEquals(false, config.visualisationOn());
     }
 
     @Test
@@ -43,10 +43,10 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-v" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
 
         // Assert
-        assertEquals(true, config.VisualisationOn());
+        assertEquals(true, config.visualisationOn());
     }
 
     @Test
@@ -55,10 +55,10 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-p", "8" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
 
         // Assert
-        assertEquals(8, config.ApplicationProcessors());
+        assertEquals(8, config.applicationProcessors());
     }
 
     @Test
@@ -67,10 +67,10 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-o", "foo.dot" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
 
         // Assert
-        assertEquals("foo.dot", config.OutputFileName());
+        assertEquals("foo.dot", config.outputFileName());
     }
 
     @Test
@@ -80,14 +80,14 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-v", "-o", "output.dot", "-p", "8" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
 
         // Assert
-        assertEquals("input.dot", config.InputFileName());
-        assertEquals(4, config.ScheduleProcessors());
-        assertEquals("output.dot", config.OutputFileName());
-        assertEquals(8, config.ApplicationProcessors());
-        assertEquals(true, config.VisualisationOn());
+        assertEquals("input.dot", config.inputFileName());
+        assertEquals(4, config.scheduleProcessors());
+        assertEquals("output.dot", config.outputFileName());
+        assertEquals(8, config.applicationProcessors());
+        assertEquals(true, config.visualisationOn());
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -96,7 +96,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-unknownArg" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -105,7 +105,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -114,7 +114,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "not-input.dot", "4" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -123,7 +123,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "notAnInt" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -132,7 +132,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "0" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -141,7 +141,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-p", "notAnInt" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -150,7 +150,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-p", "0" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -159,7 +159,7 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-p" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 
     @Test(expected = CommandLineArgumentException.class)
@@ -168,6 +168,6 @@ public class CommandLineArgumentParserTests {
         String[] args = new String[] { "input.dot", "4", "-o" };
 
         // Act
-        CommandLineArgumentConfig config = _commandLineArgumentParser.ParseCommandLineArguments(args);
+        CommandLineArgumentConfig config = _commandLineArgumentParser.parseCommandLineArguments(args);
     }
 }

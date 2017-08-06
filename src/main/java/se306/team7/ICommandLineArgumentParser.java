@@ -6,5 +6,5 @@ public interface ICommandLineArgumentParser {
      * @param args
      * @return Object containing the program configuration specified by the given command line arguments
      */
-    CommandLineArgumentConfig ParseCommandLineArguments(String[] args);
+    CommandLineArgumentConfig parseCommandLineArguments(String[] args);
 }
