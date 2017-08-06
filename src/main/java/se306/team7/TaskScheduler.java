@@ -50,7 +50,7 @@ public class TaskScheduler
 
         try {
 
-            BufferedReader bufferedReader = fileUtilities.CreateFileReader(inputFileName);
+            BufferedReader bufferedReader = fileUtilities.createFileReader(inputFileName);
             String inputLine = bufferedReader.readLine();
 
             while (inputLine != null) {

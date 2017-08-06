@@ -15,8 +15,8 @@ public class CommandLineArgumentParserTests {
     public CommandLineArgumentParserTests()
     {
         _fileUtilities = mock(FileUtilities.class);
-        when(_fileUtilities.DoesFileExist("input.dot")).thenReturn(true);
-        when(_fileUtilities.DoesFileExist("not-input.dot")).thenReturn(false);
+        when(_fileUtilities.doesFileExist("input.dot")).thenReturn(true);
+        when(_fileUtilities.doesFileExist("not-input.dot")).thenReturn(false);
         _commandLineArgumentParser = new CommandLineArgumentParser(_fileUtilities);
     }
 

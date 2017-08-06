@@ -48,7 +48,7 @@ public class CommandLineArgumentParser implements ICommandLineArgumentParser {
                 : inputFileName + "-output.dot";
 
         // Check input file exists
-        if (!_fileUtilities.DoesFileExist(inputFileName)) {
+        if (!_fileUtilities.doesFileExist(inputFileName)) {
             throw new CommandLineArgumentException(String.format("Unable to find file %s", inputFileName));
         }
 
