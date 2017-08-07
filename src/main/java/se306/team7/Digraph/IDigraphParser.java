@@ -1,4 +1,4 @@
-package se306.team7;
+package se306.team7.Digraph;
 
 import java.io.IOException;
 

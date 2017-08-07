@@ -1,24 +1,25 @@
-package se306.team7;
+package se306.team7.Digraph;
 
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import se306.team7.utility.IFileUtilities;
 
-public class DigraphParser implements IDigraphParser{
-    FileUtilities _fileUtilities;
+public class DigraphParser implements IDigraphParser {
+    IFileUtilities _fileUtilities;
 
     /**
      * Instantiates an instance of DigraphParser
      * @param fileUtilities
      */
-    public DigraphParser(FileUtilities fileUtilities){
+    public DigraphParser(IFileUtilities fileUtilities){
         _fileUtilities = fileUtilities;
     }
 
     /**
      * Returns newly constructed Digraph from input file
-     * @param filename
+     * @param fileName
      * @return
      */
     public Digraph parseDigraph(String fileName) throws IOException{
