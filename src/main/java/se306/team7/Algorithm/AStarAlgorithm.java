@@ -21,7 +21,24 @@ public class AStarAlgorithm implements IAlgorithm {
     }
 
     public Schedule getOptimalSchedule(Digraph digraph) {
-        return new Schedule(0);
+        Schedule schedule = new Schedule(0, Integer.MAX_VALUE);
+
+        _schedules.add(schedule);
+
+        while(true){
+           Schedule mostPromisingSchedule =  _schedules.poll();
+           List<Node> possibleNodes = _currentHeads.get(mostPromisingSchedule);
+
+           if(possibleNodes.isEmpty()) {
+               return mostPromisingSchedule;
+           }
+
+           List<Schedule> possibleSchedules = generateSchedules(mostPromisingSchedule, possibleNodes);
+
+           for(Schedule s : possibleSchedules){
+               _schedules.add(s);
+           }
+        }
     }
 
     public List<Schedule> generateSchedules(Schedule current, List<Node> currentHeads) {
