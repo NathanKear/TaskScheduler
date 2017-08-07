@@ -1,9 +1,9 @@
 package se306.team7;
 
-public static interface IDigraphParser {
+import java.io.IOException;
 
-    static Digraph parseDigraph(String filename);
+public interface IDigraphParser {
 
-    static Digraph parseLine(Digraph d, String line);
+    Digraph parseDigraph(String filename) throws IOException;
 
 }

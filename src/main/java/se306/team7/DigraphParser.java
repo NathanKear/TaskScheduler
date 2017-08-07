@@ -5,20 +5,30 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public static class DigraphParser implements IDigraphParser{
+public class DigraphParser implements IDigraphParser{
+    FileUtilities _fileUtilities;
+
+    /**
+     * Instantiates an instance of DigraphParser
+     * @param fileUtilities
+     */
+    public DigraphParser(FileUtilities fileUtilities){
+        _fileUtilities = fileUtilities;
+    }
 
     /**
      * Returns newly constructed Digraph from input file
      * @param filename
      * @return
      */
-    public static Digraph parseDigraph(String fileName) throws IOException{
+    public Digraph parseDigraph(String fileName) throws IOException{
         Digraph d = null;
         BufferedReader reader = null;
 
+
         try {
 
-            reader = FileUtilities.readInputFileToDigraph(fileName);
+            reader = _fileUtilities.createFileReader(fileName);
 
             String name = reader.readLine();
             name = name.split("\"")[1];
@@ -47,7 +57,7 @@ public static class DigraphParser implements IDigraphParser{
      * @param line
      * @return
      */
-    private static Digraph parseLine(Digraph d, String line){
+    private Digraph parseLine(Digraph d, String line){
 
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
