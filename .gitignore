@@ -4,3 +4,8 @@
 target/
 log/
 .DS_Store
+.project
+.classpath
+.metadata/
+.settings/
+
