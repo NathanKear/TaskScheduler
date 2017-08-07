@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Iterator;
 
-public class Digraph {
+public class Digraph implements IDigraph {
 
     private String _digraphName;
-    private List<Node> _headNodes;
     private HashMap<String, Node> _nodeMap;
 
     /**
@@ -18,7 +17,6 @@ public class Digraph {
      */
     public Digraph (String digraphName) {
         _digraphName = digraphName;
-        _headNodes = new ArrayList<Node>();
         _nodeMap = new HashMap<String, Node>();
     }
 
@@ -27,7 +25,7 @@ public class Digraph {
      * @param name The name of the node
      * @param cost The time taken to complete the node's task
      */
-    public void AddNode (String name, int cost) {
+    public void addNode (String name, int cost) {
         Node n = new Node(name, cost);
         _nodeMap.put(name, n);
     }
@@ -38,7 +36,7 @@ public class Digraph {
      * @param destinationName The name of the node where the link terminates
      * @param cost The cost of transferring the origin node's return value(s) across processors to the destination node
      */
-    public void AddLink (String originName, String destinationName, int cost) {
+    public void addLink (String originName, String destinationName, int cost) {
         Node originNode = _nodeMap.get(originName);
         Node destinationNode = _nodeMap.get(destinationName);
 
@@ -47,21 +45,24 @@ public class Digraph {
     }
 
     /**
-     * Calculates which nodes in the digraph are head nodes (nodes at level 0 of the digraph) and adds them to the
-     * list of head nodes (_headNodes)
+     * Calculates which nodes in the digraph are head nodes (nodes at level 0 of the digraph) and adds them to a
+     * list of head nodes
+     * @return a list of head nodes
      */
-    public void calculateHeadNodes () {
+    public List<Node> calculateHeadNodes () {
+        ArrayList headNodes = new ArrayList<Node>();
         Iterator it = _nodeMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry nodePair = (Map.Entry)it.next();
             Node n = (Node) nodePair.getValue();
 
             if (n.isHead()) {
-                _headNodes.add(n);
+                headNodes.add(n);
             }
 
             it.remove();
         }
+        return headNodes;
     }
 
 }
