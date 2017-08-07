@@ -3,3 +3,7 @@
 *.ims
 target/
 log/
+.project
+.classpath
+.metadata/
+.settings/
