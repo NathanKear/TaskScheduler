@@ -20,8 +20,8 @@ public class AStarAlgorithm implements IAlgorithm {
         _currentHeads = new HashMap<Schedule, List<Node>>();
     }
 
-    public Schedule getOptimalSchedule(Digraph digraph) {
-        Schedule schedule = new Schedule(0, Integer.MAX_VALUE);
+    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+        Schedule schedule = new Schedule(numOfProcessors, Integer.MAX_VALUE);
 
         _schedules.add(schedule);
 
