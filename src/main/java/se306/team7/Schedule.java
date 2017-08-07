@@ -5,18 +5,20 @@ import se306.team7.Digraph.Node;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Schedule {
+public class Schedule implements Comparable {
 
     public int _numOfProcessors;
     private Queue<Task> _tasks;
+    private int _estimatedCost;
 
     /**
      * Instantiates a PartialSchedule instance.
      * @param numOfProcessors the number of processors available for tasks to be scheduled on
      */
-    public Schedule(int numOfProcessors) {
+    public Schedule(int numOfProcessors, int estimatedCost) {
         _numOfProcessors = numOfProcessors;
         _tasks = new LinkedList<Task>();
+        _estimatedCost = estimatedCost;
     }
 
     /**
@@ -32,4 +34,17 @@ public class Schedule {
         return _tasks;
     }
 
+    public int compareTo(Object o) {
+        if(o == null) {
+            throw new NullPointerException();
+        }
+
+        if(!o.getClass().equals(Schedule.class)){
+           throw new IllegalArgumentException();
+        }
+
+        Schedule otherSchedule = (Schedule)(o);
+
+       return  _estimatedCost - otherSchedule._estimatedCost;
+    }
 }
