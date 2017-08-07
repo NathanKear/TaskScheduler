@@ -14,6 +14,7 @@ public class AStarAlgorithm implements IAlgorithm {
 
     private PriorityQueue <Schedule> _schedules;
     private Map <Schedule, List<Node>> _currentHeads;
+    private Digraph _digraph;
 
     public AStarAlgorithm () {
         _schedules = new PriorityQueue<Schedule>();
@@ -21,6 +22,10 @@ public class AStarAlgorithm implements IAlgorithm {
     }
 
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+        _schedules.clear();
+        _currentHeads.clear();
+        _digraph = digraph;
+
         Schedule schedule = new Schedule(numOfProcessors, Integer.MAX_VALUE);
 
         _schedules.add(schedule);
