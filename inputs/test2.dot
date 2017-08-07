@@ -1,0 +1,5 @@
+digraph  "example" {
+a         [Weight=2];
+b         [Weight=3];
+a −> b    [Weight=1];
+}
