@@ -5,6 +5,6 @@ import se306.team7.Schedule;
 
 public interface IAlgorithm {
 
-    public Schedule getOptimalSchedule(Digraph digraph);
+    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors);
 
 }
