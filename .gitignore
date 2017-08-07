@@ -3,3 +3,4 @@
 *.ims
 target/
 log/
+.DS_Store
