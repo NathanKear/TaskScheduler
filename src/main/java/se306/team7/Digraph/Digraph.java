@@ -65,4 +65,8 @@ public class Digraph implements IDigraph {
         return headNodes;
     }
 
+    public HashMap<String, Node> getNodeMap () {
+        return _nodeMap;
+    }
+
 }
