@@ -27,7 +27,8 @@ public class Schedule implements Comparable {
      * @param node task to be scheduled on the specified processor
      */
     public void scheduleTask(int processor, Node node) {
-
+        Task newTask = new Task(node, processor);
+        _tasks.add(newTask);
     }
 
     public Queue<Task> getTasks () {
