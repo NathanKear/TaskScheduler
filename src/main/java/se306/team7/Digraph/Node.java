@@ -47,4 +47,18 @@ public class Node {
         return (_incomingLinks.size() == 0);
     }
 
+    /**
+     * Returns incoming links for this node
+     * 
+     */
+    public List<Link> getIncomingLinks(){
+    	return _incomingLinks;
+    }
+    
+    /**
+     * Returns weight cost of the node
+     */
+    public int getCost() {
+    	return _cost;
+    }
 }

@@ -6,10 +6,14 @@ public class Task {
 
     private Node _node;
     private int _processor;
+    private int _startTime;
+    private int _endTime;
 
-    public Task (Node n, int processor) {
+    public Task (Node n, int processor, int startTime) {
         _node = n;
         _processor = processor;
+        _startTime = startTime;
+        _endTime = _startTime + _node.getCost();
     }
 
     public Node getNode () {
@@ -18,6 +22,14 @@ public class Task {
 
     public int getProcessor () {
         return _processor;
+    }
+    
+    public int getStartTime(){
+    	return _startTime;
+    }
+    
+    public int getEndTime(){
+    	return _endTime;
     }
 
 }
