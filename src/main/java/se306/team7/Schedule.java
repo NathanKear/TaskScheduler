@@ -29,7 +29,34 @@ public class Schedule implements Comparable {
      * @param processor processor on which the specified task is scheduled
      * @param node task to be scheduled on the specified processor
      */
-    public void scheduleTask(int processor, Node node) {
+    public Task scheduleTask(int processor, Node node) {
+    	
+    	int startTime = calculateTaskStartTime(processor, node);
+        Task newTask = new Task(node, processor,startTime);
+        _tasks.add(newTask);
+        
+        return newTask;
+    }
+
+    public Queue<Task> getTasks () {
+        return _tasks;
+    }
+
+    public int compareTo(Object o) {
+        if(o == null) {
+            throw new NullPointerException();
+        }
+
+        if(!o.getClass().equals(Schedule.class)){
+           throw new IllegalArgumentException();
+        }
+
+        Schedule otherSchedule = (Schedule)(o);
+
+       return  _estimatedCost - otherSchedule._estimatedCost;
+    }
+    
+    private int calculateTaskStartTime(int processor, Node node){
     	int startTime;
     	if (_tasks.isEmpty()){
     		startTime = 0;
@@ -82,25 +109,6 @@ public class Schedule implements Comparable {
     		
     		startTime = Math.max(latestParentEndTime, processorEndTime);
     	}
-        Task newTask = new Task(node, processor,startTime);
-        _tasks.add(newTask);
-    }
-
-    public Queue<Task> getTasks () {
-        return _tasks;
-    }
-
-    public int compareTo(Object o) {
-        if(o == null) {
-            throw new NullPointerException();
-        }
-
-        if(!o.getClass().equals(Schedule.class)){
-           throw new IllegalArgumentException();
-        }
-
-        Schedule otherSchedule = (Schedule)(o);
-
-       return  _estimatedCost - otherSchedule._estimatedCost;
+    	return startTime;
     }
 }

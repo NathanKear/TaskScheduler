@@ -3,8 +3,10 @@ package se306.team7.Algorithm;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.Node;
 import se306.team7.Schedule;
+import se306.team7.Task;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +52,26 @@ public class AStarAlgorithm implements IAlgorithm {
         return new ArrayList<Schedule>();
     }
 
-    public int getCostEstimate(Schedule current) {
-        return 0;
+    /**
+     * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
+     * (newestAddedTask's start time plus its bottom level)
+     * @param current
+     * @param newestAddedTask
+     * @return
+     */
+    public int getCostEstimate(Schedule current, Task newestAddedTask ) {
+        Queue<Task> tasks = current.getTasks();
+        
+        int latestTaskEndTime = 0;
+        for (Task task : tasks){
+        	if (task.getEndTime() > latestTaskEndTime){
+        		latestTaskEndTime = task.getEndTime();
+        	}
+        	
+        }
+        
+        int costEstimate = Math.max(latestTaskEndTime, (newestAddedTask.getStartTime() + newestAddedTask.getNode().getBottomLevel()));
+        return costEstimate;
     }
 
     public void calculateCurrentHeads(Schedule schedule) {

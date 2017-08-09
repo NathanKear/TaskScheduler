@@ -9,6 +9,7 @@ public class Node {
     private int _cost;
     private List<Link> _incomingLinks;
     private List<Link> _outgoingLinks;
+    private int _bottomLevel;
 
     /**
      * Instantiates an instance of Node
@@ -60,5 +61,12 @@ public class Node {
      */
     public int getCost() {
     	return _cost;
+    }
+    
+    /**
+     * Returns bottom level of the node
+     */
+    public int getBottomLevel(){
+    	return _bottomLevel;
     }
 }
