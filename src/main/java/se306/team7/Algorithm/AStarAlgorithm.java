@@ -22,6 +22,12 @@ public class AStarAlgorithm implements IAlgorithm {
         _currentHeads = new HashMap<Schedule, List<Node>>();
     }
 
+    /**
+     * Get the optimal schedule for a given digraph containing tasks and task dependencies
+     * @param digraph Represents tasks and task dependencies
+     * @param numOfProcessors Processors available to concurrently complete tasks
+     * @return Optimal complete schedule
+     */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
         _schedules.clear();
         _currentHeads.clear();
@@ -29,7 +35,10 @@ public class AStarAlgorithm implements IAlgorithm {
 
         Schedule schedule = new Schedule(numOfProcessors);
 
-        _schedules.add(new CostEstimatedSchedule(schedule, Integer.MAX_VALUE));
+        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
+
+        _schedules.add(emptySchedule);
+        calculateCurrentHeads(emptySchedule.getSchedule());
 
         while(true){
            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
@@ -43,10 +52,18 @@ public class AStarAlgorithm implements IAlgorithm {
 
            for(CostEstimatedSchedule s : possibleSchedules){
                _schedules.add(s);
+               calculateCurrentHeads(s.getSchedule());
            }
         }
     }
 
+    /**
+     * Generate schedules that are immediate children of the current schedule
+     * @param current The current schedule whos children should be created
+     * @param currentHeads The current nodes available to be added to the current schedule.
+     *                     This is defined as nodes that are not in the schedule but have all their dependencies in the schedule.
+     * @return List of next level schedules who are direct children of the current schedule
+     */
     public List<CostEstimatedSchedule> generateSchedules(Schedule current, List<Node> currentHeads) {
 
         List<CostEstimatedSchedule> generatedSchedules = new ArrayList<CostEstimatedSchedule>();
