@@ -1,10 +1,11 @@
 package se306.team7.Digraph;
 
 
+import se306.team7.utility.IFileUtilities;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import se306.team7.utility.IFileUtilities;
 
 public class DigraphParser implements IDigraphParser {
     IFileUtilities _fileUtilities;
@@ -32,11 +33,14 @@ public class DigraphParser implements IDigraphParser {
             reader = _fileUtilities.createFileReader(fileName);
 
             String name = reader.readLine();
+
             name = name.split("\"")[1];
+            System.out.println(name);
             d = new Digraph(name);
 
             String line;
-            while ((line = reader.readLine()) != "}") {
+            while (!(line = reader.readLine()).contains("}")) {
+                System.out.println(line);
                 d = parseLine(d, line);
             }
 
@@ -62,9 +66,11 @@ public class DigraphParser implements IDigraphParser {
 
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
+            System.out.println(splitLine[0] + splitLine[1]);
             d.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
         }else{
-            d.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
+            System.out.println(splitLine[0] + splitLine[2] + splitLine[3]);
+            d.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
         }
 
         return d;
