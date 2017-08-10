@@ -25,8 +25,29 @@ public class AStarAlgorithm implements IAlgorithm {
         _currentHeads = new HashMap<Schedule, List<Node>>();
     }
 
-    public Schedule getOptimalSchedule(Digraph digraph) {
-        return new Schedule(0);
+    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+        _schedules.clear();
+        _currentHeads.clear();
+        _digraph = digraph;
+
+        Schedule schedule = new Schedule(numOfProcessors, Integer.MAX_VALUE);
+
+        _schedules.add(schedule);
+
+        while(true){
+           Schedule mostPromisingSchedule =  _schedules.poll();
+           List<Node> possibleNodes = _currentHeads.get(mostPromisingSchedule);
+
+           if(possibleNodes.isEmpty()) {
+               return mostPromisingSchedule;
+           }
+
+           List<Schedule> possibleSchedules = generateSchedules(mostPromisingSchedule, possibleNodes);
+
+           for(Schedule s : possibleSchedules){
+               _schedules.add(s);
+           }
+        }
     }
 
     public List<Schedule> generateSchedules(Schedule current, List<Node> currentHeads) {
@@ -45,12 +66,9 @@ public class AStarAlgorithm implements IAlgorithm {
     public void calculateCurrentHeads(Schedule schedule) {
         List<Node> possibleNodes = _currentHeads.get(schedule);
         HashSet<Node> nodesInSchedule = schedule.getNodesInSchedule();
-        HashMap<String, Node> nodeMap = _digraph.getNodeMap();
+        List<Node> nodes = _digraph.getNodesInDigraph();
 
-        Iterator it = nodeMap.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry nodePair = (Map.Entry)it.next();
-            Node n = (Node) nodePair.getValue();
+        for (Node n : nodes) {
             if (nodesInSchedule.contains(n)) {
                 possibleNodes.remove(n);
             } else if (!possibleNodes.contains(n) && scheduleContainsParentNodes(nodesInSchedule, n)) {

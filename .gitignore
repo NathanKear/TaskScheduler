@@ -8,4 +8,12 @@ log/
 .classpath
 .metadata/
 .settings/
-
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders/
