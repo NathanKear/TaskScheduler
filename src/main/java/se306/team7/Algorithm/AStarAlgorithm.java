@@ -84,8 +84,48 @@ public class AStarAlgorithm implements IAlgorithm {
         return generatedSchedules;
     }
 
-    public int getCostEstimate(Schedule current) {
-        return 0;
+    /**
+     * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
+     * (newestAddedTask's start time plus its bottom level)
+     * @param schedule
+     * @return
+     */
+    public int getCostEstimate(Schedule schedule) {
+        return Math.max(loadBalanceCostEstimate(schedule), criticalPathCostEstimate(schedule));
+    }
+
+    public int loadBalanceCostEstimate(Schedule schedule) {
+
+        // Get all nodes
+        List<Node> nodesNotInDigraph = _digraph.getNodes();
+
+        // Remove nodes already in digraph
+        for (Task task : schedule.getTasks()) {
+            nodesNotInDigraph.remove(task.getNode());
+        }
+
+        int totalCost = 0;
+
+        // Get total cost of all nodes yet to add
+        for (Node node : nodesNotInDigraph) {
+            totalCost += node.getCost();
+        }
+
+        // Get average cost of all nodes yet to add per processor
+        int costPerProcessor = (int)Math.ceil(totalCost / schedule._numOfProcessors);
+
+        return schedule.endTime() + costPerProcessor;
+    }
+
+    public int criticalPathCostEstimate(Schedule schedule) {
+
+        int highestCriticalPath = 0;
+
+        for (Task task : schedule.getTasks()) {
+            highestCriticalPath = Math.max(highestCriticalPath, _digraph.getCriticalPathCost(task.getNode()));
+        }
+
+        return highestCriticalPath;
     }
 
     /**

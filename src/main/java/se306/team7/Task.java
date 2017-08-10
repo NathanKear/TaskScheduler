@@ -9,7 +9,6 @@ public class Task {
     private int _startTime;
     private int _endTime;
 
-
     /**
      * Instantiates an instance of Task
      * @param n The node associated with the task
