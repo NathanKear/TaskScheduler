@@ -61,4 +61,22 @@ public class Digraph implements IDigraph {
         return headNodes;
     }
 
+    /**
+     * Gets all the nodes in the digraph
+     * @return A List of the nodes in the digraph
+     */
+    public List<Node> getNodesInDigraph () {
+        List<Node> nodes = new ArrayList<Node>(_nodeMap.values());
+        return nodes;
+    }
+
+    /**
+     * Gets a node in the digraph specified by the node's name
+     * @param nodeName The name of the node
+     * @return
+     */
+    public Node getNode (String nodeName) {
+        return _nodeMap.get(nodeName);
+    }
+
 }

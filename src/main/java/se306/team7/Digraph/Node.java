@@ -31,6 +31,9 @@ public class Node {
      */
     public void addLink (Node originNode, String originNodeName, Node destinationNode, int weight) {
         Link link = new Link(originNode, destinationNode, weight);
+
+        if (originNodeName.equals(_name)) {
+
         if (originNodeName.equals(_name)) {
             _outgoingLinks.add(link);
         } else {
@@ -45,6 +48,22 @@ public class Node {
      */
     public boolean isHead () {
         return (_incomingLinks.size() == 0);
+    }
+
+    /**
+     * Gets the outgoing links of the node
+     * @return
+     */
+    public List<Link> getOutgoingLinks () {
+        return _outgoingLinks;
+    }
+
+    /**
+     * Gets the incoming links of the node
+     * @return
+     */
+    public List<Link> getIncomingLinks () {
+        return _incomingLinks;
     }
 
 }

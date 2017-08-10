@@ -3,6 +3,9 @@ package se306.team7;
 import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import se306.team7.Algorithm.AStarAlgorithm;
+import se306.team7.Digraph.Digraph;
+import se306.team7.Digraph.DigraphParser;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
@@ -27,11 +30,21 @@ public class TaskScheduler
 
         try {
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
+            DigraphParser digraphParser = new DigraphParser(new FileUtilities());
+            Digraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
+            AStarAlgorithm a = new AStarAlgorithm();
+            Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
+            optimalSchedule.toString();
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());
             printCommandFormatInfo();
             System.exit(1);
+        } catch (IOException IOex) {
+            System.err.println(IOex.getMessage());
+            logger.error(IOex.getMessage());
+            System.err.println("Digraph Parsing Failed");
+            logger.error("Digraph Parsing Failed");
         }
 
         logger.trace("trace message");
