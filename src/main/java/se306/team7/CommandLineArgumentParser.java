@@ -2,10 +2,7 @@ package se306.team7;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
-
-import java.io.File;
 
 public class CommandLineArgumentParser implements ICommandLineArgumentParser {
 

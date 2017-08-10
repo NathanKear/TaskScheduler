@@ -31,10 +31,10 @@ public class Node {
      */
     public void addLink (Node originNode, String originNodeName, Node destinationNode, int weight) {
         Link link = new Link(originNode, destinationNode, weight);
-        if (originNodeName == _name) {
-            _incomingLinks.add(link);
-        } else {
+        if (originNodeName.equals(_name)) {
             _outgoingLinks.add(link);
+        } else {
+            _incomingLinks.add(link);
         }
         return;
     }

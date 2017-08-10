@@ -4,11 +4,7 @@ import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.Node;
 import se306.team7.Schedule;
 
-import java.util.PriorityQueue;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class AStarAlgorithm implements IAlgorithm {
 
