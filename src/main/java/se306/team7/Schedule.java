@@ -4,24 +4,31 @@ import se306.team7.Digraph.Link;
 import se306.team7.Digraph.Node;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Schedule implements Comparable {
+public class Schedule {
 
     public int _numOfProcessors;
     private Queue<Task> _tasks;
-    private int _estimatedCost;
+    private HashSet<Node> _nodesInSchedule;
 
     /**
      * Instantiates a PartialSchedule instance.
      * @param numOfProcessors the number of processors available for tasks to be scheduled on
      */
-    public Schedule(int numOfProcessors, int estimatedCost) {
+    public Schedule(int numOfProcessors) {
         _numOfProcessors = numOfProcessors;
         _tasks = new LinkedList<Task>();
-        _estimatedCost = estimatedCost;
+        _nodesInSchedule = new HashSet<Node>();
+    }
+
+    public Schedule(Schedule schedule) {
+        _numOfProcessors = schedule._numOfProcessors;
+        _tasks = new LinkedList<Task>(schedule._tasks);
+        _nodesInSchedule = new HashSet<Node>();
     }
 
     /**
@@ -42,18 +49,32 @@ public class Schedule implements Comparable {
         return _tasks;
     }
 
-    public int compareTo(Object o) {
-        if(o == null) {
-            throw new NullPointerException();
+    /**
+     * Gets the nodes in the schedule
+     * @return
+     */
+    public HashSet<Node> getNodesInSchedule () {
+        return _nodesInSchedule;
+    }
+
+    public List<String> scheduleToStringList() {
+        ArrayList<String> output = new ArrayList<String>();
+        for (Task task : _tasks) {
+            Node n = task.getNode();
+            String line = n.getName() + "[ Weight = " + n.getCost() + ", Start = " + task.getStartTime() +
+                    ", Processor = " + task.getProcessor() + "];";
+            output.add(line);
+
+            List<Link> incomingLinks = n.getIncomingLinks();
+            for (Link link : incomingLinks) {
+                Node parent = link.getOriginNode();
+                Node child = link.getDestinationNode();
+                int transferCost = link.getTransferCost();
+                String linkString = parent.getName() + " -> " + child.getName() + "    [ Weight = " + transferCost + "];";
+                output.add(linkString);
+            }
         }
-
-        if(!o.getClass().equals(Schedule.class)){
-           throw new IllegalArgumentException();
-        }
-
-        Schedule otherSchedule = (Schedule)(o);
-
-       return  _estimatedCost - otherSchedule._estimatedCost;
+        return output;
     }
 
 	/**

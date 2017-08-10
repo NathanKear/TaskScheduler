@@ -141,4 +141,13 @@ public class Digraph implements IDigraph {
 
         return _criticalPathCosts.get(node.getName());
     }
+
+    /**
+     * Gets a node in the digraph specified by the node's name
+     * @param nodeName The name of the node
+     * @return
+     */
+    public Node getNode (String nodeName) {
+        return _nodeMap.get(nodeName);
+    }
 }

@@ -9,6 +9,11 @@ public class Task {
     private int _startTime;
     private int _endTime;
 
+    /**
+     * Instantiates an instance of Task
+     * @param n The node associated with the task
+     * @param processor The processor associated with the task
+     */
     public Task (Node n, int processor, int startTime) {
         _node = n;
         _processor = processor;
@@ -16,20 +21,36 @@ public class Task {
         _endTime = _startTime + _node.getCost();
     }
 
+    /**
+     * Gets the node associated with the task
+     * @return
+     */
     public Node getNode () {
         return _node;
     }
 
+    /**
+     * Gets the processor associated with the task
+     * @return
+     */
     public int getProcessor () {
         return _processor;
     }
-    
+
+    /**
+     * Gets the start time of the task
+     * @return
+     */
     public int getStartTime(){
-    	return _startTime;
+        return _startTime;
     }
-    
+
+    /**
+     * Gets the end time of the task
+     * @return
+     */
     public int getEndTime(){
-    	return _endTime;
+        return _endTime;
     }
 
 }
