@@ -41,7 +41,8 @@ public class AStarAlgorithm implements IAlgorithm {
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
-        calculateCurrentHeads(emptySchedule.getSchedule());
+        List<Node> initialHeads = calculateCurrentHeads(emptySchedule.getSchedule());
+        _currentHeads.put(emptySchedule.getSchedule(), initialHeads);
 
         while(true){
            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
@@ -55,7 +56,8 @@ public class AStarAlgorithm implements IAlgorithm {
 
            for(CostEstimatedSchedule s : possibleSchedules){
                _schedules.add(s);
-               calculateCurrentHeads(s.getSchedule());
+               List<Node> currentHeads = calculateCurrentHeads(s.getSchedule());
+               _currentHeads.put(emptySchedule.getSchedule(), currentHeads);
            }
         }
     }
@@ -93,6 +95,14 @@ public class AStarAlgorithm implements IAlgorithm {
         return Math.max(loadBalanceCostEstimate(schedule), criticalPathCostEstimate(schedule));
     }
 
+    /**
+     * Get path cost estimate using the load balance cost estimate.
+     * Load balance cost is the cost of all remaining tasks to be scheduled
+     * spread perfectly over all threads starting immediately after the current
+     * schedule finish time.
+     * @param schedule
+     * @return
+     */
     public int loadBalanceCostEstimate(Schedule schedule) {
 
         // Get all nodes
@@ -116,6 +126,13 @@ public class AStarAlgorithm implements IAlgorithm {
         return schedule.endTime() + costPerProcessor;
     }
 
+    /**
+     * Get path cost estimate using the critical path estimate.
+     * Critical path is the most expensive direct path from any node currently in the schedule
+     * to the end of the schedule.
+     * @param schedule
+     * @return
+     */
     public int criticalPathCostEstimate(Schedule schedule) {
 
         int highestCriticalPath = 0;
@@ -132,7 +149,7 @@ public class AStarAlgorithm implements IAlgorithm {
      * passed in
      * @param schedule The schedule whose list of current nodes will be updated
      */
-    public void calculateCurrentHeads(Schedule schedule) {
+    public List<Node> calculateCurrentHeads(Schedule schedule) {
         List<Node> possibleNodes = _currentHeads.get(schedule);
         HashSet<Node> nodesInSchedule = schedule.getNodesInSchedule();
         List<Node> nodes = _digraph.getNodes();
@@ -145,8 +162,7 @@ public class AStarAlgorithm implements IAlgorithm {
             }
         }
 
-        _currentHeads.put(schedule, possibleNodes);
-        return;
+        return possibleNodes;
     }
 
     /**
