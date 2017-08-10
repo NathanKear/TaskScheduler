@@ -52,20 +52,6 @@ public class Schedule {
         return _nodesInSchedule;
     }
 
-    public int compareTo(Object o) {
-        if(o == null) {
-            throw new NullPointerException();
-        }
-
-        if(!o.getClass().equals(Schedule.class)){
-           throw new IllegalArgumentException();
-        }
-
-        Schedule otherSchedule = (Schedule)(o);
-
-       return  0;//_estimatedCost - otherSchedule._estimatedCost;
-    }
-
     public List<String> scheduleToStringList() {
         ArrayList<String> output = new ArrayList<String>();
         for (Task task : _tasks) {
