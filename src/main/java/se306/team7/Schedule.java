@@ -9,22 +9,26 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Schedule implements Comparable {
+public class Schedule {
 
     public int _numOfProcessors;
     private Queue<Task> _tasks;
     private HashSet<Node> _nodesInSchedule;
-    private int _estimatedCost;
 
     /**
      * Instantiates a PartialSchedule instance.
      * @param numOfProcessors the number of processors available for tasks to be scheduled on
      */
-    public Schedule(int numOfProcessors, int estimatedCost) {
+    public Schedule(int numOfProcessors) {
         _numOfProcessors = numOfProcessors;
         _tasks = new LinkedList<Task>();
         _nodesInSchedule = new HashSet<Node>();
-        _estimatedCost = estimatedCost;
+    }
+
+    public Schedule(Schedule schedule) {
+        _numOfProcessors = schedule._numOfProcessors;
+        _tasks = new LinkedList<Task>(schedule._tasks);
+        _nodesInSchedule = new HashSet<Node>();
     }
 
     /**
@@ -46,20 +50,6 @@ public class Schedule implements Comparable {
      */
     public HashSet<Node> getNodesInSchedule () {
         return _nodesInSchedule;
-    }
-
-    public int compareTo(Object o) {
-        if(o == null) {
-            throw new NullPointerException();
-        }
-
-        if(!o.getClass().equals(Schedule.class)){
-           throw new IllegalArgumentException();
-        }
-
-        Schedule otherSchedule = (Schedule)(o);
-
-       return  _estimatedCost - otherSchedule._estimatedCost;
     }
 
     public List<String> scheduleToStringList() {
