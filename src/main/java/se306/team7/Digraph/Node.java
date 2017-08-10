@@ -55,7 +55,41 @@ public class Node {
     public List<Link> getIncomingLinks(){
     	return _incomingLinks;
     }
-    
+
+    /**
+     * Returns outgoing links for this node
+     * @return
+     */
+    public List<Link> getOutgoingLinks() { return _outgoingLinks; }
+
+    /**
+     * Get nodes that have an outgoing link to this node
+     * @return
+     */
+    public List<Node> getIncomingNodes() {
+        List<Node> nodes = new ArrayList<Node>();
+
+        for (Link link : getIncomingLinks()) {
+            nodes.add(link.getOriginNode());
+        }
+
+        return nodes;
+    }
+
+    /**
+     * Get nodes that have an incoming link from this node
+     * @return
+     */
+    public List<Node> getOutgoingNodes() {
+        List<Node> nodes = new ArrayList<Node>();
+
+        for (Link link : getOutgoingLinks()) {
+            nodes.add(link.getDestinationNode());
+        }
+
+        return nodes;
+    }
+
     /**
      * Returns weight cost of the node
      */
@@ -69,4 +103,10 @@ public class Node {
     public int getBottomLevel(){
     	return _bottomLevel;
     }
+
+    /**
+     * Return name of this node
+     * @return
+     */
+    public String getName() { return _name; }
 }

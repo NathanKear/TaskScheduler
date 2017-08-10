@@ -55,6 +55,21 @@ public class Schedule implements Comparable {
 
        return  _estimatedCost - otherSchedule._estimatedCost;
     }
+
+	/**
+	 * Get the end time of the final task in the schedule, i.e. how long the entire schedule takes to run
+	 * @return
+	 */
+	public int endTime() {
+		int endTime = 0;
+
+		// Get latest end time
+		for (Task task : getTasks()) {
+			endTime = Math.max(endTime, task.getEndTime());
+		}
+
+		return endTime;
+	}
     
     private int calculateTaskStartTime(int processor, Node node){
     	int startTime;
