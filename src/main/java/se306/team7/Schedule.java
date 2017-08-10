@@ -1,9 +1,12 @@
 package se306.team7;
 
 import se306.team7.Digraph.Node;
+import se306.team7.Digraph.Link;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Schedule implements Comparable {
@@ -57,5 +60,25 @@ public class Schedule implements Comparable {
         Schedule otherSchedule = (Schedule)(o);
 
        return  _estimatedCost - otherSchedule._estimatedCost;
+    }
+
+    public List<String> scheduleToStringList() {
+        ArrayList<String> output = new ArrayList<String>();
+        for (Task task : _tasks) {
+            Node n = task.getNode();
+            String line = n.getName() + "[ Weight = " + n.getCost() + ", Start = " + task.getStartTime() +
+                    ", Processor = " + task.getProcessor() + "];";
+            output.add(line);
+
+            List<Link> incomingLinks = n.getIncomingLinks();
+            for (Link link : incomingLinks) {
+                Node parent = link.getOriginNode();
+                Node child = link.getDestinationNode();
+                int transferCost = link.getTransferCost();
+                String linkString = parent.getName() + " -> " + child.getName() + "    [ Weight = " + transferCost + "];";
+                output.add(linkString);
+            }
+        }
+        return output;
     }
 }

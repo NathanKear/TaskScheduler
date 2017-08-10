@@ -63,4 +63,20 @@ public class Node {
         return _incomingLinks;
     }
 
+    /**
+     * Gets the name of the node
+     * @return
+     */
+    public String getName () {
+        return _name;
+    }
+
+    /**
+     * Gets the cost of the node
+     * @return
+     */
+    public int getCost () {
+        return _cost;
+    }
+
 }
