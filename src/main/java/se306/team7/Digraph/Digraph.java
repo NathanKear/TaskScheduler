@@ -6,6 +6,8 @@ public class Digraph implements IDigraph {
 
     private String _digraphName;
     private HashMap<String, Node> _nodeMap;
+    private List<Node> _topologicalSortedNodes;
+    private HashMap<String, Integer> _criticalPathCosts;
 
     /**
      * Instantiates an instance of Digraph
@@ -62,12 +64,78 @@ public class Digraph implements IDigraph {
     }
 
     /**
-     * Gets all the nodes in the digraph
-     * @return A List of the nodes in the digraph
+     * Get nodes in digraph in some topological order
+     * @return
      */
-    public List<Node> getNodesInDigraph () {
-        List<Node> nodes = new ArrayList<Node>(_nodeMap.values());
-        return nodes;
+    public List<Node> getNodes() {
+        if (_topologicalSortedNodes == null) {
+            _topologicalSortedNodes = topologicallySortDigraph(new ArrayList<Node>(_nodeMap.values()));
+        }
+
+        return _topologicalSortedNodes;
+    }
+
+    /**
+     * Calculate critical costs for all nodes in digraph
+     * @param topologicalSortedNodes Lists of nodes in digraph sorted topologically
+     * @return
+     */
+    public HashMap<String, Integer> preCalculateCriticalPathCosts(List<Node> topologicalSortedNodes) {
+        HashMap<String, Integer> criticalPathCosts = new HashMap<String, Integer>();
+
+        // iterate through topographically sorted nodes in reverse order
+        for (int i = _topologicalSortedNodes.size() - 1; i >= 0; i--) {
+            Node iNode = _topologicalSortedNodes.get(i);
+
+            // Get maximum critical path of incoming nodes
+            int criticalPathCost = 0;
+
+            for (Node outgoingNode : iNode.getOutgoingNodes()) {
+                criticalPathCost = Math.max(criticalPathCost, criticalPathCosts.get(outgoingNode.getName()) + outgoingNode.getCost());
+            }
+
+            criticalPathCosts.put(iNode.getName(), criticalPathCost);
+        }
+
+        return criticalPathCosts;
+    }
+
+    /**
+     * Get list of nodes in digraph that is topologically ordered
+     */
+    public List<Node> topologicallySortDigraph(List<Node> digraphNodes) {
+        List<Node> topologicalSortedNodes = new ArrayList<Node>();
+
+        List<Node> nodes = new ArrayList<Node>(digraphNodes);
+
+        while (!nodes.isEmpty()) {
+            for (Node node : nodes) {
+
+                boolean isFree = true;
+
+                for (Node incomingNode : node.getIncomingNodes()) {
+                    if (!topologicalSortedNodes.contains(incomingNode)) {
+                        isFree = false;
+                    }
+                }
+
+                if (isFree) {
+                    topologicalSortedNodes.add(node);
+                    nodes.remove(node);
+                }
+            }
+        }
+
+        return topologicalSortedNodes;
+    }
+
+    public int getCriticalPathCost(Node node) {
+
+        if (_criticalPathCosts == null) {
+            _criticalPathCosts = preCalculateCriticalPathCosts(getNodes());
+        }
+
+        return _criticalPathCosts.get(node.getName());
     }
 
     /**
@@ -78,5 +146,4 @@ public class Digraph implements IDigraph {
     public Node getNode (String nodeName) {
         return _nodeMap.get(nodeName);
     }
-
 }
