@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class AStarAlgorithm implements IAlgorithm {
 
@@ -136,7 +135,7 @@ public class AStarAlgorithm implements IAlgorithm {
     public void calculateCurrentHeads(Schedule schedule) {
         List<Node> possibleNodes = _currentHeads.get(schedule);
         HashSet<Node> nodesInSchedule = schedule.getNodesInSchedule();
-        List<Node> nodes = _digraph.getNodesInDigraph();
+        List<Node> nodes = _digraph.getNodes();
 
         for (Node n : nodes) {
             if (nodesInSchedule.contains(n)) {
