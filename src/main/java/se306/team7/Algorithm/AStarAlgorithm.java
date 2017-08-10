@@ -51,7 +51,9 @@ public class AStarAlgorithm implements IAlgorithm {
         while (it.hasNext()) {
             Map.Entry nodePair = (Map.Entry)it.next();
             Node n = (Node) nodePair.getValue();
-            if (!possibleNodes.contains(n) && scheduleContainsParentNodes(nodesInSchedule, n)) {
+            if (nodesInSchedule.contains(n)) {
+                possibleNodes.remove(n);
+            } else if (!possibleNodes.contains(n) && scheduleContainsParentNodes(nodesInSchedule, n)) {
                 possibleNodes.add(n);
             }
         }
