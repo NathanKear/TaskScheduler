@@ -47,4 +47,20 @@ public class Node {
         return (_incomingLinks.size() == 0);
     }
 
+    /**
+     * Gets the outgoing links of the node
+     * @return
+     */
+    public List<Link> getOutgoingLinks () {
+        return _outgoingLinks;
+    }
+
+    /**
+     * Gets the incoming links of the node
+     * @return
+     */
+    public List<Link> getIncomingLinks () {
+        return _incomingLinks;
+    }
+
 }
