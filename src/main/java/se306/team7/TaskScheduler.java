@@ -10,6 +10,7 @@ import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.*;
+import java.util.List;
 
 
 
@@ -32,11 +33,13 @@ public class TaskScheduler
 
         try {
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
-            DigraphParser digraphParser = new DigraphParser(new FileUtilities());
+            FileUtilities fileUtilities = new FileUtilities();
+            DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
             AStarAlgorithm a = new AStarAlgorithm();
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
-            optimalSchedule.toString();
+            List<String> output = optimalSchedule.scheduleToStringList();
+            fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), output);
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());
