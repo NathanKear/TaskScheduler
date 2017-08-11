@@ -73,7 +73,7 @@ public class Digraph implements IDigraph {
 
         Digraph d = (Digraph) other;
 
-        return d._digraphName == this._digraphName &&
-                d._nodeMap == this._nodeMap;
+        return d._digraphName.equals(this._digraphName) &&
+                d._nodeMap.equals(this._nodeMap);
     }
 }
