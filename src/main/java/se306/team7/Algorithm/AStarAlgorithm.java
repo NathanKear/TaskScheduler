@@ -140,7 +140,7 @@ public class AStarAlgorithm implements IAlgorithm {
         int highestCriticalPath = 0;
 
         for (Task task : schedule.getTasks()) {
-            highestCriticalPath = Math.max(highestCriticalPath, _digraph.getCriticalPathCost(task.getNode()));
+            highestCriticalPath = Math.max(highestCriticalPath, task.getEndTime() + _digraph.getCriticalPathCost(task.getNode()));
         }
 
         return highestCriticalPath;
