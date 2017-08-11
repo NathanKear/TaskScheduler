@@ -1,0 +1,6 @@
+digraph "Nodes_3_LoneTaskAndDigraph" {
+	A	 [Weight=1];
+	B	 [Weight=2];
+	C	 [Weight=2];
+	A -> B	 [Weight=10];
+}
