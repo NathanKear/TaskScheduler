@@ -65,4 +65,15 @@ public class Digraph implements IDigraph {
         return headNodes;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if(other == null){return false;}
+        if(other == this){return true;}
+        if(!(other instanceof Digraph)){return false;}
+
+        Digraph d = (Digraph) other;
+
+        return d._digraphName == this._digraphName &&
+                d._nodeMap == this._nodeMap;
+    }
 }
