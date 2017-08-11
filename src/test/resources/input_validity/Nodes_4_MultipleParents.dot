@@ -1,4 +1,4 @@
-digraph "Nodes_3_MultipleParents" {
+digraph "Nodes_4_MultipleParents" {
 	A	 [Weight=1];
 	B	 [Weight=2];
 	A -> B	 [Weight=10];
