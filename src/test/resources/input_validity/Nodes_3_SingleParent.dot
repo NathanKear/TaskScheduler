@@ -1,0 +1,7 @@
+digraph "Nodes_3_SingleParent" {
+	A	 [Weight=1];
+	B	 [Weight=4];
+	C	 [Weight=5];
+	A -> B	 [Weight=2];
+	A -> C	 [Weight=4];
+}
