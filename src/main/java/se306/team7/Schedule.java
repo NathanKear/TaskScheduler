@@ -38,7 +38,7 @@ public class Schedule {
      */
     public Task scheduleTask(int processor, Node node) {
     	
-    	int startTime = calculateTaskStartTime(processor, node);
+    	int startTime = precedenceConstraint(node, processor);
         Task newTask = new Task(node, processor,startTime);
         _tasks.add(newTask);
         
@@ -91,8 +91,31 @@ public class Schedule {
 
 		return endTime;
 	}
+
+	private int precedenceConstraint(Node node, int processor) {
+		int startTime = 0;
+
+		for (Link incomingLink : node.getIncomingLinks()) {
+			for (Task task : _tasks) {
+
+				// Find tasks that are on node's incoming links
+				if (incomingLink.getOriginNode() == task.getNode()) {
+					if (task.getProcessor() == processor) {
+						// If preceding task on same processor don't use transfer cost
+						startTime = Math.max(startTime, task.getEndTime());
+					} else {
+						// If preceding task on different process then do use transfer cost
+						startTime = Math.max(startTime, task.getEndTime() + incomingLink.getTransferCost());
+					}
+				}
+			}
+		}
+
+		return startTime;
+	}
     
     private int calculateTaskStartTime(int processor, Node node){
+		/*
     	int startTime;
     	if (_tasks.isEmpty()){
     		startTime = 0;
@@ -146,5 +169,8 @@ public class Schedule {
     		startTime = Math.max(latestParentEndTime, processorEndTime);
     	}
     	return startTime;
+    	*/
+
+		return 0;
     }
 }
