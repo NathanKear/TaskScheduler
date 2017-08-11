@@ -1,0 +1,10 @@
+digraph "Nodes_4_LatestParentDiffProcessorNoTaskBetween" {
+	A	 [Weight=1];
+	B	 [Weight=1];
+	A -> B	 [Weight=1];
+	C	 [Weight=1];
+	A -> C	 [Weight=10];
+	D	 [Weight=1];
+	B -> D	 [Weight=1];
+	C -> D	 [Weight=10];
+}

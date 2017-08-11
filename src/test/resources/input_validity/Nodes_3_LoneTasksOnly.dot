@@ -1,4 +1,4 @@
-digraph "Nodes_3_LoneTasks" {
+digraph "Nodes_3_LoneTasksOnly" {
 	A	 [Weight=1];
 	B	 [Weight=2];
 	C	 [Weight=3];
