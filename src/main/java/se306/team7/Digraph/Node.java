@@ -35,12 +35,12 @@ public class Node {
 
         if (originNodeName.equals(_name)) {
 
-        if (originNodeName.equals(_name)) {
-            _outgoingLinks.add(link);
-        } else {
-            _incomingLinks.add(link);
+            if (originNodeName.equals(_name)) {
+                _outgoingLinks.add(link);
+            } else {
+                _incomingLinks.add(link);
+            }
         }
-        return;
     }
 
     /**
