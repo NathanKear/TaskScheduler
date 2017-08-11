@@ -1,11 +1,12 @@
 package se306.team7;
 
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CommandLineArgumentParserTests {
 

@@ -9,6 +9,7 @@ public class Node {
     private int _cost;
     private List<Link> _incomingLinks;
     private List<Link> _outgoingLinks;
+    private int _bottomLevel;
 
     /**
      * Instantiates an instance of Node
@@ -31,12 +32,11 @@ public class Node {
      */
     public void addLink (Node originNode, String originNodeName, Node destinationNode, int weight) {
         Link link = new Link(originNode, destinationNode, weight);
-        if (originNodeName == _name) {
-            _incomingLinks.add(link);
-        } else {
-            _outgoingLinks.add(link);
-        }
-        return;
+            if (originNodeName.equals(_name)) {
+                _outgoingLinks.add(link);
+            } else {
+                _incomingLinks.add(link);
+            }
     }
 
     /**
@@ -47,4 +47,65 @@ public class Node {
         return (_incomingLinks.size() == 0);
     }
 
+    /**
+     * Returns incoming links for this node
+     * 
+     */
+    public List<Link> getIncomingLinks(){
+    	return _incomingLinks;
+    }
+
+    /**
+     * Returns outgoing links for this node
+     * @return
+     */
+    public List<Link> getOutgoingLinks() { return _outgoingLinks; }
+
+    /**
+     * Get nodes that have an outgoing link to this node
+     * @return
+     */
+    public List<Node> getIncomingNodes() {
+        List<Node> nodes = new ArrayList<Node>();
+
+        for (Link link : getIncomingLinks()) {
+            nodes.add(link.getOriginNode());
+        }
+
+        return nodes;
+    }
+
+    /**
+     * Get nodes that have an incoming link from this node
+     * @return
+     */
+    public List<Node> getOutgoingNodes() {
+        List<Node> nodes = new ArrayList<Node>();
+
+        for (Link link : getOutgoingLinks()) {
+            nodes.add(link.getDestinationNode());
+        }
+
+        return nodes;
+    }
+
+    /**
+     * Returns weight cost of the node
+     */
+    public int getCost() {
+    	return _cost;
+    }
+    
+    /**
+     * Returns bottom level of the node
+     */
+    public int getBottomLevel(){
+    	return _bottomLevel;
+    }
+
+    /**
+     * Return name of this node
+     * @return
+     */
+    public String getName() { return _name; }
 }
