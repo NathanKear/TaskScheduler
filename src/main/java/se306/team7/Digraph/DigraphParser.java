@@ -23,8 +23,8 @@ public class DigraphParser implements IDigraphParser {
      * @param fileName
      * @return
      */
-    public Digraph parseDigraph(String fileName) throws IOException{
-        Digraph d = null;
+    public IDigraph parseDigraph(String fileName) throws IOException{
+        IDigraphBuilder db = new DigraphBuilder();
         BufferedReader reader = null;
 
 
@@ -35,11 +35,11 @@ public class DigraphParser implements IDigraphParser {
             String name = reader.readLine();
 
             name = name.split("\"")[1];
-            d = new Digraph(name);
+            db.setName(name);
 
             String line;
             while (!(line = reader.readLine()).contains("}")) {
-                d = parseLine(d, line);
+                db = parseLine(db, line);
             }
 
         }catch(FileNotFoundException e){
@@ -51,24 +51,26 @@ public class DigraphParser implements IDigraphParser {
                 e.printStackTrace();
             }
         }
-        return d;
+
+        return db.build();
     }
 
     /**
      * Returns Digraph copy with an added Node/Link object
-     * @param d
+     * @param db
      * @param line
      * @return
      */
-    private Digraph parseLine(Digraph d, String line){
+    private IDigraphBuilder parseLine(IDigraphBuilder db, String line){
+
         line = line.trim();
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
-            d.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
+            db.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
         }else{
-            d.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
+            db.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
         }
 
-        return d;
+        return db;
     }
 }

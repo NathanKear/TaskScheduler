@@ -8,38 +8,18 @@ public class Digraph implements IDigraph {
     private HashMap<String, Node> _nodeMap;
     private List<Node> _topologicalSortedNodes;
     private HashMap<String, Integer> _criticalPathCosts;
+    private List<Node> _headNodes;
 
     /**
      * Instantiates an instance of Digraph
      * @param digraphName The name of the Digraph
      */
-    public Digraph (String digraphName) {
+    public Digraph (String digraphName, HashMap<String, Node> nodeMap){
         _digraphName = digraphName;
-        _nodeMap = new HashMap<String, Node>();
-    }
-
-    /**
-     * Creates a new node and adds it to the Digraph
-     * @param name The name of the node
-     * @param cost The time taken to complete the node's task
-     */
-    public void addNode (String name, int cost) {
-        Node n = new Node(name, cost);
-        _nodeMap.put(name, n);
-    }
-
-    /**
-     * Adds a link between nodes in the digraph
-     * @param originName The name of the node where the link originates
-     * @param destinationName The name of the node where the link terminates
-     * @param cost The cost of transferring the origin node's return value(s) across processors to the destination node
-     */
-    public void addLink (String originName, String destinationName, int cost) {
-        Node originNode = _nodeMap.get(originName);
-        Node destinationNode = _nodeMap.get(destinationName);
-
-        originNode.addLink(originNode, originName, destinationNode, cost);
-        destinationNode.addLink(originNode, originName, destinationNode, cost);
+        _nodeMap = nodeMap;
+        _headNodes = calculateHeadNodes();
+        _topologicalSortedNodes = topologicallySortDigraph(_nodeMap.values());
+        _criticalPathCosts = preCalculateCriticalPathCosts(_topologicalSortedNodes);
     }
 
     /**
@@ -47,7 +27,7 @@ public class Digraph implements IDigraph {
      * list of head nodes
      * @return a list of head nodes
      */
-    public List<Node> calculateHeadNodes () {
+    private List<Node> calculateHeadNodes () {
         ArrayList headNodes = new ArrayList<Node>();
         Iterator it = _nodeMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -68,10 +48,6 @@ public class Digraph implements IDigraph {
      * @return
      */
     public List<Node> getNodes() {
-        if (_topologicalSortedNodes == null) {
-            _topologicalSortedNodes = topologicallySortDigraph(new ArrayList<Node>(_nodeMap.values()));
-        }
-
         return new ArrayList<Node>(_topologicalSortedNodes);
     }
 
@@ -80,7 +56,7 @@ public class Digraph implements IDigraph {
      * @param topologicalSortedNodes Lists of nodes in digraph sorted topologically
      * @return
      */
-    public HashMap<String, Integer> preCalculateCriticalPathCosts(List<Node> topologicalSortedNodes) {
+    private HashMap<String, Integer> preCalculateCriticalPathCosts(List<Node> topologicalSortedNodes) {
         HashMap<String, Integer> criticalPathCosts = new HashMap<String, Integer>();
 
         // iterate through topographically sorted nodes in reverse order
@@ -103,7 +79,7 @@ public class Digraph implements IDigraph {
     /**
      * Get list of nodes in digraph that is topologically ordered
      */
-    public List<Node> topologicallySortDigraph(List<Node> digraphNodes) {
+    private List<Node> topologicallySortDigraph(Collection<Node> digraphNodes) {
         List<Node> topologicalSortedNodes = new ArrayList<Node>();
 
         List<Node> nodes = new ArrayList<Node>(digraphNodes);
@@ -130,12 +106,12 @@ public class Digraph implements IDigraph {
         return topologicalSortedNodes;
     }
 
+    /**
+     * Returns cost of critical path for specifed Node
+     * @param node
+     * @return
+     */
     public int getCriticalPathCost(Node node) {
-
-        if (_criticalPathCosts == null) {
-            _criticalPathCosts = preCalculateCriticalPathCosts(getNodes());
-        }
-
         return _criticalPathCosts.get(node.getName());
     }
 
@@ -170,8 +146,6 @@ public class Digraph implements IDigraph {
         if(!(d._digraphName.equals(this._digraphName))){
             return false;
         }
-
-//        boolean nodesEqual = d._nodeMap.equals(this._nodeMap);
 
         if(d._nodeMap.size()!=this._nodeMap.size()){
             return false;
