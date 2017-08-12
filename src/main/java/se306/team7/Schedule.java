@@ -61,8 +61,8 @@ public class Schedule {
         ArrayList<String> output = new ArrayList<String>();
         for (Task task : _tasks) {
             Node n = task.getNode();
-            String line = n.getName() + "[ Weight = " + n.getCost() + ", Start = " + task.getStartTime() +
-                    ", Processor = " + task.getProcessor() + "];";
+            String line = n.getName() + "[Weight=" + n.getCost() + ",Start=" + task.getStartTime() +
+                    ",Processor=" + task.getProcessor() + "];";
             output.add(line);
 
             List<Link> incomingLinks = n.getIncomingLinks();
