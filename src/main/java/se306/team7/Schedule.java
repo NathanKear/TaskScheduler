@@ -54,6 +54,14 @@ public class Schedule {
     }
 
     /**
+     * Gets the number of processors
+     * @return
+     */
+    public int getNumberOfProcessors() {
+        return _numOfProcessors;
+    }
+
+    /**
      * Gets the nodes in the schedule
      * @return
      */
@@ -155,7 +163,7 @@ public class Schedule {
     				
     				if ( parentEndTime > latestParentEndTime){
     					
-    					latestParentEndTime =  task.getEndTime() ;
+    					latestParentEndTime =  parentEndTime ;
     				}
     			}
     		}
