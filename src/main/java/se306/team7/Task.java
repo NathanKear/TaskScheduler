@@ -53,4 +53,21 @@ public class Task {
         return _endTime;
     }
 
+    public boolean equals(Object other) {
+        if (other == null)
+            return false;
+
+        if (other.getClass() != Task.class)
+            return false;
+
+        Task otherTask = (Task)other;
+
+        if (otherTask._endTime != _endTime ||
+            otherTask._startTime != _startTime ||
+            otherTask._processor != _processor ||
+            otherTask._node != _node)
+            return false;
+
+        return true;
+    }
 }

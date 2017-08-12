@@ -3,6 +3,7 @@ package se306.team7;
 import se306.team7.Digraph.Link;
 import se306.team7.Digraph.Node;
 
+import javax.swing.plaf.synth.SynthCheckBoxUI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ public class Schedule {
     public int _numOfProcessors;
     private Queue<Task> _tasks;
     private HashSet<Node> _nodesInSchedule;
+    private Task _lastAdded;
 
     /**
      * Instantiates a PartialSchedule instance.
@@ -37,10 +39,10 @@ public class Schedule {
      * @param node task to be scheduled on the specified processor
      */
     public Task scheduleTask(int processor, Node node) {
-    	
     	int startTime = precedenceConstraint(node, processor);
         Task newTask = new Task(node, processor,startTime);
         _tasks.add(newTask);
+        _lastAdded = newTask;
         
         return newTask;
     }
@@ -113,6 +115,35 @@ public class Schedule {
 
 		return startTime;
 	}
+
+    public Task getLastAdded() {
+	    return _lastAdded;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null)
+            return false;
+
+        if (other.getClass() != Schedule.class)
+            return false;
+
+        Schedule otherSchedule = (Schedule)other;
+
+        if (otherSchedule._numOfProcessors != _numOfProcessors)
+            return false;
+
+        if (otherSchedule._tasks.size() != _tasks.size())
+            return false;
+
+        for (Task task : _tasks) {
+            if (!otherSchedule._tasks.contains(task)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
     private int calculateTaskStartTime(int processor, Node node){
 		/*

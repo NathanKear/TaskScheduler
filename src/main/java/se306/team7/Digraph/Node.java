@@ -26,13 +26,12 @@ public class Node {
     /**
      * Adds a link to the node. The method will calculate whether the link is incoming or outgoing
      * @param originNode The node the link originates from
-     * @param originNodeName The name of the node the link originates from
      * @param destinationNode The node the link terminates at
      * @param weight The weight associated with transferring the results of the task across processors
      */
-    public void addLink (Node originNode, String originNodeName, Node destinationNode, int weight) {
+    public void addLink (Node originNode, Node destinationNode, int weight) {
         Link link = new Link(originNode, destinationNode, weight);
-        if (originNodeName.equals(_name)) {
+        if (originNode.getName().equals(_name)) {
             _outgoingLinks.add(link);
         } else {
             _incomingLinks.add(link);

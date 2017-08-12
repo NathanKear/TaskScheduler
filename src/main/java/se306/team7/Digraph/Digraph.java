@@ -23,9 +23,10 @@ public class Digraph implements IDigraph {
      * @param name The name of the node
      * @param cost The time taken to complete the node's task
      */
-    public void addNode (String name, int cost) {
+    public Node addNode (String name, int cost) {
         Node n = new Node(name, cost);
         _nodeMap.put(name, n);
+        return n;
     }
 
     /**
@@ -38,8 +39,8 @@ public class Digraph implements IDigraph {
         Node originNode = _nodeMap.get(originName);
         Node destinationNode = _nodeMap.get(destinationName);
 
-        originNode.addLink(originNode, originName, destinationNode, cost);
-        destinationNode.addLink(originNode, originName, destinationNode, cost);
+        originNode.addLink(originNode, destinationNode, cost);
+        destinationNode.addLink(originNode, destinationNode, cost);
     }
 
     /**
@@ -109,7 +110,9 @@ public class Digraph implements IDigraph {
         List<Node> nodes = new ArrayList<Node>(digraphNodes);
 
         while (!nodes.isEmpty()) {
-            for (Node node : nodes) {
+            // Note: Loop definition this way as we are removing elements from the list we are iterating over
+            for (Iterator<Node> iterator = nodes.iterator(); iterator.hasNext(); ) {
+                Node node = iterator.next();
 
                 boolean isFree = true;
 
@@ -121,7 +124,7 @@ public class Digraph implements IDigraph {
 
                 if (isFree) {
                     topologicalSortedNodes.add(node);
-                    nodes.remove(node);
+                    iterator.remove();
                 }
             }
         }

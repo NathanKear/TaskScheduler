@@ -4,13 +4,20 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se306.team7.Algorithm.AStarAlgorithm;
+import se306.team7.Algorithm.CriticalPathCostEstimator;
+import se306.team7.Algorithm.ICostEstimator;
+import se306.team7.Algorithm.LoadBalancerCostEstimator;
+import se306.team7.Algorithm.ScheduleGenerator;
 import se306.team7.Digraph.Digraph;
+import se306.team7.Digraph.DigraphBuilder;
 import se306.team7.Digraph.DigraphParser;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.*;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 
 
@@ -24,10 +31,15 @@ public class TaskScheduler
     private static IFileUtilities fileUtilities = new FileUtilities();
     private static ICommandLineArgumentParser commandLineArgumentParser = new CommandLineArgumentParser(fileUtilities);
     private static Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
+    private static Set<ICostEstimator> _costEstimators;
 
     public static void main( String[] args )
     {
-        PropertyConfigurator.configure("src/log4j.properties");
+        PropertyConfigurator.configure("log4j.properties");
+
+        _costEstimators = new HashSet<ICostEstimator>();
+        _costEstimators.add(new CriticalPathCostEstimator());
+        _costEstimators.add(new LoadBalancerCostEstimator());
 
         CommandLineArgumentConfig commandLineArgumentConfig;
 
@@ -36,7 +48,7 @@ public class TaskScheduler
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-            AStarAlgorithm a = new AStarAlgorithm();
+            AStarAlgorithm a = new AStarAlgorithm(_costEstimators, new ScheduleGenerator());
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
             List<String> output = optimalSchedule.scheduleToStringList();
             fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), output);

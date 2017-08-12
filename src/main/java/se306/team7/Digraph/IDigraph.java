@@ -1,6 +1,7 @@
 package se306.team7.Digraph;
 
 import java.util.List;
+import se306.team7.Task;
 
 public interface IDigraph {
 
@@ -9,7 +10,7 @@ public interface IDigraph {
      * @param name The name of the node
      * @param cost The time taken to complete the node's task
      */
-    public void addNode (String name, int cost);
+    Node addNode (String name, int cost);
 
     /**
      * Adds a link between nodes in the digraph
@@ -17,12 +18,25 @@ public interface IDigraph {
      * @param destinationName The name of the node where the link terminates
      * @param cost The cost of transferring the origin node's return value(s) across processors to the destination node
      */
-    public void addLink (String originName, String destinationName, int cost);
+    void addLink (String originName, String destinationName, int cost);
 
     /**
      * Calculates which nodes in the digraph are head nodes (nodes at level 0 of the digraph) and adds them to the
      * list of head nodes (_headNodes)
      */
-    public List<Node> calculateHeadNodes ();
+    List<Node> calculateHeadNodes ();
 
+
+    /**
+     * Get all the nodes in the digraph
+     * @return
+     */
+    List<Node> getNodes();
+
+    /**
+     * Get the cost of the critical path for a given node
+     * @param node
+     * @return
+     */
+    int getCriticalPathCost(Node node);
 }

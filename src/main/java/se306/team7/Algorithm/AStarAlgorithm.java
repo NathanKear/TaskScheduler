@@ -1,30 +1,31 @@
 package se306.team7.Algorithm;
 
 import se306.team7.CostEstimatedSchedule;
-import se306.team7.Digraph.Digraph;
+import se306.team7.Digraph.IDigraph;
 import se306.team7.Digraph.Node;
 import se306.team7.Digraph.Link;
 import se306.team7.Schedule;
-import se306.team7.Task;
-
-import java.util.*;
 
 import java.util.PriorityQueue;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 public class AStarAlgorithm implements IAlgorithm {
 
     private PriorityQueue <CostEstimatedSchedule> _schedules;
     private Map <Schedule, List<Node>> _currentHeads;
-    private Digraph _digraph;
+    private IDigraph _digraph;
+    private final Set<ICostEstimator> _costEstimators;
+    private final IScheduleGenerator _scheduleGenerator;
 
-    public AStarAlgorithm () {
+    public AStarAlgorithm (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _schedules = new PriorityQueue<CostEstimatedSchedule>();
         _currentHeads = new HashMap<Schedule, List<Node>>();
+        _costEstimators = costEstimators;
+        _scheduleGenerator = scheduleGenerator;
     }
 
     /**
@@ -33,18 +34,17 @@ public class AStarAlgorithm implements IAlgorithm {
      * @param numOfProcessors Processors available to concurrently complete tasks
      * @return Optimal complete schedule
      */
-    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+    public Schedule getOptimalSchedule(IDigraph digraph, int numOfProcessors) {
         _schedules.clear();
         _currentHeads.clear();
         _digraph = digraph;
 
-        Schedule schedule = new Schedule(numOfProcessors);
+        Schedule emptySchedule = new Schedule(numOfProcessors);
+        CostEstimatedSchedule emptyCostEstimatedSchedule = new CostEstimatedSchedule(emptySchedule, Integer.MAX_VALUE);
 
-        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
-
-        _schedules.add(emptySchedule);
-        List<Node> initialHeads = calculateCurrentHeads(emptySchedule.getSchedule());
-        _currentHeads.put(emptySchedule.getSchedule(), initialHeads);
+        _schedules.add(emptyCostEstimatedSchedule);
+        List<Node> initialHeads = calculateCurrentHeads(emptyCostEstimatedSchedule.getSchedule());
+        _currentHeads.put(emptyCostEstimatedSchedule.getSchedule(), initialHeads);
 
         while(true){
            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
@@ -54,38 +54,19 @@ public class AStarAlgorithm implements IAlgorithm {
                return mostPromisingSchedule;
            }
 
-           List<CostEstimatedSchedule> possibleSchedules = generateSchedules(mostPromisingSchedule, possibleNodes);
+           List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, possibleNodes);
 
-           for(CostEstimatedSchedule s : possibleSchedules){
-               _schedules.add(s);
-               List<Node> currentHeads = calculateCurrentHeads(s.getSchedule());
-               _currentHeads.put(emptySchedule.getSchedule(), currentHeads);
+           for(Schedule schedule : possibleSchedules){
+               int estimatedCost = getCostEstimate(schedule);
+               CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(schedule, estimatedCost);
+
+               _schedules.add(costEstimatedSchedule);
+               List<Node> currentHeads = calculateCurrentHeads(schedule);
+               _currentHeads.put(emptyCostEstimatedSchedule.getSchedule(), currentHeads);
            }
         }
     }
 
-    /**
-     * Generate schedules that are immediate children of the current schedule
-     * @param current The current schedule whos children should be created
-     * @param currentHeads The current nodes available to be added to the current schedule.
-     *                     This is defined as nodes that are not in the schedule but have all their dependencies in the schedule.
-     * @return List of next level schedules who are direct children of the current schedule
-     */
-    public List<CostEstimatedSchedule> generateSchedules(Schedule current, List<Node> currentHeads) {
-
-        List<CostEstimatedSchedule> generatedSchedules = new ArrayList<CostEstimatedSchedule>();
-
-        for (Node head : currentHeads) {
-            for (int i = 0; i < current._numOfProcessors; i++) {
-                Schedule newSchedule = new Schedule(current);
-                newSchedule.scheduleTask(i, head);
-                int cost = getCostEstimate(newSchedule);
-                generatedSchedules.add(new CostEstimatedSchedule(newSchedule, cost));
-            }
-        }
-
-        return generatedSchedules;
-    }
 
     /**
      * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
@@ -94,56 +75,13 @@ public class AStarAlgorithm implements IAlgorithm {
      * @return
      */
     public int getCostEstimate(Schedule schedule) {
-        return Math.max(loadBalanceCostEstimate(schedule), criticalPathCostEstimate(schedule));
-    }
+        int currentMaxCost = 0;
 
-    /**
-     * Get path cost estimate using the load balance cost estimate.
-     * Load balance cost is the cost of all remaining tasks to be scheduled
-     * spread perfectly over all threads starting immediately after the current
-     * schedule finish time.
-     * @param schedule
-     * @return
-     */
-    public int loadBalanceCostEstimate(Schedule schedule) {
-
-        // Get all nodes
-        List<Node> nodesNotInDigraph = _digraph.getNodes();
-
-        // Remove nodes already in digraph
-        for (Task task : schedule.getTasks()) {
-            nodesNotInDigraph.remove(task.getNode());
+        for (ICostEstimator costEstimator : _costEstimators) {
+            currentMaxCost = Math.max(currentMaxCost, costEstimator.getCostEstimate(_digraph, schedule));
         }
 
-        int totalCost = 0;
-
-        // Get total cost of all nodes yet to add
-        for (Node node : nodesNotInDigraph) {
-            totalCost += node.getCost();
-        }
-
-        // Get average cost of all nodes yet to add per processor
-        int costPerProcessor = (int)Math.ceil(totalCost / schedule._numOfProcessors);
-
-        return schedule.endTime() + costPerProcessor;
-    }
-
-    /**
-     * Get path cost estimate using the critical path estimate.
-     * Critical path is the most expensive direct path from any node currently in the schedule
-     * to the end of the schedule.
-     * @param schedule
-     * @return
-     */
-    public int criticalPathCostEstimate(Schedule schedule) {
-
-        int highestCriticalPath = 0;
-
-        for (Task task : schedule.getTasks()) {
-            highestCriticalPath = Math.max(highestCriticalPath, task.getEndTime() + _digraph.getCriticalPathCost(task.getNode()));
-        }
-
-        return highestCriticalPath;
+        return currentMaxCost;
     }
 
     /**
@@ -183,5 +121,4 @@ public class AStarAlgorithm implements IAlgorithm {
         }
         return true;
     }
-
 }
