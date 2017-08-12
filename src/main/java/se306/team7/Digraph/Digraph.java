@@ -166,9 +166,46 @@ public class Digraph implements IDigraph {
 
         Digraph d = (Digraph) other;
 
-        boolean nameEqual = d._digraphName.equals(this._digraphName);
-        boolean nodesEqual = d._nodeMap.equals(this._nodeMap);
+        if(!(d._digraphName.equals(this._digraphName))){
+            return false;
+        }
 
-        return nameEqual && nodesEqual;
+//        boolean nodesEqual = d._nodeMap.equals(this._nodeMap);
+
+        if(d._nodeMap.size()!=this._nodeMap.size()){
+            return false;
+        }
+
+        if(!(mapsAreEqual(d._nodeMap, this._nodeMap))){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Helper method to determine whether NodeMaps are equal
+     * @param mapA
+     * @param mapB
+     * @return
+     */
+    private boolean mapsAreEqual(Map<String, Node> mapA, Map<String, Node> mapB) {
+
+        try{
+            for (String k : mapB.keySet())
+            {
+                if (!mapA.get(k).equals(mapB.get(k))) {
+                    return false;
+                }
+            }
+            for (String y : mapA.keySet())
+            {
+                if (!mapB.containsKey(y)) {
+                    return false;
+                }
+            }
+        } catch (NullPointerException np) {
+            return false;
+        }
+        return true;
     }
 }
