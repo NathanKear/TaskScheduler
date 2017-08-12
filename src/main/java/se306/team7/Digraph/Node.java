@@ -109,6 +109,11 @@ public class Node {
      */
     public String getName() { return _name; }
 
+    /**
+     * Override equals method to compare two Node objects
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -129,7 +134,46 @@ public class Node {
         if(n._cost != this._cost){
             return false;
         }
+        if(n._incomingLinks.size() != this._incomingLinks.size()){
+            return false;
+        }
+        if(n._outgoingLinks.size() != this._outgoingLinks.size()) {
+            return false;
+        }
 
+        int count = 0;
+        for(Link l : n._incomingLinks){
+            if(this._incomingLinks.contains(l)) {
+                count++;
+            }
+        }
+        if(count != n._incomingLinks.size()){
+            return false;
+        }
 
+        count = 0;
+        for(Link l : n._outgoingLinks){
+            if(this._outgoingLinks.contains(l)) {
+                count++;
+            }
+        }
+        if(count != n._outgoingLinks.size()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Override hashCode method so that equals method can compare two Node objects accurately
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + _name.hashCode();
+        result = 31 * result + _cost;
+        result = 31 * result + _outgoingLinks.hashCode();
+        result = 31 * result + _incomingLinks.hashCode();
+        return result;
     }
 }

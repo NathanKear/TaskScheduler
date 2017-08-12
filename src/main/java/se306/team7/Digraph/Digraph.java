@@ -218,8 +218,6 @@ public class Digraph implements IDigraph {
         int result = 17;
         result = 31 * result + _digraphName.hashCode();
         result = 31 * result + _nodeMap.hashCode();
-        result = 31 * result + _criticalPathCosts.hashCode();
-        result = 31 * result + _topologicalSortedNodes.hashCode();
         return result;
     }
 }
