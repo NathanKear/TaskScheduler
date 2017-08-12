@@ -2,7 +2,7 @@ digraph "output_Nodes_4_MultipleParents" {
 	A	 [Weight=1,Start=0,Processor=1];
 	B	 [Weight=2,Start=1,Processor=1];
 	A -> B	 [Weight=10];
-	C	 [Weight=2,Start=,Processor=2];
+	C	 [Weight=2,Start=2,Processor=2];
 	A -> C	 [Weight=1];
 	D	 [Weight=1,Start=5,Processor=1];
 	B -> D	 [Weight=10];
