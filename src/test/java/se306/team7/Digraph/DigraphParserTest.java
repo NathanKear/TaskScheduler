@@ -64,6 +64,8 @@ public class DigraphParserTest {
         }
 
         // Assert
-        assertEquals(desiredDigraph, testDigraph);
+        //assertEquals(desiredDigraph, testDigraph);
+
+        assertEquals(testDigraph, desiredDigraph);
     }
 }
