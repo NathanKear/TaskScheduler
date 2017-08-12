@@ -43,6 +43,7 @@ public class AStarAlgorithm implements IAlgorithm {
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
+        _currentHeads.put(schedule, new ArrayList<Node>());
         List<Node> initialHeads = calculateCurrentHeads(emptySchedule.getSchedule());
         _currentHeads.put(emptySchedule.getSchedule(), initialHeads);
 
@@ -59,7 +60,7 @@ public class AStarAlgorithm implements IAlgorithm {
            for(CostEstimatedSchedule s : possibleSchedules){
                _schedules.add(s);
                List<Node> currentHeads = calculateCurrentHeads(s.getSchedule());
-               _currentHeads.put(emptySchedule.getSchedule(), currentHeads);
+               _currentHeads.put(s.getSchedule(), currentHeads);
            }
         }
     }
@@ -78,6 +79,7 @@ public class AStarAlgorithm implements IAlgorithm {
         for (Node head : currentHeads) {
             for (int i = 0; i < current._numOfProcessors; i++) {
                 Schedule newSchedule = new Schedule(current);
+                _currentHeads.put(newSchedule, new ArrayList<Node>(currentHeads));
                 newSchedule.scheduleTask(i, head);
                 int cost = getCostEstimate(newSchedule);
                 generatedSchedules.add(new CostEstimatedSchedule(newSchedule, cost));

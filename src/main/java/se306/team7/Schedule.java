@@ -29,6 +29,9 @@ public class Schedule {
         _numOfProcessors = schedule._numOfProcessors;
         _tasks = new LinkedList<Task>(schedule._tasks);
         _nodesInSchedule = new HashSet<Node>();
+        for (Task t: schedule.getTasks()) {
+            _nodesInSchedule.add(t.getNode());
+        }
     }
 
     /**
@@ -38,9 +41,10 @@ public class Schedule {
      */
     public Task scheduleTask(int processor, Node node) {
     	
-    	int startTime = precedenceConstraint(node, processor);
+    	int startTime = calculateTaskStartTime(processor, node);
         Task newTask = new Task(node, processor,startTime);
         _tasks.add(newTask);
+        _nodesInSchedule.add(node);
         
         return newTask;
     }
@@ -74,6 +78,8 @@ public class Schedule {
                 output.add(linkString);
             }
         }
+
+        output.add("Final time: " + endTime());
         return output;
     }
 
@@ -115,7 +121,7 @@ public class Schedule {
 	}
     
     private int calculateTaskStartTime(int processor, Node node){
-		/*
+
     	int startTime;
     	if (_tasks.isEmpty()){
     		startTime = 0;
@@ -169,8 +175,5 @@ public class Schedule {
     		startTime = Math.max(latestParentEndTime, processorEndTime);
     	}
     	return startTime;
-    	*/
-
-		return 0;
     }
 }

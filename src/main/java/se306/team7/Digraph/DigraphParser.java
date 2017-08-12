@@ -63,13 +63,11 @@ public class DigraphParser implements IDigraphParser {
      * @return
      */
     private Digraph parseLine(Digraph d, String line){
-
+        line = line.trim();
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
-            System.out.println(splitLine[0] + splitLine[1]);
             d.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
         }else{
-            System.out.println(splitLine[0] + splitLine[2] + splitLine[3]);
             d.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
         }
 

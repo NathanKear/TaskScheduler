@@ -26,7 +26,7 @@ public class CostEstimatedSchedule implements Comparable {
             throw new NullPointerException();
         }
 
-        if(!o.getClass().equals(Schedule.class)){
+        if(!o.getClass().equals(CostEstimatedSchedule.class)){
             throw new IllegalArgumentException();
         }
 
