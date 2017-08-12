@@ -39,7 +39,7 @@ public class TaskScheduler
             AStarAlgorithm a = new AStarAlgorithm();
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
             List<String> output = optimalSchedule.scheduleToStringList();
-            fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), output);
+            fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), d._digraphName, output);
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());

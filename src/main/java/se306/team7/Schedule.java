@@ -70,7 +70,7 @@ public class Schedule {
                 Node parent = link.getOriginNode();
                 Node child = link.getDestinationNode();
                 int transferCost = link.getTransferCost();
-                String linkString = parent.getName() + " -> " + child.getName() + "    [ Weight = " + transferCost + "];";
+                String linkString = parent.getName() + " -> " + child.getName() + "    [Weight=" + transferCost + "];";
                 output.add(linkString);
             }
         }
