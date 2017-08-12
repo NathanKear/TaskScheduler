@@ -53,7 +53,7 @@ public class DigraphParserTest {
         desiredDigraph.addLink("a", "c", 2);
         desiredDigraph.addNode("d",2);
         desiredDigraph.addLink("b","d",2);
-        desiredDigraph.addLink("c","d", 2);
+        desiredDigraph.addLink("c","d", 1);
 
         // Act
         Digraph testDigraph = null;

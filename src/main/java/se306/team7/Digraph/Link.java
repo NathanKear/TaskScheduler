@@ -43,4 +43,47 @@ public class Link {
         return _destinationNode;
     }
 
+    /**
+     * Overrides equal method to compare two Link objects
+     * @param other
+     * @return
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Link)) {
+            return false;
+        }
+
+        Link l = (Link) other;
+
+        if (!l._destinationNode.getName().equals(this._destinationNode.getName())) {
+            return false;
+        }
+        if (!l._originNode.getName().equals(this._originNode.getName())) {
+            return false;
+        }
+        if (l._transferCost != this._transferCost) {
+            return false;
+        }
+
+        return true;
+    }
+        /**
+         * Override hashCode method so that equals method can compare two Link objects accurately
+         * @return
+         * */
+        @Override
+        public int hashCode() {
+            int result = 17;
+            result = 31 * result + _destinationNode.hashCode();
+            result = 31 * result + _transferCost;
+            result = 31 * result + _originNode.hashCode();
+            return result;
+        }
 }

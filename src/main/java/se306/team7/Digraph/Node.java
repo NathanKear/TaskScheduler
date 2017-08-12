@@ -172,8 +172,6 @@ public class Node {
         int result = 17;
         result = 31 * result + _name.hashCode();
         result = 31 * result + _cost;
-        result = 31 * result + _outgoingLinks.hashCode();
-        result = 31 * result + _incomingLinks.hashCode();
         return result;
     }
 }
