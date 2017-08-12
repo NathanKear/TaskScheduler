@@ -43,6 +43,7 @@ public class AStarAlgorithm implements IAlgorithm {
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
+        _currentHeads.put(schedule, new ArrayList<Node>());
         List<Node> initialHeads = calculateCurrentHeads(emptySchedule.getSchedule());
         _currentHeads.put(emptySchedule.getSchedule(), initialHeads);
 
@@ -59,7 +60,7 @@ public class AStarAlgorithm implements IAlgorithm {
            for(CostEstimatedSchedule s : possibleSchedules){
                _schedules.add(s);
                List<Node> currentHeads = calculateCurrentHeads(s.getSchedule());
-               _currentHeads.put(emptySchedule.getSchedule(), currentHeads);
+               _currentHeads.put(s.getSchedule(), currentHeads);
            }
         }
     }
@@ -78,6 +79,7 @@ public class AStarAlgorithm implements IAlgorithm {
         for (Node head : currentHeads) {
             for (int i = 0; i < current._numOfProcessors; i++) {
                 Schedule newSchedule = new Schedule(current);
+                _currentHeads.put(newSchedule, new ArrayList<Node>(currentHeads));
                 newSchedule.scheduleTask(i, head);
                 int cost = getCostEstimate(newSchedule);
                 generatedSchedules.add(new CostEstimatedSchedule(newSchedule, cost));
@@ -110,10 +112,28 @@ public class AStarAlgorithm implements IAlgorithm {
         // Get all nodes
         List<Node> nodesNotInDigraph = _digraph.getNodes();
 
+        int numOfProcessors = schedule.getNumberOfProcessors();
+        int[] earliestFinishingTime = new int[numOfProcessors];
+
+        int maxProcessingTime = 0;
+
         // Remove nodes already in digraph
         for (Task task : schedule.getTasks()) {
+            int finishingTime = Math.max(earliestFinishingTime[task.getProcessor()], task.getEndTime());
+            earliestFinishingTime[task.getProcessor()] = finishingTime;
+            if (finishingTime > maxProcessingTime) {
+                maxProcessingTime = finishingTime;
+            }
             nodesNotInDigraph.remove(task.getNode());
         }
+
+
+
+        int freeTime = 0;
+        for(int i = 0; i < numOfProcessors; i++) {
+            freeTime += maxProcessingTime - earliestFinishingTime[i];
+        }
+
 
         int totalCost = 0;
 
@@ -122,8 +142,10 @@ public class AStarAlgorithm implements IAlgorithm {
             totalCost += node.getCost();
         }
 
+        totalCost = Math.max(0, totalCost - freeTime);
+
         // Get average cost of all nodes yet to add per processor
-        int costPerProcessor = (int)Math.ceil(totalCost / schedule._numOfProcessors);
+        int costPerProcessor = (int)Math.ceil(totalCost / (double) schedule._numOfProcessors);
 
         return schedule.endTime() + costPerProcessor;
     }

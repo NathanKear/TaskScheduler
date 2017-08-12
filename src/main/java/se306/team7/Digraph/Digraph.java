@@ -85,8 +85,9 @@ public class Digraph implements IDigraph {
         List<Node> nodes = new ArrayList<Node>(digraphNodes);
 
         while (!nodes.isEmpty()) {
-            for (Node node : nodes) {
-
+            // Note: Loop definition this way as we are removing elements from the list we are iterating over
+            for (Iterator<Node> iterator = nodes.iterator(); iterator.hasNext(); ) {
+                Node node = iterator.next();
                 boolean isFree = true;
 
                 for (Node incomingNode : node.getIncomingNodes()) {
@@ -97,7 +98,7 @@ public class Digraph implements IDigraph {
 
                 if (isFree) {
                     topologicalSortedNodes.add(node);
-                    nodes.remove(node);
+                    iterator.remove();
                 }
             }
         }

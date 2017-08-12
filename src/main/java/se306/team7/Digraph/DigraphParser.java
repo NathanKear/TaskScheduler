@@ -63,6 +63,7 @@ public class DigraphParser implements IDigraphParser {
      */
     private IDigraphBuilder parseLine(IDigraphBuilder db, String line){
 
+        line = line.trim();
         String[] splitLine = line.split("\\s+");
         if(splitLine.length<3){
             db.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
