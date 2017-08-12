@@ -108,4 +108,28 @@ public class Node {
      * @return
      */
     public String getName() { return _name; }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Node)) {
+            return false;
+        }
+
+        Node n = (Node) other;
+
+        if(!n._name.equals(this._name)){
+            return false;
+        }
+        if(n._cost != this._cost){
+            return false;
+        }
+
+
+    }
 }

@@ -208,4 +208,18 @@ public class Digraph implements IDigraph {
         }
         return true;
     }
+
+    /**
+     * Override hashCode method so that equals method can compare two Digraph objects accurately
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + _digraphName.hashCode();
+        result = 31 * result + _nodeMap.hashCode();
+        result = 31 * result + _criticalPathCosts.hashCode();
+        result = 31 * result + _topologicalSortedNodes.hashCode();
+        return result;
+    }
 }
