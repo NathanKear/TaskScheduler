@@ -134,35 +134,32 @@ public class Schedule {
     			parentNodes.add(link.getOriginNode());
     		}
     		
-    		Node latestParent = null;
     		int latestParentEndTime = 0;
-    		int latestParentProcessor = 0;
-    		
     		
     		// check the latest scheduled parent node
     		for (Task task : _tasks){
     			if (parentNodes.contains(task.getNode())){
     				
-    				if ( task.getEndTime() > latestParentEndTime){
+    				int parentEndTime = task.getEndTime();
+    				
+    				if (task.getProcessor() != processor){
+    					
+    					for (Link link : incomingLinks){
+    		    			if (link.getOriginNode().equals(task.getNode())){
+    	    					parentEndTime = parentEndTime + link.getTransferCost();
+    		    				break;
+    		    			}
+    		    		}
+    		    		    	
+    	    		}
+    				
+    				if ( parentEndTime > latestParentEndTime){
     					
     					latestParentEndTime =  task.getEndTime() ;
-    					latestParent = task.getNode();
-    					latestParentProcessor = task.getProcessor();
     				}
     			}
     		}
-    		
-    		int transferCostFromLatestParent = 0;
-    		for (Link link : incomingLinks){
-    			if (link.getOriginNode().equals(latestParent)){
-    				transferCostFromLatestParent = link.getTransferCost();
-    				break;
-    			}
-    		}
-    		    		
-    		if (latestParentProcessor != processor){
-    			latestParentEndTime = latestParentEndTime + transferCostFromLatestParent;
-    		}
+    				
     		
     		// latest node end time on the specified processor
     		int processorEndTime = 0;
