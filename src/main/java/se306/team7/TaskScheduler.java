@@ -4,8 +4,9 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se306.team7.Algorithm.AStarAlgorithm;
-import se306.team7.Digraph.Digraph;
+import se306.team7.Digraph.IDigraph;
 import se306.team7.Digraph.DigraphParser;
+import se306.team7.Digraph.IDigraphBuilder;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
@@ -35,7 +36,7 @@ public class TaskScheduler
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
-            Digraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
+            IDigraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
             AStarAlgorithm a = new AStarAlgorithm();
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
             List<String> output = optimalSchedule.scheduleToStringList();

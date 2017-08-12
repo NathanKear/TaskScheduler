@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public interface IDigraphParser {
 
-    Digraph parseDigraph(String filename) throws IOException;
+    IDigraph parseDigraph(String filename) throws IOException;
 
 }
