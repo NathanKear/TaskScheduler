@@ -147,4 +147,78 @@ public class Digraph implements IDigraph {
     public Node getNode (String nodeName) {
         return _nodeMap.get(nodeName);
     }
+
+    /**
+     * Compares other object to this object, returns true if they are equal, false if not
+     * @param other
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Digraph)) {
+            return false;
+        }
+
+        Digraph d = (Digraph) other;
+
+        if(!(d._digraphName.equals(this._digraphName))){
+            return false;
+        }
+
+//        boolean nodesEqual = d._nodeMap.equals(this._nodeMap);
+
+        if(d._nodeMap.size()!=this._nodeMap.size()){
+            return false;
+        }
+
+        if(!(mapsAreEqual(d._nodeMap, this._nodeMap))){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Helper method to determine whether NodeMaps are equal
+     * @param mapA
+     * @param mapB
+     * @return
+     */
+    private boolean mapsAreEqual(Map<String, Node> mapA, Map<String, Node> mapB) {
+
+        try{
+            for (String k : mapB.keySet())
+            {
+                if (!mapA.get(k).equals(mapB.get(k))) {
+                    return false;
+                }
+            }
+            for (String y : mapA.keySet())
+            {
+                if (!mapB.containsKey(y)) {
+                    return false;
+                }
+            }
+        } catch (NullPointerException np) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Override hashCode method so that equals method can compare two Digraph objects accurately
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + _digraphName.hashCode();
+        result = 31 * result + _nodeMap.hashCode();
+        return result;
+    }
 }

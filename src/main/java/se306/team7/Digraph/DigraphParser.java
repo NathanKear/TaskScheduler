@@ -35,12 +35,10 @@ public class DigraphParser implements IDigraphParser {
             String name = reader.readLine();
 
             name = name.split("\"")[1];
-            System.out.println(name);
             d = new Digraph(name);
 
             String line;
             while (!(line = reader.readLine()).contains("}")) {
-                System.out.println(line);
                 d = parseLine(d, line);
             }
 
