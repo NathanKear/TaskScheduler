@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class DigraphBuilder implements IDigraphBuilder {
     private String _digraphName;
-    private HashMap<String, Node> _currentNodes;
+    private HashMap<String, Node> _currentNodes = new HashMap<String, Node>();
 
     public IDigraphBuilder setName(String digraphName) {
         _digraphName = digraphName;
