@@ -45,18 +45,20 @@ public class DigraphParserTest {
     public void ParseDigraph_ReturnsDigraph_WhenInputValid() {
 
         // Arrange
-        Digraph desiredDigraph = new Digraph("validDigraph");
-        desiredDigraph.addNode("a", 2);
-        desiredDigraph.addNode("b", 3);
-        desiredDigraph.addLink("a", "b", 1);
-        desiredDigraph.addNode("c", 3);
-        desiredDigraph.addLink("a", "c", 2);
-        desiredDigraph.addNode("d", 2);
-        desiredDigraph.addLink("b", "d", 2);
-        desiredDigraph.addLink("c", "d", 1);
+        DigraphBuilder db = new DigraphBuilder();
+        db.setName("validDigraph");
+        db.addNode("a", 2);
+        db.addNode("b", 3);
+        db.addLink("a", "b", 1);
+        db.addNode("c", 3);
+        db.addLink("a", "c", 2);
+        db.addNode("d", 2);
+        db.addLink("b", "d", 2);
+        db.addLink("c", "d", 1);
+        IDigraph desiredDigraph = db.build();
 
         // Act
-        Digraph testDigraph = null;
+        IDigraph testDigraph = null;
         try {
             testDigraph = _digraphParser.parseDigraph("testfile.dot");
         } catch (IOException e) {
@@ -64,5 +66,6 @@ public class DigraphParserTest {
         }
 
         assertEquals(testDigraph, desiredDigraph);
+
     }
 }
