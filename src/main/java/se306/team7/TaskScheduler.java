@@ -4,6 +4,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se306.team7.Algorithm.AStarAlgorithm;
+import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.IDigraph;
 import se306.team7.Digraph.DigraphParser;
 import se306.team7.Digraph.IDigraphBuilder;
@@ -36,10 +37,16 @@ public class TaskScheduler
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
-            IDigraph d = digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
+            Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
             AStarAlgorithm a = new AStarAlgorithm();
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
+
             List<String> output = optimalSchedule.scheduleToStringList();
+
+            for (String line : output) {
+                logger.info(line);
+            }
+
             fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), output);
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
@@ -53,12 +60,7 @@ public class TaskScheduler
             logger.error("Digraph Parsing Failed");
         }
 
-        logger.trace("trace message");
-        logger.debug("debug message");
-        logger.info("info message");
-        logger.warn("warn message");
-        logger.error("error message");
-        System.out.println( "Hello World!" );
+
     }
 
     /**
