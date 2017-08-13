@@ -38,7 +38,7 @@ public class Digraph implements IDigraph {
                 headNodes.add(n);
             }
 
-            it.remove();
+            //it.remove();
         }
         return headNodes;
     }
