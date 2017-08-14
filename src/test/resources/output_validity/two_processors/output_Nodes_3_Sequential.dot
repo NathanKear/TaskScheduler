@@ -1,0 +1,7 @@
+digraph "output_Nodes_3_Sequential" {
+	A	 [Weight=1,Start=0,Processor=1];
+	B	 [Weight=2,Start=1,Processor=1];
+	C	 [Weight=3,Start=3,Processor=1];
+	A -> B	 [Weight=4];
+	B -> C	 [Weight=5];
+}

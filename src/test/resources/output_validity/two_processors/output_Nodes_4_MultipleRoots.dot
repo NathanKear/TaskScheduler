@@ -1,0 +1,9 @@
+digraph "Nodes_4_MultipleRoots" {
+	A	 [Weight=1,Start=0,Processor=1];
+	B	 [Weight=2,Start=0,Processor=2];
+	C	 [Weight=3,Start=8,Processor=1];
+	D	 [Weight=4,Start=2,Processor=2];
+	A -> C	 [Weight=5];
+	B -> C	 [Weight=6];
+	B -> D	 [Weight=7];
+}

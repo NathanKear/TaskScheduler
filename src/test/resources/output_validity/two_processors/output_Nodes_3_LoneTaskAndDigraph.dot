@@ -1,0 +1,6 @@
+digraph "output_Nodes_3_LoneTaskAndDigraph" {
+	A	 [Weight=1,Start=0,Processor=1];
+	B	 [Weight=2,Start=1,Processor=1];
+	C	 [Weight=2,Start=0,Processor=2];
+	A -> B	 [Weight=10];
+}

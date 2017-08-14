@@ -47,7 +47,7 @@ public class TaskScheduler
                 logger.info(line);
             }
 
-            fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), output);
+            fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), d._digraphName, output);
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());

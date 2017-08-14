@@ -73,8 +73,8 @@ public class Schedule {
         ArrayList<String> output = new ArrayList<String>();
         for (Task task : _tasks) {
             Node n = task.getNode();
-            String line = n.getName() + "\t\t[Weight=" + n.getCost() + ",Start=" + task.getStartTime() +
-                    ",Processor=" + task.getProcessor() + "];";
+            String line = "\t" + n.getName() + "\t\t[Weight=" + n.getCost() + ",Start=" + task.getStartTime() +
+                    ",Processor=" + task.getProcessor() + "];\n";
             output.add(line);
 
             List<Link> incomingLinks = n.getIncomingLinks();
@@ -82,7 +82,7 @@ public class Schedule {
                 Node parent = link.getOriginNode();
                 Node child = link.getDestinationNode();
                 int transferCost = link.getTransferCost();
-                String linkString = parent.getName() + " -> " + child.getName() + "\t[Weight=" + transferCost + "];";
+                String linkString = "\t" + parent.getName() + " -> " + child.getName() + "\t[Weight=" + transferCost + "];\n";
                 output.add(linkString);
             }
         }

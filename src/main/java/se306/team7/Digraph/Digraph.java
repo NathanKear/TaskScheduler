@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Digraph implements IDigraph {
 
-    private String _digraphName;
+    public String _digraphName;
     private HashMap<String, Node> _nodeMap;
     private List<Node> _topologicalSortedNodes;
     private HashMap<String, Integer> _criticalPathCosts;
