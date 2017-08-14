@@ -2,6 +2,7 @@ package se306.team7;
 
 import se306.team7.Digraph.Digraph;
 
+import java.util.Queue;
 import java.util.Comparator;
 
 public class CostEstimatedSchedule implements Comparable {
@@ -31,7 +32,10 @@ public class CostEstimatedSchedule implements Comparable {
         }
 
         CostEstimatedSchedule otherSchedule = (CostEstimatedSchedule)(o);
+        Queue<Task> thisTasks = _schedule.getTasks();
+        Queue<Task> otherTasks = otherSchedule.getSchedule().getTasks();
+        int taskDifference = thisTasks.size() - otherTasks.size();
 
-        return  _estimatedCost - otherSchedule._estimatedCost;
+        return  _estimatedCost - otherSchedule._estimatedCost- taskDifference;
     }
 }
