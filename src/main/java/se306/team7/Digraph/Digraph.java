@@ -8,38 +8,18 @@ public class Digraph implements IDigraph {
     private HashMap<String, Node> _nodeMap;
     private List<Node> _topologicalSortedNodes;
     private HashMap<String, Integer> _criticalPathCosts;
+    private List<Node> _headNodes;
 
     /**
      * Instantiates an instance of Digraph
      * @param digraphName The name of the Digraph
      */
-    public Digraph (String digraphName) {
+    public Digraph (String digraphName, HashMap<String, Node> nodeMap){
         _digraphName = digraphName;
-        _nodeMap = new HashMap<String, Node>();
-    }
-
-    /**
-     * Creates a new node and adds it to the Digraph
-     * @param name The name of the node
-     * @param cost The time taken to complete the node's task
-     */
-    public void addNode (String name, int cost) {
-        Node n = new Node(name, cost);
-        _nodeMap.put(name, n);
-    }
-
-    /**
-     * Adds a link between nodes in the digraph
-     * @param originName The name of the node where the link originates
-     * @param destinationName The name of the node where the link terminates
-     * @param cost The cost of transferring the origin node's return value(s) across processors to the destination node
-     */
-    public void addLink (String originName, String destinationName, int cost) {
-        Node originNode = _nodeMap.get(originName);
-        Node destinationNode = _nodeMap.get(destinationName);
-
-        originNode.addLink(originNode, originName, destinationNode, cost);
-        destinationNode.addLink(originNode, originName, destinationNode, cost);
+        _nodeMap = nodeMap;
+        _headNodes = calculateHeadNodes();
+        _topologicalSortedNodes = topologicallySortDigraph(_nodeMap.values());
+        _criticalPathCosts = preCalculateCriticalPathCosts(_topologicalSortedNodes);
     }
 
     /**
@@ -47,7 +27,7 @@ public class Digraph implements IDigraph {
      * list of head nodes
      * @return a list of head nodes
      */
-    public List<Node> calculateHeadNodes () {
+    private List<Node> calculateHeadNodes () {
         ArrayList headNodes = new ArrayList<Node>();
         Iterator it = _nodeMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -58,7 +38,7 @@ public class Digraph implements IDigraph {
                 headNodes.add(n);
             }
 
-            it.remove();
+            //it.remove();
         }
         return headNodes;
     }
@@ -68,11 +48,7 @@ public class Digraph implements IDigraph {
      * @return
      */
     public List<Node> getNodes() {
-        if (_topologicalSortedNodes == null) {
-            _topologicalSortedNodes = topologicallySortDigraph(new ArrayList<Node>(_nodeMap.values()));
-        }
-
-        return _topologicalSortedNodes;
+        return new ArrayList<Node>(_topologicalSortedNodes);
     }
 
     /**
@@ -80,7 +56,7 @@ public class Digraph implements IDigraph {
      * @param topologicalSortedNodes Lists of nodes in digraph sorted topologically
      * @return
      */
-    public HashMap<String, Integer> preCalculateCriticalPathCosts(List<Node> topologicalSortedNodes) {
+    private HashMap<String, Integer> preCalculateCriticalPathCosts(List<Node> topologicalSortedNodes) {
         HashMap<String, Integer> criticalPathCosts = new HashMap<String, Integer>();
 
         // iterate through topographically sorted nodes in reverse order
@@ -103,14 +79,15 @@ public class Digraph implements IDigraph {
     /**
      * Get list of nodes in digraph that is topologically ordered
      */
-    public List<Node> topologicallySortDigraph(List<Node> digraphNodes) {
+    private List<Node> topologicallySortDigraph(Collection<Node> digraphNodes) {
         List<Node> topologicalSortedNodes = new ArrayList<Node>();
 
         List<Node> nodes = new ArrayList<Node>(digraphNodes);
 
         while (!nodes.isEmpty()) {
-            for (Node node : nodes) {
-
+            // Note: Loop definition this way as we are removing elements from the list we are iterating over
+            for (Iterator<Node> iterator = nodes.iterator(); iterator.hasNext(); ) {
+                Node node = iterator.next();
                 boolean isFree = true;
 
                 for (Node incomingNode : node.getIncomingNodes()) {
@@ -121,7 +98,7 @@ public class Digraph implements IDigraph {
 
                 if (isFree) {
                     topologicalSortedNodes.add(node);
-                    nodes.remove(node);
+                    iterator.remove();
                 }
             }
         }
@@ -129,12 +106,12 @@ public class Digraph implements IDigraph {
         return topologicalSortedNodes;
     }
 
+    /**
+     * Returns cost of critical path for specifed Node
+     * @param node
+     * @return
+     */
     public int getCriticalPathCost(Node node) {
-
-        if (_criticalPathCosts == null) {
-            _criticalPathCosts = preCalculateCriticalPathCosts(getNodes());
-        }
-
         return _criticalPathCosts.get(node.getName());
     }
 
@@ -145,5 +122,77 @@ public class Digraph implements IDigraph {
      */
     public Node getNode (String nodeName) {
         return _nodeMap.get(nodeName);
+    }
+
+    /**
+     * Compares other object to this object, returns true if they are equal, false if not
+     * @param other
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Digraph)) {
+            return false;
+        }
+
+        Digraph d = (Digraph) other;
+
+        if(!(d._digraphName.equals(this._digraphName))){
+            return false;
+        }
+
+        if(d._nodeMap.size()!=this._nodeMap.size()){
+            return false;
+        }
+
+        if(!(mapsAreEqual(d._nodeMap, this._nodeMap))){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Helper method to determine whether NodeMaps are equal
+     * @param mapA
+     * @param mapB
+     * @return
+     */
+    private boolean mapsAreEqual(Map<String, Node> mapA, Map<String, Node> mapB) {
+
+        try{
+            for (String k : mapB.keySet())
+            {
+                if (!mapA.get(k).equals(mapB.get(k))) {
+                    return false;
+                }
+            }
+            for (String y : mapA.keySet())
+            {
+                if (!mapB.containsKey(y)) {
+                    return false;
+                }
+            }
+        } catch (NullPointerException np) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Override hashCode method so that equals method can compare two Digraph objects accurately
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + _digraphName.hashCode();
+        result = 31 * result + _nodeMap.hashCode();
+        return result;
     }
 }

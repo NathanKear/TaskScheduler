@@ -1,6 +1,9 @@
 package se306.team7.Digraph;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import se306.team7.TaskScheduler;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.BufferedReader;
@@ -9,6 +12,7 @@ import java.io.IOException;
 
 public class DigraphParser implements IDigraphParser {
     IFileUtilities _fileUtilities;
+    private static Logger logger = LoggerFactory.getLogger(DigraphParser.class);
 
     /**
      * Instantiates an instance of DigraphParser
@@ -23,8 +27,8 @@ public class DigraphParser implements IDigraphParser {
      * @param fileName
      * @return
      */
-    public Digraph parseDigraph(String fileName) throws IOException{
-        Digraph d = null;
+    public IDigraph parseDigraph(String fileName) throws IOException{
+        IDigraphBuilder db = new DigraphBuilder();
         BufferedReader reader = null;
 
 
@@ -35,13 +39,11 @@ public class DigraphParser implements IDigraphParser {
             String name = reader.readLine();
 
             name = name.split("\"")[1];
-            System.out.println(name);
-            d = new Digraph(name);
+            db.setName(name);
 
             String line;
             while (!(line = reader.readLine()).contains("}")) {
-                System.out.println(line);
-                d = parseLine(d, line);
+                db = parseLine(db, line);
             }
 
         }catch(FileNotFoundException e){
@@ -53,26 +55,30 @@ public class DigraphParser implements IDigraphParser {
                 e.printStackTrace();
             }
         }
-        return d;
+
+        return db.build();
     }
 
     /**
      * Returns Digraph copy with an added Node/Link object
-     * @param d
+     * @param db
      * @param line
      * @return
      */
-    private Digraph parseLine(Digraph d, String line){
+    private IDigraphBuilder parseLine(IDigraphBuilder db, String line){
 
-        String[] splitLine = line.split("\\s+");
-        if(splitLine.length<3){
-            System.out.println(splitLine[0] + splitLine[1]);
-            d.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
-        }else{
-            System.out.println(splitLine[0] + splitLine[2] + splitLine[3]);
-            d.addLink(splitLine[0], splitLine[2],Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
+        try {
+            line = line.trim();
+            String[] splitLine = line.split("\\s+");
+            if (splitLine.length < 3) {
+                db.addNode(splitLine[0], Integer.parseInt(splitLine[1].replaceAll("[^0-9]", "")));
+            } else {
+                db.addLink(splitLine[0], splitLine[2], Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
+            }
+        } catch (Exception ex) {
+            logger.warn("Unable to parse line: " + line);
         }
 
-        return d;
+        return db;
     }
 }

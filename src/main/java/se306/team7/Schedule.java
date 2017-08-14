@@ -29,6 +29,9 @@ public class Schedule {
         _numOfProcessors = schedule._numOfProcessors;
         _tasks = new LinkedList<Task>(schedule._tasks);
         _nodesInSchedule = new HashSet<Node>();
+        for (Task t: schedule.getTasks()) {
+            _nodesInSchedule.add(t.getNode());
+        }
     }
 
     /**
@@ -38,15 +41,24 @@ public class Schedule {
      */
     public Task scheduleTask(int processor, Node node) {
     	
-    	int startTime = precedenceConstraint(node, processor);
+    	int startTime = calculateTaskStartTime(processor, node);
         Task newTask = new Task(node, processor,startTime);
         _tasks.add(newTask);
+        _nodesInSchedule.add(node);
         
         return newTask;
     }
 
     public Queue<Task> getTasks () {
         return _tasks;
+    }
+
+    /**
+     * Gets the number of processors
+     * @return
+     */
+    public int getNumberOfProcessors() {
+        return _numOfProcessors;
     }
 
     /**
@@ -74,6 +86,8 @@ public class Schedule {
                 output.add(linkString);
             }
         }
+
+        output.add("Final time: " + endTime());
         return output;
     }
 
@@ -115,7 +129,7 @@ public class Schedule {
 	}
     
     private int calculateTaskStartTime(int processor, Node node){
-		/*
+
     	int startTime;
     	if (_tasks.isEmpty()){
     		startTime = 0;
@@ -128,35 +142,32 @@ public class Schedule {
     			parentNodes.add(link.getOriginNode());
     		}
     		
-    		Node latestParent = null;
     		int latestParentEndTime = 0;
-    		int latestParentProcessor = 0;
-    		
     		
     		// check the latest scheduled parent node
     		for (Task task : _tasks){
     			if (parentNodes.contains(task.getNode())){
     				
-    				if ( task.getEndTime() > latestParentEndTime){
+    				int parentEndTime = task.getEndTime();
+    				
+    				if (task.getProcessor() != processor){
     					
-    					latestParentEndTime =  task.getEndTime() ;
-    					latestParent = task.getNode();
-    					latestParentProcessor = task.getProcessor();
+    					for (Link link : incomingLinks){
+    		    			if (link.getOriginNode().equals(task.getNode())){
+    	    					parentEndTime = parentEndTime + link.getTransferCost();
+    		    				break;
+    		    			}
+    		    		}
+    		    		    	
+    	    		}
+    				
+    				if ( parentEndTime > latestParentEndTime){
+    					
+    					latestParentEndTime =  parentEndTime ;
     				}
     			}
     		}
-    		
-    		int transferCostFromLatestParent = 0;
-    		for (Link link : incomingLinks){
-    			if (link.getOriginNode().equals(latestParent)){
-    				transferCostFromLatestParent = link.getTransferCost();
-    				break;
-    			}
-    		}
-    		    		
-    		if (latestParentProcessor != processor){
-    			latestParentEndTime = latestParentEndTime + transferCostFromLatestParent;
-    		}
+    				
     		
     		// latest node end time on the specified processor
     		int processorEndTime = 0;
@@ -169,8 +180,5 @@ public class Schedule {
     		startTime = Math.max(latestParentEndTime, processorEndTime);
     	}
     	return startTime;
-    	*/
-
-		return 0;
     }
 }
