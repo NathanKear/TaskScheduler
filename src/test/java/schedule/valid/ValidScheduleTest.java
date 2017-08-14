@@ -53,7 +53,7 @@ public class ValidScheduleTest {
 				)));
 
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -88,7 +88,7 @@ public class ValidScheduleTest {
 						"}"
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -122,7 +122,7 @@ public class ValidScheduleTest {
 						"}"
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -160,7 +160,7 @@ public class ValidScheduleTest {
 						"}"
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -202,7 +202,7 @@ public class ValidScheduleTest {
 				)));
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -247,7 +247,7 @@ public class ValidScheduleTest {
 				)));
 				
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -293,7 +293,7 @@ public class ValidScheduleTest {
 				)));
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -339,7 +339,7 @@ public class ValidScheduleTest {
 				)));
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -388,7 +388,7 @@ public class ValidScheduleTest {
 				)));
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
@@ -438,7 +438,7 @@ public class ValidScheduleTest {
 				)));
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
-		Digraph d = digraphParser.parseDigraph(INPUT_FILE_NAME);
+		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
 		AStarAlgorithm a = new AStarAlgorithm();
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
