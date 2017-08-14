@@ -39,10 +39,13 @@ public class FileUtilities implements IFileUtilities {
         return bufferedReader;
     }
 
-    public void writeToFile(String fileName, List<String> output) {
+    public void writeToFile(String fileName, String digraphName, List<String> output) {
         Path file = Paths.get(fileName);
         try {
-            Files.write(file, output, Charset.forName("UTF-8"));
+        	List<String> fileContents = output;
+        	fileContents.add(0, "digraph \"output_" + digraphName + "\" {\n");
+        	fileContents.add("}");
+            Files.write(file, fileContents, Charset.forName("UTF-8"));
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());

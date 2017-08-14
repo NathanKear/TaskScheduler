@@ -1,0 +1,7 @@
+digraph "output_Nodes_3_SingleParent" {
+	A	 [Weight=1,Start=0,Processor=1];
+	B	 [Weight=4,Start=3,Processor=2];
+	C	 [Weight=5,Start=1,Processor=1];
+	A -> B	 [Weight=2];
+	A -> C	 [Weight=4];
+}

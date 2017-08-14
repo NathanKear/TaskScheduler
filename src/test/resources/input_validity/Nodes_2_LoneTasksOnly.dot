@@ -1,0 +1,4 @@
+digraph "Nodes_2_LoneTasksOnly" {
+	A	 [Weight=1];
+	B	 [Weight=2];
+}

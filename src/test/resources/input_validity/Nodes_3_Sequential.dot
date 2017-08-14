@@ -1,0 +1,7 @@
+digraph "Nodes_3_Sequential" {
+	A	 [Weight=1];
+	B	 [Weight=2];
+	C	 [Weight=3];
+	A -> B	 [Weight=4];
+	B -> C	 [Weight=5];
+}
