@@ -3,9 +3,12 @@ package se306.team7.visual;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TaskSchedulerGUI extends Application {
@@ -14,11 +17,16 @@ public class TaskSchedulerGUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Task Scheduler");
 
-        StackPane root = new StackPane();
+//        StackPane root = new StackPane();
+        BorderPane root = new BorderPane();
         View_Histogram hist = new View_Histogram();
-        root.getChildren().addAll(hist._barChart);
-
-        Scene scene = new Scene(root, 600, 600);
+        View_LineGraph lineGraph = new View_LineGraph();
+//        root.getChildren().addAll(hist._barChart);
+        VBox leftVBox = new VBox(hist._barChart);
+        VBox rightVBox = new VBox(lineGraph._lineChart);
+        root.setLeft(leftVBox);
+        root.setRight(rightVBox);
+        Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
 
