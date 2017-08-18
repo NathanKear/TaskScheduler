@@ -17,13 +17,14 @@ public class TaskSchedulerGUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Task Scheduler");
 
-//        StackPane root = new StackPane();
         BorderPane root = new BorderPane();
+
         View_Histogram hist = new View_Histogram();
         View_LineGraph lineGraph = new View_LineGraph();
-//        root.getChildren().addAll(hist._barChart);
+        View_CurrentBest currentBest = new View_CurrentBest();
+
         VBox leftVBox = new VBox(hist._barChart);
-        VBox rightVBox = new VBox(lineGraph._lineChart);
+        VBox rightVBox = new VBox(currentBest._text, lineGraph._lineChart);
         root.setLeft(leftVBox);
         root.setRight(rightVBox);
         Scene scene = new Scene(root);
