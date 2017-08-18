@@ -3,9 +3,9 @@ package se306.team7;
 public class Metrics {
 	
 	//the total number of levels in the task scheduler solution tree
-	private int _levels; 
+	private static int _levels;
 	//the cost of the current best partial schedule
-	private int _currentBestCost;	
+	private static int _currentBestCost;
 	
 	/**
 	 * Receives an integer representing the total number of nodes in the digraph.
@@ -18,7 +18,7 @@ public class Metrics {
 		_levels = numOfNodes;
 	}
 	
-	public void setCurrentBestCost(int cost) {
+	public static void setCurrentBestCost(int cost) {
 		_currentBestCost = cost;
 	}
 	
@@ -28,7 +28,7 @@ public class Metrics {
 	 * @param ces
 	 * @param processorID
 	 */
-	public void doneSchedule(CostEstimatedSchedule ces, int processorID) {
+	public static void doneSchedule(CostEstimatedSchedule ces, int processorID) {
 		
 	}
 }
