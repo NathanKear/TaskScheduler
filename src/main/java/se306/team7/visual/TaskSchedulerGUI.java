@@ -15,8 +15,10 @@ public class TaskSchedulerGUI extends Application {
         primaryStage.setTitle("Task Scheduler");
 
         StackPane root = new StackPane();
+        View_Histogram hist = new View_Histogram();
+        root.getChildren().addAll(hist._barChart);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 600, 600);
 
         primaryStage.setScene(scene);
 
