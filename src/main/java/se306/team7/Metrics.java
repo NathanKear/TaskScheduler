@@ -31,4 +31,12 @@ public class Metrics {
 	public static void doneSchedule(CostEstimatedSchedule ces, int processorID) {
 		
 	}
+	
+	public static int getLevels(){
+		return _levels;
+	}
+	
+	public static int getCurrentBestCost(){
+		return _currentBestCost;
+	}
 }
