@@ -39,12 +39,12 @@ public class Metrics {
 	 * the schedule's cost had been calculated for.
 	 *
 	 * Updates _histogram by incrementing the count of schedules explored for the appropriate level
-	 * Updates the current level being explored by the processor (identified by processorID)
-	 * Updates the current best cost found if appropriate.
+	 * Updates the current level being explored by the processor (identified by coreID)
+	 * Updates the current best cost (of a complete solution found so far) if appropriate.
 	 * @param ces
-	 * @param processorID
+	 * @param coreID
 	 */
-	public static void doneSchedule(CostEstimatedSchedule ces, int processorID) {
+	public static void doneSchedule(CostEstimatedSchedule ces, int coreID) {
 		//Get the level of the cost-estimated schedule
 		Integer levelOfScheduleGiven = Integer.valueOf(ces.getSchedule().getTasks().size());
 
@@ -57,13 +57,7 @@ public class Metrics {
 		}
 
 		//Update processor's current level
-		_coreCurrentLevel.put(Integer.valueOf(processorID), levelOfScheduleGiven);
-
-		//Update current best cost
-		int costOfScheduleGiven = ces.getSchedule().endTime();
-		if (_currentBestCost > costOfScheduleGiven) {
-			_currentBestCost = costOfScheduleGiven;
-		}
+		_coreCurrentLevel.put(Integer.valueOf(coreID), levelOfScheduleGiven);
 	}
 
 	public static int getLevels(){
