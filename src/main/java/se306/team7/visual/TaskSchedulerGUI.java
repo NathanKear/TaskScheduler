@@ -19,9 +19,9 @@ public class TaskSchedulerGUI extends Application {
 
         BorderPane root = new BorderPane();
 
-        View_Histogram hist = new View_Histogram();
-        View_LineGraph lineGraph = new View_LineGraph();
-        View_CurrentBest currentBest = new View_CurrentBest();
+        View_Histogram hist = View_Histogram.getInstance();
+        View_LineGraph lineGraph = View_LineGraph.getInstance();
+        View_CurrentBest currentBest = View_CurrentBest.getInstance();
 
         VBox leftVBox = new VBox(hist._barChart);
         VBox rightVBox = new VBox(currentBest._text, lineGraph._lineChart);

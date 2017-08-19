@@ -8,8 +8,9 @@ import javafx.scene.chart.XYChart;
 public class View_Histogram {
     public BarChart<String, Number> _barChart;
     public XYChart.Series<String, Number> _series;
+    private static View_Histogram _view_histogram;
 
-    public View_Histogram() {
+    private  View_Histogram() {
         initialiseHistogram();
     }
 
@@ -25,5 +26,12 @@ public class View_Histogram {
         _series.getData().add(new XYChart.Data<String, Number>("level 1", 25601));
         _series.getData().add(new XYChart.Data<String, Number>("level 2", 5000));
         _barChart.getData().add(_series);
+    }
+    
+    public static View_Histogram getInstance(){
+    	if (_view_histogram == null){
+    		_view_histogram = new View_Histogram();
+    	}
+    		return _view_histogram;
     }
 }

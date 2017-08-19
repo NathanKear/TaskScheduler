@@ -7,8 +7,9 @@ public class View_LineGraph {
 
     public LineChart<Number,Number> _lineChart;
     public XYChart.Series<Number, Number> _series;
+    private static View_LineGraph _view_lineGraph;
 
-    public View_LineGraph() {
+    private View_LineGraph() {
         //defining the axes
         NumberAxis xAxis = new NumberAxis(0, 10, 1);
         xAxis.setLabel("Time");
@@ -29,7 +30,14 @@ public class View_LineGraph {
         _series.getData().add(new XYChart.Data<Number,Number>(2, 14));
         _series.getData().add(new XYChart.Data<Number,Number>(3, 15));
         _series.getData().add(new XYChart.Data<Number,Number>(4, 24));
-
         _lineChart.getData().add(_series);
+    }
+    
+    public static View_LineGraph getInstance(){
+    	if (_view_lineGraph == null){
+    		_view_lineGraph = new View_LineGraph();
+    	}
+    	
+    	return _view_lineGraph;
     }
 }
