@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TaskSchedulerGUI extends Application {
+	
+	VisualModel _model;
 
 	@Override
     public void start(Stage primaryStage) {
@@ -32,6 +34,10 @@ public class TaskSchedulerGUI extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+        
+        _model = new VisualModel(); //sets up timer
+        _model.startTimer();
+        
     }
 	
 	public static void main(String[] args) {
