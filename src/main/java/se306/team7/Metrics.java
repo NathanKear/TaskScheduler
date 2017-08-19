@@ -3,7 +3,7 @@ package se306.team7;
 import java.util.HashMap;
 
 public class Metrics {
-	
+
 	//the total number of levels in the task scheduler solution tree
 	private static int _levels;
 	//the total number of cores for execution
@@ -14,7 +14,7 @@ public class Metrics {
 	private static HashMap<Integer, Integer> _histogram;
 	//the current level being explored for each core
 	private static HashMap<Integer, Integer> _coreCurrentLevel;
-	
+
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
 	 * and remain unchanged.
@@ -33,18 +33,17 @@ public class Metrics {
 		_histogram = new HashMap<Integer, Integer>();
 		_coreCurrentLevel = new HashMap<Integer, Integer>();
 	}
-	
+
 	/**
 	 * Invoked when a schedule has been cost-estimated. Includes the ID of the processor on which
 	 * the schedule's cost had been calculated for.
 	 *
 	 * Updates _histogram by incrementing the count of schedules explored for the appropriate level
-	 * Updates the current level being explored by the processor (identified by processorID)
-	 * Updates the current best cost found if appropriate.
+	 * Updates the current level being explored by the processor (identified by coreID)
 	 * @param ces
-	 * @param processorID
+	 * @param coreID
 	 */
-	public static void doneSchedule(CostEstimatedSchedule ces, int processorID) {
+	public static void doneSchedule(CostEstimatedSchedule ces, int coreID) {
 		//Get the level of the cost-estimated schedule
 		Integer levelOfScheduleGiven = Integer.valueOf(ces.getSchedule().getTasks().size());
 
@@ -56,20 +55,14 @@ public class Metrics {
 			_histogram.put(levelOfScheduleGiven, 1);
 		}
 
-		//Update processor's current level
-		_coreCurrentLevel.put(Integer.valueOf(processorID), levelOfScheduleGiven);
-
-		//Update current best cost
-		int costOfScheduleGiven = ces.getSchedule().endTime();
-		if (_currentBestCost > costOfScheduleGiven) {
-			_currentBestCost = costOfScheduleGiven;
-		}
+		//Update the core's current level
+		_coreCurrentLevel.put(Integer.valueOf(coreID), levelOfScheduleGiven);
 	}
-	
+
 	public static int getLevels(){
 		return _levels;
 	}
-	
+
 	public static int getCurrentBestCost(){
 		return _currentBestCost;
 	}
