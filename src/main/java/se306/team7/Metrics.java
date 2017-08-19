@@ -40,7 +40,6 @@ public class Metrics {
 	 *
 	 * Updates _histogram by incrementing the count of schedules explored for the appropriate level
 	 * Updates the current level being explored by the processor (identified by coreID)
-	 * Updates the current best cost (of a complete solution found so far) if appropriate.
 	 * @param ces
 	 * @param coreID
 	 */
@@ -56,7 +55,7 @@ public class Metrics {
 			_histogram.put(levelOfScheduleGiven, 1);
 		}
 
-		//Update processor's current level
+		//Update the core's current level
 		_coreCurrentLevel.put(Integer.valueOf(coreID), levelOfScheduleGiven);
 	}
 
