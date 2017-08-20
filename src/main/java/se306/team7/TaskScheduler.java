@@ -3,19 +3,16 @@ package se306.team7;
 import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se306.team7.Algorithm.AStarAlgorithm;
+import se306.team7.Algorithm.*;
 import se306.team7.Digraph.Digraph;
-import se306.team7.Digraph.IDigraph;
 import se306.team7.Digraph.DigraphParser;
-import se306.team7.Digraph.IDigraphBuilder;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
-
-
-
 
 /**
  * Hello world!
@@ -33,12 +30,17 @@ public class TaskScheduler
 
         CommandLineArgumentConfig commandLineArgumentConfig;
 
+        Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+        costEstimators.add(new CriticalPathCostEstimator());
+        costEstimators.add(new LoadBalancerCostEstimator());
+        IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+
         try {
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-            AStarAlgorithm a = new AStarAlgorithm();
+            AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
 
             List<String> output = optimalSchedule.scheduleToStringList();
@@ -59,8 +61,6 @@ public class TaskScheduler
             System.err.println("Digraph Parsing Failed");
             logger.error("Digraph Parsing Failed");
         }
-
-
     }
 
     /**

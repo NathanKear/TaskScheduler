@@ -4,7 +4,7 @@ import se306.team7.Digraph.IDigraph;
 import se306.team7.Schedule;
 import se306.team7.Task;
 
-public class CriticalPathCostEstimator {
+public class CriticalPathCostEstimator implements ICostEstimator{
 
     /**
      * Get path cost estimate using the critical path estimate.
