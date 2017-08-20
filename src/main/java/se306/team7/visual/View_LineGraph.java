@@ -48,7 +48,7 @@ public class View_LineGraph implements ITaskSchedulerView{
 			HashMap<Integer, Integer> coreCurrentLevel) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("update line");
+		//System.out.println("update line");
 		
 	}
 }

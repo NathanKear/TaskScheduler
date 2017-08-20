@@ -58,13 +58,13 @@ public class View_Histogram implements ITaskSchedulerView {
      * @param coreCurrentLevel
      */
     public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
-        /**for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
 
             //TODO need to test if histogram automatically resizes itself when its current y-axis upperbound has been exceeded
             // TODO otherwise, recalibrate histogram's y-axis if key's value exceeds current y-axis upperbound
             _series.getData().get(entry.getKey()-1).setYValue(entry.getValue());
 
-        }**/
-    	System.out.print("update histo");
+        }
+    	//System.out.print("update histo");
     }
 }

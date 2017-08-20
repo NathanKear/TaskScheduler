@@ -28,13 +28,13 @@ public class VisualModel {
 	 }
 	 
 	private void setUpTimer(){
-		_updatePerMinute = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>(){
+		_updatePerMinute = new Timeline(new KeyFrame(Duration.millis(200.0), new EventHandler<ActionEvent>(){
 
 			    @Override
 			    public void handle(ActionEvent event) {
-			        System.out.println("this is called every minute on UI thread");
+			        //System.out.println("this is called every minute on UI thread");
 			        for (ITaskSchedulerView view : _views){
-			        	view.update( Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+			        	view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
 			        }
 			    }
 			}));

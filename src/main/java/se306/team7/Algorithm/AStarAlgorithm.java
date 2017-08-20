@@ -1,6 +1,7 @@
 package se306.team7.Algorithm;
 
 import se306.team7.CostEstimatedSchedule;
+import se306.team7.Metrics;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.Node;
 import se306.team7.Digraph.Link;
@@ -46,11 +47,11 @@ public class AStarAlgorithm implements IAlgorithm {
         _currentHeads.put(schedule, new ArrayList<Node>());
         List<Node> initialHeads = calculateCurrentHeads(emptySchedule.getSchedule());
         _currentHeads.put(emptySchedule.getSchedule(), initialHeads);
-
+        int i = 10;
         while(true){
            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
            List<Node> possibleNodes = _currentHeads.get(mostPromisingSchedule);
-
+           Metrics.setCurrentBestCost(i++);
            if(possibleNodes.isEmpty()) {
                return mostPromisingSchedule;
            }
