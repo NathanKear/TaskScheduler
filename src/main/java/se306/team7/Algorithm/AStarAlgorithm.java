@@ -99,74 +99,9 @@ public class AStarAlgorithm implements IAlgorithm {
         return Math.max(loadBalanceCostEstimate(schedule), criticalPathCostEstimate(schedule));
     }
 
-    /**
-     * Get path cost estimate using the load balance cost estimate.
-     * Load balance cost is the cost of all remaining tasks to be scheduled
-     * spread perfectly over all threads starting immediately after the current
-     * schedule finish time.
-     * @param schedule
-     * @return
-     */
-    public int loadBalanceCostEstimate(Schedule schedule) {
-
-        // Get all nodes
-        List<Node> nodesNotInDigraph = _digraph.getNodes();
-
-        int numOfProcessors = schedule.getNumberOfProcessors();
-        int[] earliestFinishingTime = new int[numOfProcessors];
-
-        int maxProcessingTime = 0;
-
-        // Remove nodes already in digraph
-        for (Task task : schedule.getTasks()) {
-            int finishingTime = Math.max(earliestFinishingTime[task.getProcessor()], task.getEndTime());
-            earliestFinishingTime[task.getProcessor()] = finishingTime;
-            if (finishingTime > maxProcessingTime) {
-                maxProcessingTime = finishingTime;
-            }
-            nodesNotInDigraph.remove(task.getNode());
-        }
 
 
 
-        int freeTime = 0;
-        for(int i = 0; i < numOfProcessors; i++) {
-            freeTime += maxProcessingTime - earliestFinishingTime[i];
-        }
-
-
-        int totalCost = 0;
-
-        // Get total cost of all nodes yet to add
-        for (Node node : nodesNotInDigraph) {
-            totalCost += node.getCost();
-        }
-
-        totalCost = Math.max(0, totalCost - freeTime);
-
-        // Get average cost of all nodes yet to add per processor
-        int costPerProcessor = (int)Math.ceil(totalCost / (double) schedule._numOfProcessors);
-
-        return schedule.endTime() + costPerProcessor;
-    }
-
-    /**
-     * Get path cost estimate using the critical path estimate.
-     * Critical path is the most expensive direct path from any node currently in the schedule
-     * to the end of the schedule.
-     * @param schedule
-     * @return
-     */
-    public int criticalPathCostEstimate(Schedule schedule) {
-
-        int highestCriticalPath = 0;
-
-        for (Task task : schedule.getTasks()) {
-            highestCriticalPath = Math.max(highestCriticalPath, task.getEndTime() + _digraph.getCriticalPathCost(task.getNode()));
-        }
-
-        return highestCriticalPath;
-    }
 
     /**
      * Updates the list containing which nodes are eligible to be added to a schedule one level below the schedule
