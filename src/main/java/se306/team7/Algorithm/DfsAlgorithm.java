@@ -23,16 +23,15 @@ public class DfsAlgorithm implements IAlgorithm {
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _digraph = digraph;
 
-        List<Node> heads = calculateCurrentHeads(schedule);
+        List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
-        if (heads.isEmpty()) {
+        if (nextSchedules.isEmpty()) {
             if (schedule.endTime() < _currentBestCost)
                 _currentBestCost = Math.min(_currentBestCost, schedule.endTime());
 
             return schedule;
         }
 
-        List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, heads);
         List<CostEstimatedSchedule> costEstimatedSchedules = new ArrayList<CostEstimatedSchedule>();
 
         for (Schedule nextSchedule : nextSchedules) {
@@ -90,41 +89,4 @@ public class DfsAlgorithm implements IAlgorithm {
         return currentMax;
     }
 
-    /**
-     * Updates the list containing which nodes are eligible to be added to a schedule one level below the schedule
-     * passed in
-     * @param schedule The schedule whose list of current nodes will be updated
-     */
-    public List<Node> calculateCurrentHeads(Schedule schedule) {
-        List<Node> possibleNodes = new ArrayList<Node>(schedule.getNodesInSchedule());
-        HashSet<Node> nodesInSchedule = schedule.getNodesInSchedule();
-        List<Node> nodes = _digraph.getNodes();
-
-        for (Node n : nodes) {
-            if (nodesInSchedule.contains(n)) {
-                possibleNodes.remove(n);
-            } else if (!possibleNodes.contains(n) && scheduleContainsParentNodes(nodesInSchedule, n)) {
-                possibleNodes.add(n);
-            }
-        }
-
-        return possibleNodes;
-    }
-
-    /**
-     * Checks to see if all of a node's parent nodes are in a schedule
-     * @param nodesInSchedule A hashset of all nodes in a schedule
-     * @param n The node to check if its parents are in the hashset
-     * @return True if the parent nodes are in the schedule or false otherwise
-     */
-    private boolean scheduleContainsParentNodes (HashSet<Node> nodesInSchedule, Node n) {
-        List<Link> incomingLinks = n.getIncomingLinks();
-        for (Link link : incomingLinks) {
-            Node parentNode = link.getOriginNode();
-            if (!nodesInSchedule.contains(parentNode)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

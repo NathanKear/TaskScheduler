@@ -41,6 +41,7 @@ public class TaskScheduler
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
             AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
+            //DfsAlgorithm a = new DfsAlgorithm(costEstimators, scheduleGenerator);
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
 
             List<String> output = optimalSchedule.scheduleToStringList();

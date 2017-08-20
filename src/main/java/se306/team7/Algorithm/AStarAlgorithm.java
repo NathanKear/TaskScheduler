@@ -2,19 +2,11 @@ package se306.team7.Algorithm;
 
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
-import se306.team7.Digraph.Node;
-import se306.team7.Digraph.Link;
 import se306.team7.Schedule;
-import se306.team7.Task;
 
 import java.util.*;
-
 import java.util.PriorityQueue;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public class AStarAlgorithm implements IAlgorithm {
 
@@ -47,13 +39,11 @@ public class AStarAlgorithm implements IAlgorithm {
 
         while(true){
            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
-           List<Node> possibleNodes = calculateCurrentHeads(mostPromisingSchedule);
+            List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
 
-           if(possibleNodes.isEmpty()) {
+           if(possibleSchedules.isEmpty()) {
                return mostPromisingSchedule;
            }
-
-           List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, possibleNodes);
 
            for(Schedule _schedule : possibleSchedules){
                 CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, getCostEstimate(_schedule));
@@ -78,43 +68,4 @@ public class AStarAlgorithm implements IAlgorithm {
 
         return currentMax;
     }
-
-    /**
-     * Updates the list containing which nodes are eligible to be added to a schedule one level below the schedule
-     * passed in
-     * @param schedule The schedule whose list of current nodes will be updated
-     */
-    public List<Node> calculateCurrentHeads(Schedule schedule) {
-        List<Node> possibleNodes = new ArrayList<Node>(schedule.getNodesInSchedule());
-        HashSet<Node> nodesInSchedule = schedule.getNodesInSchedule();
-        List<Node> nodes = _digraph.getNodes();
-
-        for (Node n : nodes) {
-            if (nodesInSchedule.contains(n)) {
-                possibleNodes.remove(n);
-            } else if (!possibleNodes.contains(n) && scheduleContainsParentNodes(nodesInSchedule, n)) {
-                possibleNodes.add(n);
-            }
-        }
-
-        return possibleNodes;
-    }
-
-    /**
-     * Checks to see if all of a node's parent nodes are in a schedule
-     * @param nodesInSchedule A hashset of all nodes in a schedule
-     * @param n The node to check if its parents are in the hashset
-     * @return True if the parent nodes are in the schedule or false otherwise
-     */
-    private boolean scheduleContainsParentNodes (HashSet<Node> nodesInSchedule, Node n) {
-        List<Link> incomingLinks = n.getIncomingLinks();
-        for (Link link : incomingLinks) {
-            Node parentNode = link.getOriginNode();
-            if (!nodesInSchedule.contains(parentNode)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }
