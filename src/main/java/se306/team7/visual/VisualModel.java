@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
+import se306.team7.Metrics;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
@@ -32,6 +33,9 @@ public class VisualModel {
 			    @Override
 			    public void handle(ActionEvent event) {
 			        System.out.println("this is called every minute on UI thread");
+			        for (ITaskSchedulerView view : _views){
+			        	view.update( Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+			        }
 			    }
 			}));
 		_updatePerMinute.setCycleCount(Timeline.INDEFINITE);

@@ -44,9 +44,11 @@ public class View_LineGraph implements ITaskSchedulerView{
     }
 
 	@Override
-	public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram,
+	public void update(int currentBestCost, HashMap<Integer, Integer> histogram,
 			HashMap<Integer, Integer> coreCurrentLevel) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("update line");
 		
 	}
 }

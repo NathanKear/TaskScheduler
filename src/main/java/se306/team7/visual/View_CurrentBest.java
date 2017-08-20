@@ -30,7 +30,7 @@ public class View_CurrentBest implements ITaskSchedulerView {
        _text.setTextAlignment(TextAlignment.CENTER);
    }
 
-    public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+    public void update(int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
         _text.setText(CURRENT_BEST_STRING + currentBestCost + " time units");
     }
 }
