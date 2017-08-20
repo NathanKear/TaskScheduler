@@ -33,12 +33,14 @@ public class AStarAlgorithm implements IAlgorithm {
      * @param numOfProcessors Processors available to concurrently complete tasks
      * @return Optimal complete schedule
      */
-    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _schedules.clear();
         _currentHeads.clear();
         _digraph = digraph;
 
-        Schedule schedule = new Schedule(numOfProcessors);
+        if (schedule == null) {
+            schedule = new Schedule(numOfProcessors);
+        }
 
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
