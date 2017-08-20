@@ -21,6 +21,29 @@ public class AStarAlgorithm implements IAlgorithm {
         _scheduleGenerator = scheduleGenerator;
     }
 
+    public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
+        _schedules.clear();
+        _digraph = digraph;
+
+        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
+
+        _schedules.add(emptySchedule);
+
+        while(true){
+            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
+            List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
+
+            if(possibleSchedules.isEmpty()) {
+                return mostPromisingSchedule;
+            }
+
+            for(Schedule _schedule : possibleSchedules){
+                CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, getCostEstimate(_schedule));
+                _schedules.add(costEstimatedSchedule);
+            }
+        }
+    }
+
     /**
      * Get the optimal schedule for a given digraph containing tasks and task dependencies
      * @param digraph Represents tasks and task dependencies
@@ -28,28 +51,9 @@ public class AStarAlgorithm implements IAlgorithm {
      * @return Optimal complete schedule
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
-        _schedules.clear();
-        _digraph = digraph;
-
         Schedule schedule = new Schedule(numOfProcessors);
 
-        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
-
-        _schedules.add(emptySchedule);
-
-        while(true){
-           Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
-            List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
-
-           if(possibleSchedules.isEmpty()) {
-               return mostPromisingSchedule;
-           }
-
-           for(Schedule _schedule : possibleSchedules){
-                CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, getCostEstimate(_schedule));
-               _schedules.add(costEstimatedSchedule);
-           }
-        }
+        return getOptimalSchedule(digraph, numOfProcessors, schedule);
     }
 
     /**
