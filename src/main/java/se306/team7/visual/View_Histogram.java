@@ -5,26 +5,38 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-public class View_Histogram {
+import java.util.HashMap;
+import java.util.Map;
+
+public class View_Histogram implements ITaskSchedulerView {
     public BarChart<String, Number> _barChart;
     public XYChart.Series<String, Number> _series;
     private static View_Histogram _view_histogram;
 
-    private  View_Histogram() {
+    private View_Histogram() {
         initialiseHistogram();
     }
 
     private void initialiseHistogram() {
+        //Defining the axes
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Schedules with n tasks");
+        xAxis.setLabel("Level (schedules with n tasks)");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Number of cost-estimated schedules");
 
+        //Creating the Bar Chart
         _barChart = new BarChart<String, Number>(xAxis, yAxis);
-        _series = new XYChart.Series<String, Number>();
+        _barChart.setTitle("Histogram of cost-estimated schedules at each level");
+        _barChart.setAnimated(true);
+        _barChart.setLegendVisible(false);
 
-        _series.getData().add(new XYChart.Data<String, Number>("level 1", 25601));
-        _series.getData().add(new XYChart.Data<String, Number>("level 2", 5000));
+        //Preparing and adding the initial data
+        _series = new XYChart.Series<String, Number>();
+//        for (int i = 1; i <= Metrics.getLevels(); i++) {
+        for (int i = 1; i <= 10; i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
+            _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
+        }
+
         _barChart.getData().add(_series);
     }
     
@@ -33,5 +45,25 @@ public class View_Histogram {
     		_view_histogram = new View_Histogram();
     	}
     		return _view_histogram;
+    }
+
+    /**
+     * Updates the histogram view.
+     * For each level, get the XYChart.Data object in the series for the corresponding key (i.e. level) and set its Y-value to the key's value.
+     * Keys and values come from the input histogram.
+     * @param numOfLevels
+     * @param numOfCores
+     * @param currentBestCost
+     * @param histogram
+     * @param coreCurrentLevel
+     */
+    public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+        for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
+
+            //TODO need to test if histogram automatically resizes itself when its current y-axis upperbound has been exceeded
+            // TODO otherwise, recalibrate histogram's y-axis if key's value exceeds current y-axis upperbound
+            _series.getData().get(entry.getKey()-1).setYValue(entry.getValue());
+
+        }
     }
 }
