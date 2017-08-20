@@ -14,6 +14,7 @@ public class View_CurrentBest implements ITaskSchedulerView {
     private static final String CURRENT_BEST_STRING = "Current best cost found:\n";
 
     private View_CurrentBest() {
+		
         _text = new Text(CURRENT_BEST_STRING);
         this.decorateView();
     }
@@ -30,7 +31,8 @@ public class View_CurrentBest implements ITaskSchedulerView {
        _text.setTextAlignment(TextAlignment.CENTER);
    }
 
-    public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+   @Override
+    public void update(int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
         _text.setText(CURRENT_BEST_STRING + currentBestCost + " time units");
     }
 }

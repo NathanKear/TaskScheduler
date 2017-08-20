@@ -1,9 +1,11 @@
 package se306.team7.visual;
 
+import java.util.HashMap;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-public class View_LineGraph {
+public class View_LineGraph implements ITaskSchedulerView {
 
     public LineChart<Number,Number> _lineChart;
     public XYChart.Series<Number, Number> _series;
@@ -40,4 +42,11 @@ public class View_LineGraph {
     	
     	return _view_lineGraph;
     }
+
+	@Override
+	public void update(int currentBestCost, HashMap<Integer, Integer> histogram,
+			HashMap<Integer, Integer> coreCurrentLevel) {
+		// TODO Auto-generated method stub
+		
+	}
 }

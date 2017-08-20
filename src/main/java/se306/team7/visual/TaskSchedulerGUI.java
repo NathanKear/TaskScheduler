@@ -36,7 +36,7 @@ public class TaskSchedulerGUI extends Application {
         primaryStage.show();
         
         _model = new VisualModel(); //sets up timer
-        _model.startTimer();
+        _model.startTimer(); // start timer
         
     }
 	
