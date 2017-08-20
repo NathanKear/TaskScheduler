@@ -71,15 +71,15 @@ public class Metrics {
 		_currentBestCost = cost;
 	}
 	
+	public static int getNumOfCores(){
+		return _cores;
+	}
+	
 	public static HashMap<Integer, Integer> getHistogram(){
 		return _histogram;
 	}
 	
 	public static HashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;
-	}
-	
-	public static int getNumOfCores(){
-		return _cores;
 	}
 }
