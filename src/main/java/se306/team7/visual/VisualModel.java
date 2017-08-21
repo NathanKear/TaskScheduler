@@ -10,12 +10,13 @@ import javafx.util.Duration;
 import se306.team7.Metrics;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-
+import javafx.animation.AnimationTimer;
 
 public class VisualModel {
 	
 	 private List<ITaskSchedulerView> _views;
 	 private Timeline _updatePerMinute;
+	 private AnimationTimer _timer; 
 	 
 	 public VisualModel(){
 		 _views = new ArrayList<ITaskSchedulerView>();
@@ -24,9 +25,22 @@ public class VisualModel {
 		 _views.add(View_Histogram.getInstance());
 		 _views.add(View_LineGraph.getInstance()); 
 		 
-		 setUpTimer();
+		// setUpTimer();
 	 }
-	 
+	
+	 private void setUpTimer() {
+		 //Setup Timer
+	         _timer = new AnimationTimer(){
+	            public void handle(long now){
+	            	for (ITaskSchedulerView view : _views){
+			        	view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+			        }
+	            }
+	        };
+		
+	}
+
+	/**
 	private void setUpTimer(){
 		_updatePerMinute = new Timeline(new KeyFrame(Duration.millis(200.0), new EventHandler<ActionEvent>(){
 
@@ -39,10 +53,12 @@ public class VisualModel {
 			    }
 			}));
 		_updatePerMinute.setCycleCount(Timeline.INDEFINITE);
-	 }
+	 }*/
+	 
 	
 	public void startTimer(){
 
-		_updatePerMinute.play();
+        _timer.start();
+		//_updatePerMinute.play();
 	}
 }

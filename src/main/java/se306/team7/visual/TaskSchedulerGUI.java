@@ -1,5 +1,8 @@
 package se306.team7.visual;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,12 +18,14 @@ import se306.team7.TaskScheduler;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.application.Platform;
 
 
 public class TaskSchedulerGUI extends Application {
 	
 	VisualModel _model;
 	static String[] _args;
+	 private List<ITaskSchedulerView> _views;
 
 	@SuppressWarnings("restriction")
 	@Override
@@ -43,9 +48,15 @@ public class TaskSchedulerGUI extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+        _views = new ArrayList<ITaskSchedulerView>();
+		 
+		 _views.add(View_CurrentBest.getInstance());
+		 _views.add(View_Histogram.getInstance());
+		 _views.add(View_LineGraph.getInstance()); 
+        //_model = new VisualModel(); //sets up timer
+       // _model.startTimer();
         
-        _model = new VisualModel(); //sets up timer
-        _model.startTimer();
+       
         
         AlgorithmService service = new AlgorithmService();
         service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -55,7 +66,29 @@ public class TaskSchedulerGUI extends Application {
                 System.out.println("done:" + t.getSource().getValue());
             }
         });
+        
+        Task task = new Task<Void>() {
+      	  @Override
+      	  public Void call() throws Exception {
+      	    while (true) {
+      	      Platform.runLater(new Runnable() {
+      	        @Override
+      	        public void run() {
+      	        	for (ITaskSchedulerView view : _views){
+  			        	view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+  			        }
+      	        }
+      	      });
+      	      Thread.sleep(200);
+      	    }
+      	  }
+      	};
+      	Thread th = new Thread(task);
+      	th.setDaemon(true);
+      	
+
         service.start();
+      	th.start();
     }
 	
 	/**

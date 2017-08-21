@@ -12,6 +12,7 @@ public class View_Histogram implements ITaskSchedulerView {
     public BarChart<String, Number> _barChart;
     public XYChart.Series<String, Number> _series;
     private static View_Histogram _view_histogram;
+    private Integer test = new Integer(5);
 
     private View_Histogram() {
         initialiseHistogram();
@@ -58,11 +59,12 @@ public class View_Histogram implements ITaskSchedulerView {
      * @param coreCurrentLevel
      */
     public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+    	histogram.put(1, 0);
         for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
-
+        	entry.setValue(test++);
             //TODO need to test if histogram automatically resizes itself when its current y-axis upperbound has been exceeded
             // TODO otherwise, recalibrate histogram's y-axis if key's value exceeds current y-axis upperbound
-            _series.getData().get(entry.getKey()-1).setYValue(entry.getValue());
+            _series.getData().get(1).setYValue(entry.getValue());
 
         }
     	//System.out.print("update histo");
