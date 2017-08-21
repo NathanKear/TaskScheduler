@@ -53,8 +53,8 @@ public class TaskSchedulerGUI extends Application {
 		 _views.add(View_CurrentBest.getInstance());
 		 _views.add(View_Histogram.getInstance());
 		 _views.add(View_LineGraph.getInstance()); 
-        //_model = new VisualModel(); //sets up timer
-       // _model.startTimer();
+        _model = new VisualModel(); //sets up timer
+        _model.startTimer();
         
        
         
@@ -88,7 +88,7 @@ public class TaskSchedulerGUI extends Application {
       	
 
         service.start();
-      	th.start();
+      	//th.start();
     }
 	
 	/**

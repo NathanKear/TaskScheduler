@@ -25,7 +25,7 @@ public class VisualModel {
 		 _views.add(View_Histogram.getInstance());
 		 _views.add(View_LineGraph.getInstance()); 
 		 
-		// setUpTimer();
+		setUpTimer();
 	 }
 	
 	 private void setUpTimer() {
