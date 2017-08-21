@@ -1,38 +1,40 @@
 package se306.team7.visual;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-public class View_LineGraph implements ITaskSchedulerView{
+import se306.team7.Metrics;
+
+public class View_LineGraph implements ITaskSchedulerView {
 
     public LineChart<Number,Number> _lineChart;
-    public XYChart.Series<Number, Number> _series;
     private static View_LineGraph _view_lineGraph;
+    private static int currentTimeUnit = 0;
 
     private View_LineGraph() {
         //defining the axes
-        NumberAxis xAxis = new NumberAxis(0, 10, 1);
+        NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("Time");
-
-        NumberAxis yAxis = new NumberAxis(0, 50, 5);
-        yAxis.setLabel("Current Level");
+//        NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1); //TODO use this line after Metrics class has been instantiated
+        NumberAxis yAxis = new NumberAxis(1, 10, 1);
+        yAxis.setLabel("Current level");
 
         //creating the chart
         _lineChart = new LineChart<Number,Number>(xAxis, yAxis);
-
         _lineChart.setTitle("Current level explored for each core");
+        _lineChart.setAnimated(true);
+        _lineChart.setLegendVisible(false);
 
-        //defining a series
-        _series = new XYChart.Series<Number,Number>();
-        _series.setName("Core 1");
-        //populating the series with data
-        _series.getData().add(new XYChart.Data<Number,Number>(1, 23));
-        _series.getData().add(new XYChart.Data<Number,Number>(2, 14));
-        _series.getData().add(new XYChart.Data<Number,Number>(3, 15));
-        _series.getData().add(new XYChart.Data<Number,Number>(4, 24));
-        _lineChart.getData().add(_series);
+        //Preparing and adding the initial data
+        for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
+            XYChart.Series<Number, Number> newCoreSeries = new XYChart.Series<Number, Number>();
+            newCoreSeries.setName("Core " + i);
+            newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
+            _lineChart.getData().add(newCoreSeries);
+        }
     }
     
     public static View_LineGraph getInstance(){
@@ -43,12 +45,20 @@ public class View_LineGraph implements ITaskSchedulerView{
     	return _view_lineGraph;
     }
 
-	@Override
-	public void update(int currentBestCost, HashMap<Integer, Integer> histogram,
-			HashMap<Integer, Integer> coreCurrentLevel) {
-		// TODO Auto-generated method stub
-		
-		//System.out.println("update line");
-		
-	}
+    /**
+     * For each core, get its corresponding current level, add a new XYChart.Data to corresponding series
+     * @param numOfLevels
+     * @param numOfCores
+     * @param currentBestCost
+     * @param histogram
+     * @param coreCurrentLevel
+     */
+    public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+        currentTimeUnit++;
+        for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {
+            _lineChart.getData().get(entry.getKey()-1) //get the series for the corresponding core
+                    .getData().add(new XYChart.Data<Number, Number>(currentTimeUnit, entry.getValue())); //add new Y value for the current time unit
+        }
+
+    }
 }
