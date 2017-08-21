@@ -5,7 +5,7 @@ import java.util.HashMap;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-public class View_LineGraph implements ITaskSchedulerView{
+public class View_LineGraph implements ITaskSchedulerView {
 
     public LineChart<Number,Number> _lineChart;
     public XYChart.Series<Number, Number> _series;
@@ -43,10 +43,9 @@ public class View_LineGraph implements ITaskSchedulerView{
     	return _view_lineGraph;
     }
 
-	@Override
 	public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram,
-			HashMap<Integer, Integer> coreCurrentLevel) {
+			HashMap<Integer, Integer> coreCurrentLevel, boolean isFinished) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
