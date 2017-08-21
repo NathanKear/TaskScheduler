@@ -14,8 +14,6 @@ public class Metrics {
 	private static HashMap<Integer, Integer> _histogram;
 	//the current level being explored for each core
 	private static HashMap<Integer, Integer> _coreCurrentLevel;
-	//set to true once TaskScheduler has finished
-	private static boolean _isFinished;
 
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
@@ -34,8 +32,6 @@ public class Metrics {
 
 		_histogram = new HashMap<Integer, Integer>();
 		_coreCurrentLevel = new HashMap<Integer, Integer>();
-
-		_isFinished = false;
 	}
 
 	/**
@@ -85,13 +81,5 @@ public class Metrics {
 	
 	public static HashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;
-	}
-
-	public static void setIsFinished(boolean isFinished) {
-		_isFinished = isFinished;
-	}
-
-	public static boolean getIsFinished() {
-		return _isFinished;
 	}
 }

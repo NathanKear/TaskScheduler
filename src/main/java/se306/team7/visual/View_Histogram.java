@@ -56,9 +56,8 @@ public class View_Histogram implements ITaskSchedulerView {
      * @param currentBestCost
      * @param histogram
      * @param coreCurrentLevel
-     * @param isFinished
      */
-    public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel, boolean isFinished) {
+    public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
         for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
 
             //TODO need to test if histogram automatically resizes itself when its current y-axis upperbound has been exceeded

@@ -17,12 +17,10 @@ public interface ITaskSchedulerView {
      * @param currentBestCost
      * @param histogram
      * @param coreCurrentLevel
-     * @param isFinished
      */
     void update(int numOfLevels,
                 int numOfCores,
                 int currentBestCost,
                 HashMap<Integer, Integer> histogram,
-                HashMap<Integer, Integer> coreCurrentLevel,
-                boolean isFinished);
+                HashMap<Integer, Integer> coreCurrentLevel);
 }
