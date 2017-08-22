@@ -29,22 +29,21 @@ public class VisualModel {
 	 }
 	
 
-		/**private void setUpTimer() {
+	private void setUpTimer() {
 		 //Setup Timer
 	         _timer = new AnimationTimer(){
 	            public void handle(long now){
 	            	for (ITaskSchedulerView view : _views){
-	            		System.out.println("update cost is " + Metrics.getCurrentBestCost());
 			        	view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
 			        }
 	            }
 	        };
 		
-	}*/
+	}
 	 
 
-	private void setUpTimer(){
-		_updatePerMinute = new Timeline(new KeyFrame(Duration.millis(200.0), new EventHandler<ActionEvent>(){
+	/**	private void setUpTimer(){
+		_updatePerMinute = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>(){
 
 			    @Override
 			    public void handle(ActionEvent event) {
@@ -55,16 +54,16 @@ public class VisualModel {
 			    }
 			}));
 		_updatePerMinute.setCycleCount(Timeline.INDEFINITE);
-	 }
+	 }*/
 	
 	public void startTimer(){
 
-        //_timer.start();
-		_updatePerMinute.play();
+        _timer.start();
+		//_updatePerMinute.play();
 	}
 	
 	public void stopTimer(){
-		//_timer.stop();
-		_updatePerMinute.stop();
+		_timer.stop();
+		//_updatePerMinute.stop();
 	}
 }

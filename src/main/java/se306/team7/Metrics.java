@@ -1,6 +1,6 @@
 package se306.team7;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Metrics {
 
@@ -11,9 +11,9 @@ public class Metrics {
 	//the cost of the current best partial schedule
 	private static int _currentBestCost;
 	//the histogram of count of schedules explored for each level
-	private static HashMap<Integer, Integer> _histogram;
+	private static ConcurrentHashMap<Integer, Integer> _histogram;
 	//the current level being explored for each core
-	private static HashMap<Integer, Integer> _coreCurrentLevel;
+	private static ConcurrentHashMap<Integer, Integer> _coreCurrentLevel;
 
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
@@ -30,8 +30,8 @@ public class Metrics {
 		_levels = numOfNodes;
 		_cores = numOfCores;
 
-		_histogram = new HashMap<Integer, Integer>();
-		_coreCurrentLevel = new HashMap<Integer, Integer>();
+		_histogram = new ConcurrentHashMap<Integer, Integer>();
+		_coreCurrentLevel = new ConcurrentHashMap<Integer, Integer>();
 	}
 
 	/**
@@ -68,7 +68,6 @@ public class Metrics {
 	}
 
 	public static void setCurrentBestCost(int cost) {
-		System.out.println("setting " + cost);
 		_currentBestCost = cost;
 	}
 	
@@ -76,11 +75,11 @@ public class Metrics {
 		return _cores;
 	}
 	
-	public static HashMap<Integer, Integer> getHistogram(){
+	public static ConcurrentHashMap<Integer, Integer> getHistogram(){
 		return _histogram;
 	}
 	
-	public static HashMap<Integer, Integer> getCoreCurrentLevel(){
+	public static ConcurrentHashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;
 	}
 }

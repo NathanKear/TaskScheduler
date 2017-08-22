@@ -1,7 +1,7 @@
 package se306.team7.visual;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -29,12 +29,12 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart.setLegendVisible(false);
 
         //Preparing and adding the initial data
-       /* for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
+       for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
             XYChart.Series<Number, Number> newCoreSeries = new XYChart.Series<Number, Number>();
             newCoreSeries.setName("Core " + i);
             newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
             _lineChart.getData().add(newCoreSeries);
-        }*/
+        }
     }
     
     public static View_LineGraph getInstance(){
@@ -53,17 +53,7 @@ public class View_LineGraph implements ITaskSchedulerView {
      * @param histogram
      * @param coreCurrentLevel
      */
-    public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
-    	
-    	if (_lineChart.getData().size() == 0){
-    		 //Preparing and adding the initial data
-            for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
-                XYChart.Series<Number, Number> newCoreSeries = new XYChart.Series<Number, Number>();
-                newCoreSeries.setName("Core " + i);
-                newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
-                _lineChart.getData().add(newCoreSeries);
-            }
-    	}
+    public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
     	
         currentTimeUnit++;
         for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {

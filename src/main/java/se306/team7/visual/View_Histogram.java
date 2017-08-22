@@ -6,8 +6,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import se306.team7.Metrics;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class View_Histogram implements ITaskSchedulerView {
     public BarChart<String, Number> _barChart;
@@ -34,15 +34,16 @@ public class View_Histogram implements ITaskSchedulerView {
         _barChart.setTitle("Histogram of cost-estimated schedules at each level");
         _barChart.setAnimated(true);
         _barChart.setLegendVisible(false);
-
+        
+        _series = new XYChart.Series<String, Number>();
         //Preparing and adding the initial data
-       /* _series = new XYChart.Series<String, Number>();
+        _series = new XYChart.Series<String, Number>();
      // for (int i = 1; i <= Metrics.getLevels(); i++) {
         for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
             _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
         }
 
-        _barChart.getData().add(_series);*/
+        _barChart.getData().add(_series);
     }
     
     public static View_Histogram getInstance(){
@@ -64,16 +65,8 @@ public class View_Histogram implements ITaskSchedulerView {
      * @param histogram
      * @param coreCurrentLevel
      */
-    public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
-    	//Preparing and adding the initial data
-        _series = new XYChart.Series<String, Number>();
-    	if (_series.getData().size() == 0){
-            for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
-                _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
-            }
-
-            _barChart.getData().add(_series);
-    	}
+    public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
+    	
 
         for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
      

@@ -1,6 +1,7 @@
 package se306.team7.visual;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import se306.team7.Metrics;
 
@@ -18,11 +19,11 @@ public interface ITaskSchedulerView {
      * @param numOfLevels
      * @param numOfCores
      * @param currentBestCost
-     * @param histogram
-     * @param coreCurrentLevel
+     * @param concurrentHashMap
+     * @param concurrentHashMap2
      */
-    void update(
+	void update(
                 int currentBestCost,
-                HashMap<Integer, Integer> histogram,
-                HashMap<Integer, Integer> coreCurrentLevel);
+                ConcurrentHashMap<Integer, Integer> concurrentHashMap,
+                ConcurrentHashMap<Integer, Integer> concurrentHashMap2);
 }

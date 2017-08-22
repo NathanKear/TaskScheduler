@@ -4,7 +4,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class View_CurrentBest implements ITaskSchedulerView {
 
@@ -30,7 +30,7 @@ public class View_CurrentBest implements ITaskSchedulerView {
        _text.setTextAlignment(TextAlignment.CENTER);
    }
 
-    public void update(int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+    public void update(int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
         _text.setText(CURRENT_BEST_STRING + currentBestCost + " time units");
     }
 }

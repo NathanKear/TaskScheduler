@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import se306.team7.Metrics;
 import se306.team7.TaskScheduler;
+import se306.team7.Digraph.Digraph;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -24,8 +25,8 @@ import javafx.application.Platform;
 public class TaskSchedulerGUI extends Application {
 	
 	VisualModel _model;
-	static String[] _args;
 	 private List<ITaskSchedulerView> _views;
+	 private static Digraph _digraph; // this is needed to execute the background task
 
 	@SuppressWarnings("restriction")
 	@Override
@@ -54,10 +55,7 @@ public class TaskSchedulerGUI extends Application {
 		 _views.add(View_Histogram.getInstance());
 		 _views.add(View_LineGraph.getInstance()); 
         _model = new VisualModel(); //sets up timer
-        _model.startTimer();
-        
-       
-       
+
         
         final Task task = new Task<Void>() {
       	  @Override
@@ -71,7 +69,7 @@ public class TaskSchedulerGUI extends Application {
   			        }
       	        }
       	      });
-      	      Thread.sleep(1);
+      	      Thread.sleep(100);
       	    }
       	  }
       	};
@@ -86,8 +84,8 @@ public class TaskSchedulerGUI extends Application {
             public void handle(WorkerStateEvent t) {
                 System.out.println("done:" + t.getSource().getValue());
                 
-                //task.cancel(true);
-                _model.stopTimer();
+                task.cancel(true);
+                //_model.stopTimer();
                 
                 //final update
                 for (ITaskSchedulerView view : _views){
@@ -98,19 +96,12 @@ public class TaskSchedulerGUI extends Application {
         });
 
         service.start();
-      	//th.start();
+      	th.start();
+        //_model.startTimer();
     }
-	
-	/**
-	 * In the final project metrics should be initiated in the algorithm
-	 */
-	private void setUpMetrics() {
-		
-		
-	}
 
-	public static void main(String[] args) {
-		_args = args;
+	public static void LauchGUI(String[] args, Digraph d) {
+		_digraph = d;
         launch(args);
     }
 	
@@ -126,20 +117,8 @@ public class TaskSchedulerGUI extends Application {
 	            return new Task<Void>() {
 	            	
 	                protected Void call() {
-
-                		/**int i = 0;
-	                	while (true){
-	                		System.out.print("set cost to : " + i);
-		                	Metrics.setCurrentBestCost(i);
-		                	
-		                	if (i == 1000000000){
-		                		break;
-		                	}
-		                	
-		                	i ++;
-	                	}**/
 	                	
-	                    TaskScheduler.main(_args);
+	                	TaskScheduler.executeAlgorithm(_digraph);
 	                	
 						return null;
 	                       
