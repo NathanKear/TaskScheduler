@@ -30,7 +30,7 @@ public class TaskSchedulerGUI extends Application {
 	@SuppressWarnings("restriction")
 	@Override
     public void start(Stage primaryStage) {
-		setUpMetrics();
+		
         primaryStage.setTitle("Task Scheduler");
 
         BorderPane root = new BorderPane();
@@ -57,17 +57,9 @@ public class TaskSchedulerGUI extends Application {
         _model.startTimer();
         
        
+       
         
-        AlgorithmService service = new AlgorithmService();
-        service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-
-            @Override
-            public void handle(WorkerStateEvent t) {
-                System.out.println("done:" + t.getSource().getValue());
-            }
-        });
-        
-        Task task = new Task<Void>() {
+        final Task task = new Task<Void>() {
       	  @Override
       	  public Void call() throws Exception {
       	    while (true) {
@@ -79,13 +71,31 @@ public class TaskSchedulerGUI extends Application {
   			        }
       	        }
       	      });
-      	      Thread.sleep(200);
+      	      Thread.sleep(1);
       	    }
       	  }
       	};
       	Thread th = new Thread(task);
       	th.setDaemon(true);
       	
+      	 
+        AlgorithmService service = new AlgorithmService();
+        service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+            @Override
+            public void handle(WorkerStateEvent t) {
+                System.out.println("done:" + t.getSource().getValue());
+                
+                //task.cancel(true);
+                _model.stopTimer();
+                
+                //final update
+                for (ITaskSchedulerView view : _views){
+            		System.out.println("update cost is " + Metrics.getCurrentBestCost());
+		        	view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+		        }
+            }
+        });
 
         service.start();
       	//th.start();
@@ -95,7 +105,7 @@ public class TaskSchedulerGUI extends Application {
 	 * In the final project metrics should be initiated in the algorithm
 	 */
 	private void setUpMetrics() {
-		Metrics metrics = new Metrics(20, 4);
+		
 		
 	}
 

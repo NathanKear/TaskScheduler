@@ -29,11 +29,12 @@ public class AStarAlgorithm implements IAlgorithm {
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
-
+        
         while(true){
             Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
 
+        	Metrics.setCurrentBestCost(mostPromisingSchedule.endTime()); //bogus code
             if(possibleSchedules.isEmpty()) {
                 return mostPromisingSchedule;
             }
@@ -41,6 +42,7 @@ public class AStarAlgorithm implements IAlgorithm {
             for(Schedule _schedule : possibleSchedules){
                 CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime()));
                 _schedules.add(costEstimatedSchedule);
+                Metrics.doneSchedule(costEstimatedSchedule, costEstimatedSchedule.getSchedule().getNumberOfProcessors()); // bogus code
             }
         }
     }

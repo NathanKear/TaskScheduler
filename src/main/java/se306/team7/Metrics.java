@@ -68,6 +68,7 @@ public class Metrics {
 	}
 
 	public static void setCurrentBestCost(int cost) {
+		System.out.println("setting " + cost);
 		_currentBestCost = cost;
 	}
 	

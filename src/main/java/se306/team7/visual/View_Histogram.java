@@ -4,6 +4,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import se306.team7.Metrics;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,13 +36,13 @@ public class View_Histogram implements ITaskSchedulerView {
         _barChart.setLegendVisible(false);
 
         //Preparing and adding the initial data
-        _series = new XYChart.Series<String, Number>();
-//        for (int i = 1; i <= Metrics.getLevels(); i++) {
-        for (int i = 1; i <= 10; i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
+       /* _series = new XYChart.Series<String, Number>();
+     // for (int i = 1; i <= Metrics.getLevels(); i++) {
+        for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
             _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
         }
 
-        _barChart.getData().add(_series);
+        _barChart.getData().add(_series);*/
     }
     
     public static View_Histogram getInstance(){
@@ -64,15 +65,23 @@ public class View_Histogram implements ITaskSchedulerView {
      * @param coreCurrentLevel
      */
     public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
-    	histogram.put(1, 0);
+    	//Preparing and adding the initial data
+        _series = new XYChart.Series<String, Number>();
+    	if (_series.getData().size() == 0){
+            for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
+                _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
+            }
+
+            _barChart.getData().add(_series);
+    	}
+
         for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
-        	entry.setValue(test++);
+     
             //TODO need to test if histogram automatically resizes itself when its current y-axis upperbound has been exceeded
             // TODO otherwise, recalibrate histogram's y-axis if key's value exceeds current y-axis upperbound
 
             int newYValue = entry.getValue();
-           // _series.getData().get(entry.getKey()-1).setYValue(newYValue);
-            _series.getData().get(1).setYValue(newYValue);
+            _series.getData().get(entry.getKey()-1).setYValue(newYValue);
 
             double currentYAxisUpperBound = _yAxis.getUpperBound();
             if (newYValue > (currentYAxisUpperBound * 0.8)) {
@@ -80,6 +89,5 @@ public class View_Histogram implements ITaskSchedulerView {
             }
 
         }
-    	//System.out.print("update histo");
     }
 }

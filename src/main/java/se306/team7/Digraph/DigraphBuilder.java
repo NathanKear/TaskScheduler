@@ -2,6 +2,8 @@ package se306.team7.Digraph;
 
 import java.util.HashMap;
 
+import se306.team7.Metrics;
+
 public class DigraphBuilder implements IDigraphBuilder {
     private String _digraphName;
     private HashMap<String, Node> _currentNodes = new HashMap<String, Node>();
@@ -39,6 +41,8 @@ public class DigraphBuilder implements IDigraphBuilder {
 
     public IDigraph build() {
         IDigraph digraph = new Digraph(_digraphName, _currentNodes);
+
+       new Metrics(digraph.getNodes().size(), 4); //bogus code
         return digraph;
     }
 

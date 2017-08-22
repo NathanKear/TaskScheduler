@@ -29,12 +29,12 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart.setLegendVisible(false);
 
         //Preparing and adding the initial data
-        for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
+       /* for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
             XYChart.Series<Number, Number> newCoreSeries = new XYChart.Series<Number, Number>();
             newCoreSeries.setName("Core " + i);
             newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
             _lineChart.getData().add(newCoreSeries);
-        }
+        }*/
     }
     
     public static View_LineGraph getInstance(){
@@ -54,6 +54,17 @@ public class View_LineGraph implements ITaskSchedulerView {
      * @param coreCurrentLevel
      */
     public void update( int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
+    	
+    	if (_lineChart.getData().size() == 0){
+    		 //Preparing and adding the initial data
+            for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
+                XYChart.Series<Number, Number> newCoreSeries = new XYChart.Series<Number, Number>();
+                newCoreSeries.setName("Core " + i);
+                newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
+                _lineChart.getData().add(newCoreSeries);
+            }
+    	}
+    	
         currentTimeUnit++;
         for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {
             _lineChart.getData().get(entry.getKey()-1) //get the series for the corresponding core
