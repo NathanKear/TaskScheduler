@@ -48,7 +48,12 @@ public class View_LineGraph implements ITaskSchedulerView {
     }
 
     /**
-     * For each core, get its corresponding current level, add a new XYChart.Data to corresponding series
+     * Updates the line graph by adding a new data point for each series.
+     * Each series corresponds to a core.
+     * Each data point in the series represents the level of the solution tree at which the core was operating on at that moment in time
+     * The level of the solution tree corresponds to the number of tasks that have been scheduled in the (partial) solution.
+     *
+     * If the new X value is closely approaching the X axis' upper bound, then recalibrate the X axis to twice its current size.
      * @param numOfLevels
      * @param numOfCores
      * @param currentBestCost

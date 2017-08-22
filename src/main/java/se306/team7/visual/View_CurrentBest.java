@@ -17,19 +17,27 @@ public class View_CurrentBest implements ITaskSchedulerView {
         _text = new Text(CURRENT_BEST_STRING);
         this.decorateView();
     }
-    
-   public static View_CurrentBest getInstance(){
-	   if (_viewCurrentBest == null){
-		   _viewCurrentBest = new View_CurrentBest();
-	   }
-       return _viewCurrentBest;
-   }
 
-   private void decorateView() {
-       _text.setFont(new Font(30));
-       _text.setTextAlignment(TextAlignment.CENTER);
-   }
+    public static View_CurrentBest getInstance(){
+        if (_viewCurrentBest == null){
+            _viewCurrentBest = new View_CurrentBest();
+        }
+        return _viewCurrentBest;
+    }
 
+    private void decorateView() {
+        _text.setFont(new Font(30));
+        _text.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    /**
+     * Simply shows the best full schedule cost found so far.
+     * @param numOfLevels
+     * @param numOfCores
+     * @param currentBestCost
+     * @param histogram
+     * @param coreCurrentLevel
+     */
     public void update(int numOfLevels, int numOfCores, int currentBestCost, HashMap<Integer, Integer> histogram, HashMap<Integer, Integer> coreCurrentLevel) {
         _text.setText(CURRENT_BEST_STRING + currentBestCost + " time units");
     }

@@ -2,6 +2,9 @@ package se306.team7;
 
 import java.util.HashMap;
 
+/**
+ * This class maintains static state info regarding the latest statistics of the running Task Scheduler.
+ */
 public class Metrics {
 
 	//the total number of levels in the task scheduler solution tree
