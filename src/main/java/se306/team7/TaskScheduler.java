@@ -3,6 +3,7 @@ package se306.team7;
 import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pt.runtime.ParaTask;
 import se306.team7.Algorithm.*;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.DigraphParser;
@@ -27,6 +28,9 @@ public class TaskScheduler
     public static void main( String[] args )
     {
         PropertyConfigurator.configure("src/log4j.properties");
+
+        ParaTask.init();
+        ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.ALL, 4);
 
         CommandLineArgumentConfig commandLineArgumentConfig;
 

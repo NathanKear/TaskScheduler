@@ -21,6 +21,7 @@ public class AStarAlgorithm implements IAlgorithm {
         _scheduleGenerator = scheduleGenerator;
     }
 
+
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _schedules.clear();
         _digraph = digraph;
