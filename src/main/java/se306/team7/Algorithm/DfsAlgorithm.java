@@ -69,6 +69,8 @@ public class DfsAlgorithm implements IAlgorithm {
      * @return Optimal complete schedule
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+        ValidScheduleGenerator v = new ValidScheduleGenerator();
+        _currentBestCost = v.generateValidSchedule(digraph, numOfProcessors).endTime() + 1;
         return getOptimalSchedule(digraph, numOfProcessors, new Schedule(numOfProcessors));
     }
 

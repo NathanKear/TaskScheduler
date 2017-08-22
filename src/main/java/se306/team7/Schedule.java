@@ -152,7 +152,7 @@ public class Schedule {
 		return startTime;
 	}
     
-    private int calculateTaskStartTime(int processor, Node node){
+    public int calculateTaskStartTime(int processor, Node node){
 
     	int startTime;
     	if (_tasks.isEmpty()){

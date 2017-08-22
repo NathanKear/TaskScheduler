@@ -25,6 +25,9 @@ public class AStarAlgorithm implements IAlgorithm {
         _schedules.clear();
         _digraph = digraph;
 
+        ValidScheduleGenerator v = new ValidScheduleGenerator();
+        int knownScheduleFinishTime = v.generateValidSchedule(digraph, numOfProcessors).endTime();
+
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
@@ -38,8 +41,11 @@ public class AStarAlgorithm implements IAlgorithm {
             }
 
             for(Schedule _schedule : possibleSchedules){
-                CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime()));
-                _schedules.add(costEstimatedSchedule);
+                int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
+                if (cost <= knownScheduleFinishTime) {
+                    CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
+                    _schedules.add(costEstimatedSchedule);
+                }
             }
         }
     }
