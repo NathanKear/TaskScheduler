@@ -38,7 +38,7 @@ public class AStarAlgorithm implements IAlgorithm {
             }
 
             for(Schedule _schedule : possibleSchedules){
-                CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, getCostEstimate(_schedule));
+                CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime()));
                 _schedules.add(costEstimatedSchedule);
             }
         }
@@ -64,7 +64,7 @@ public class AStarAlgorithm implements IAlgorithm {
      */
     public int getCostEstimate(Schedule schedule) {
 
-        int currentMax = 0;
+        int currentMax = schedule.getLastTaskScheduled().getEndTime();
 
         for (ICostEstimator costEstimator : _costEstimators) {
             currentMax = Math.max(currentMax, costEstimator.estimateCost(schedule, _digraph));
