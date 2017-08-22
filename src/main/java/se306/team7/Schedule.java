@@ -14,6 +14,8 @@ public class Schedule {
     public int _numOfProcessors;
     private Queue<Task> _tasks;
     private HashSet<Node> _nodesInSchedule;
+    private int _processorsToScheduleOn;
+    private Task _lastTaskScheduled;
 
     /**
      * Instantiates a PartialSchedule instance.
@@ -23,12 +25,14 @@ public class Schedule {
         _numOfProcessors = numOfProcessors;
         _tasks = new LinkedList<Task>();
         _nodesInSchedule = new HashSet<Node>();
+		_processorsToScheduleOn = 1;
     }
 
     public Schedule(Schedule schedule) {
         _numOfProcessors = schedule._numOfProcessors;
         _tasks = new LinkedList<Task>(schedule._tasks);
         _nodesInSchedule = new HashSet<Node>();
+		_processorsToScheduleOn = schedule.getNumberOfProcessorsToScheduleOn();
         for (Task t: schedule.getTasks()) {
             _nodesInSchedule.add(t.getNode());
         }
@@ -40,10 +44,14 @@ public class Schedule {
      * @param node task to be scheduled on the specified processor
      */
     public Task scheduleTask(int processor, Node node) {
-    	
+
+    	if (processor >= _processorsToScheduleOn - 1) {
+			_processorsToScheduleOn++;
+		}
     	int startTime = calculateTaskStartTime(processor, node);
         Task newTask = new Task(node, processor,startTime);
         _tasks.add(newTask);
+		_lastTaskScheduled = newTask;
         _nodesInSchedule.add(node);
         
         return newTask;
@@ -68,6 +76,22 @@ public class Schedule {
     public HashSet<Node> getNodesInSchedule () {
         return _nodesInSchedule;
     }
+
+	/**
+	 * Gets the number of the highest processor with tasks scheduled
+	 * @return
+	 */
+	public int getNumberOfProcessorsToScheduleOn () {
+    	return _processorsToScheduleOn;
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	public Task getLastTaskScheduled () {
+		return _lastTaskScheduled;
+	}
 
     public List<String> scheduleToStringList() {
         ArrayList<String> output = new ArrayList<String>();

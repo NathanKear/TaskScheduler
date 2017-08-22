@@ -8,18 +8,24 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import se306.team7.Algorithm.ICostEstimator;
+import se306.team7.Algorithm.IScheduleGenerator;
+import se306.team7.Algorithm.ScheduleGenerator;
 import se306.team7.Schedule;
 import se306.team7.Algorithm.AStarAlgorithm;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.DigraphParser;
 import se306.team7.utility.FileUtilities;
+import se306.team7.utility.IFileUtilities;
 
 /**
  * Tests if the schedule produced is valid.
@@ -54,7 +60,9 @@ public class ValidScheduleTest {
 
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -89,7 +97,9 @@ public class ValidScheduleTest {
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -123,7 +133,9 @@ public class ValidScheduleTest {
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -161,7 +173,9 @@ public class ValidScheduleTest {
 				)));
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -203,7 +217,9 @@ public class ValidScheduleTest {
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -248,7 +264,9 @@ public class ValidScheduleTest {
 				
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -294,7 +312,9 @@ public class ValidScheduleTest {
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -340,7 +360,9 @@ public class ValidScheduleTest {
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -389,7 +411,9 @@ public class ValidScheduleTest {
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
@@ -439,7 +463,9 @@ public class ValidScheduleTest {
 		
 		DigraphParser digraphParser = new DigraphParser(_fileUtilities);
 		Digraph d = (Digraph)digraphParser.parseDigraph(INPUT_FILE_NAME);
-		AStarAlgorithm a = new AStarAlgorithm();
+		Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
+		IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
+		AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
