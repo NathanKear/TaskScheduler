@@ -1,19 +1,22 @@
 package se306.team7.Algorithm;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pt.runtime.*;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Schedule;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class AStarParalleliser {
 
     public static Schedule bestSchedule;
 
-    public static TaskIDGroup<Schedule> getOptimalScheduleMulti(ConcurrentLinkedQueue<Schedule> schedulesToDo, Digraph digraph, int numOfProcessors){
-        Schedule schedule = null;
+    private static Logger logger = LoggerFactory.getLogger(AStarParalleliser.class);
+
+    public static Schedule getSchedule(Schedule schedule, int processors, Digraph digraph) {
+        logger.debug("Start ID: " + CurrentTask.globalID());
 
         Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
         costEstimators.add(new CriticalPathCostEstimator());
@@ -22,17 +25,15 @@ public class AStarParalleliser {
 
         AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
 
-        while((schedule = schedulesToDo.poll()) != null){
-            Schedule bestScheduleInTree = a.getOptimalSchedule(digraph, numOfProcessors, schedule);
-            if(bestSchedule == null || bestScheduleInTree.endTime() < bestSchedule.endTime()){
-                bestSchedule = bestScheduleInTree;
-            }
+        Schedule s = a.getOptimalSchedule(digraph, processors, schedule);
+
+        if (bestSchedule == null || s.endTime() < bestSchedule.endTime()) {
+            bestSchedule = s;
         }
 
-        TaskIDGroup id = getOptimalScheduleMulti(schedulesToDo, digraph, 4);
+        logger.debug("Finish ID: " + CurrentTask.globalID());
 
-        TaskInfo ti = new TaskInfo();
-        ti.setParameters(bestSchedule);
-        return TaskpoolFactory.getTaskpool().enqueueMulti(ti, 1);
+        return s;
     }
+
 }

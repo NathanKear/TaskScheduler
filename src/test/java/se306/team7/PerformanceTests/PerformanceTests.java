@@ -12,12 +12,21 @@ public class PerformanceTests {
     /**
      * Number of times to repeat test for each test input
      */
-    private final int TEST_COUNT = 10;
+    private final int TEST_COUNT = 1;
 
     /**
      * test input files for performance tests
      */
-    private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot" };
+    private final String[] TEST_INPUT_FILES = {
+           /* "inputs/test1.dot",
+            "inputs/test2.dot",
+            "inputs/Nodes_7_OutTree.dot",
+            "inputs/Nodes_8_Random.dot",
+            "inputs/Nodes_9_SeriesParallel.dot",
+            "inputs/Nodes_10_Random.dot",
+            "inputs/Nodes_11_OutTree.dot",*/
+            "inputs/Nodes_13_Random.dot"
+    };
 
     private final Logger _logger = LoggerFactory.getLogger(PerformanceTests.class);
 

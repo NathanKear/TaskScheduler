@@ -1,9 +1,11 @@
 package se306.team7.Algorithm;
 
+import pt.runtime.ParaTaskHelper;
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Schedule;
 
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.PriorityQueue;
 import java.util.List;
@@ -21,6 +23,13 @@ public class AStarAlgorithm implements IAlgorithm {
         _scheduleGenerator = scheduleGenerator;
     }
 
+    public Method getOptimalScheduleMethod() {
+        try {
+            return ParaTaskHelper.getDeclaredMethod(new ParaTaskHelper.ClassGetter().getCurrentClass(), "getOptimalSchedule", new Class[]{});
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _schedules.clear();

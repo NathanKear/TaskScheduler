@@ -2,15 +2,19 @@ package se306.team7.Algorithm;
 
 import pt.runtime.TaskID;
 import pt.runtime.TaskIDGroup;
+import pt.runtime.TaskInfo;
+import pt.runtime.TaskpoolFactory;
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Schedule;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutionException;
 
 public class DfsAlgorithmParallelised implements IAlgorithm{
 
@@ -27,19 +31,35 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
         _subTreeSchedules = new ArrayList<Schedule>();
     }
 
+    private Schedule runAllSubtrees(List<Schedule> partialSchedulesToComplete, Digraph digraph, int processorCount) {
+        try {
 
+            Method aStarAlgorithmMethod = AStarParalleliser.class.getMethod("getSchedule", Schedule.class, int.class, Digraph.class);
 
-    private Schedule runAllSubtrees() {
-        TaskIDGroup taskIDGroup = new TaskIDGroup(_subTreeSchedules.size());
+            TaskIDGroup<Void> id = new TaskIDGroup<Void>(_subTreeSchedules.size());
 
-        for (Schedule subTreeSchedule : _subTreeSchedules) {
-            TaskID id = foo();
+            for (Schedule schedule : _subTreeSchedules) {
+
+                TaskInfo taskInfo = new TaskInfo();
+                taskInfo.setMethod(aStarAlgorithmMethod);
+                taskInfo.setParameters(schedule, processorCount, digraph);
+
+                TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
+
+                id.add(task);
+            }
+
+            id.waitTillFinished();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException ex) {
+            System.exit(1); // Something has gone horribly wrong
         }
 
-    }
-
-    public void foo() {
-
+        return AStarParalleliser.bestSchedule;
     }
 
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
@@ -73,6 +93,8 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
             if(digraph.getNodes().size() - schedule.getTasks().size() <= 10){
 
+                _subTreeSchedules.add(nextSchedule.getSchedule());
+
             }else {
                 Schedule s = getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());
 
@@ -95,7 +117,9 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
      * @return Optimal complete schedule
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
-        return getOptimalSchedule(digraph, numOfProcessors, new Schedule(numOfProcessors));
+        getOptimalSchedule(digraph, numOfProcessors, new Schedule(numOfProcessors));
+
+        return runAllSubtrees(_subTreeSchedules, digraph, numOfProcessors);
     }
 
     /**

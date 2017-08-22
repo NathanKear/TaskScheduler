@@ -30,7 +30,6 @@ public class TaskScheduler
         PropertyConfigurator.configure("src/log4j.properties");
 
         ParaTask.init();
-        ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.ALL, 4);
 
         CommandLineArgumentConfig commandLineArgumentConfig;
 
@@ -41,11 +40,15 @@ public class TaskScheduler
 
         try {
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
+
+            ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.ALL, /*commandLineArgumentConfig.applicationProcessors()*/ 1);
+
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-            AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
+            //AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
             //DfsAlgorithm a = new DfsAlgorithm(costEstimators, scheduleGenerator);
+            DfsAlgorithmParallelised a = new DfsAlgorithmParallelised(costEstimators, scheduleGenerator);
             Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
 
             List<String> output = optimalSchedule.scheduleToStringList();
