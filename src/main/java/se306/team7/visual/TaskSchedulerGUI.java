@@ -1,6 +1,5 @@
 package se306.team7.visual;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +24,13 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.application.Platform;
-
+import javafx.scene.paint.Color;
 
 public class TaskSchedulerGUI extends Application {
 	
 	VisualModel _model;
 	 private List<ITaskSchedulerView> _views;
 	 private static Digraph _digraph; // this is needed to execute the background task
-	 private Text statusText;
 
 	@SuppressWarnings("restriction")
 	@Override
@@ -40,9 +38,13 @@ public class TaskSchedulerGUI extends Application {
 		
         primaryStage.setTitle("Task Scheduler");
 
-        statusText = new Text(" In progress...");
-        final Text status = new Text("Status: In progress...");
-        status.setFont(new Font(30));
+        final Text statusText = new Text(" In progress...");
+        statusText.setFill(Color.ORANGE);
+        statusText.setFont(new Font(20));
+        statusText.setTextAlignment(TextAlignment.CENTER);
+        
+        final Text status = new Text("Status: ");
+        status.setFont(new Font(20));
         status.setTextAlignment(TextAlignment.CENTER);
 
         View_Histogram hist = View_Histogram.getInstance();
@@ -62,7 +64,7 @@ public class TaskSchedulerGUI extends Application {
         /*
         Visual look option 2
          */
-        HBox topHBox = new HBox(status, currentBest._text);
+        HBox topHBox = new HBox(status,statusText);
         HBox midHBox = new HBox(currentBest._text);
         HBox bottomHBox = new HBox(hist._barChart, lineGraph._lineChart);
 
@@ -112,7 +114,8 @@ public class TaskSchedulerGUI extends Application {
             @Override
             public void handle(WorkerStateEvent t) {
                 System.out.println("done:" + t.getSource().getValue());
-                status.setText("Status: Finished");
+                statusText.setText("Finished");
+                statusText.setFill(Color.GREEN);
                 task.cancel(true);
                 //_model.stopTimer();
                 
