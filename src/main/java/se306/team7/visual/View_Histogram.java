@@ -25,7 +25,8 @@ public class View_Histogram implements ITaskSchedulerView {
         //Defining the axes
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Level (schedules with n tasks)");
-         _yAxis = new NumberAxis();
+        _yAxis = new NumberAxis();
+        _yAxis.setAnimated(false);
         _yAxis.setAutoRanging(false);
         _yAxis.setLabel("Number of cost-estimated schedules");
 
@@ -35,9 +36,10 @@ public class View_Histogram implements ITaskSchedulerView {
         _barChart.setAnimated(true);
         _barChart.setLegendVisible(false);
         
-        _series = new XYChart.Series<String, Number>();
         //Preparing and adding the initial data
         _series = new XYChart.Series<String, Number>();
+
+		System.out.println(Metrics.getLevels());
      // for (int i = 1; i <= Metrics.getLevels(); i++) {
         for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
             _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
