@@ -1,5 +1,6 @@
 package se306.team7.visual;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class TaskSchedulerGUI extends Application {
 	VisualModel _model;
 	 private List<ITaskSchedulerView> _views;
 	 private static Digraph _digraph; // this is needed to execute the background task
+	 private Text statusText;
 
 	@SuppressWarnings("restriction")
 	@Override
@@ -38,7 +40,8 @@ public class TaskSchedulerGUI extends Application {
 		
         primaryStage.setTitle("Task Scheduler");
 
-        Text status = new Text("Status: In progress...");
+        statusText = new Text(" In progress...");
+        final Text status = new Text("Status: In progress...");
         status.setFont(new Font(30));
         status.setTextAlignment(TextAlignment.CENTER);
 
@@ -109,7 +112,7 @@ public class TaskSchedulerGUI extends Application {
             @Override
             public void handle(WorkerStateEvent t) {
                 System.out.println("done:" + t.getSource().getValue());
-                
+                status.setText("Status: Finished");
                 task.cancel(true);
                 //_model.stopTimer();
                 
