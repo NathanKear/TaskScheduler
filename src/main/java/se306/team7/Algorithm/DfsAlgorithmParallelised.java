@@ -117,7 +117,9 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
         ValidScheduleGenerator greedyScheduleGenerator = new ValidScheduleGenerator();
-        AStarParalleliser.bestCost.set(greedyScheduleGenerator.generateValidSchedule(digraph, numOfProcessors).endTime());
+        Schedule greedySchedule = greedyScheduleGenerator.generateValidSchedule(digraph, numOfProcessors);
+        AStarParalleliser.bestCost.set(greedySchedule.endTime());
+        AStarParalleliser.bestSchedule = greedySchedule;
         getOptimalSchedule(digraph, numOfProcessors, new Schedule(numOfProcessors));
         return runAllSubtrees(_subTreeSchedules, digraph, numOfProcessors);
     }
