@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,10 +56,17 @@ public class TaskSchedulerGUI extends Application {
         Visual look option 2
          */
         HBox topHBox = new HBox(status,statusText);
-
+        topHBox.setPadding(new Insets(15, 12, 15, 12));
+        topHBox.setSpacing(10);
+        
         HBox midHBox = new HBox(currentBest._text);
+        midHBox.setPadding(new Insets(5, 12, 15, 12));
+        midHBox.setSpacing(10);
+        
         HBox bottomHBox = new HBox(hist._barChart, lineGraph._lineChart);
-
+        bottomHBox.setPadding(new Insets(5, 12, 25, 12));
+        bottomHBox.setSpacing(10);
+        
         topHBox.setAlignment(Pos.CENTER);
         midHBox.setAlignment(Pos.CENTER);
 
