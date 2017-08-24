@@ -17,11 +17,10 @@ public class View_LineGraph implements ITaskSchedulerView {
 
     private View_LineGraph() {
         //defining the axes
-        _xAxis = new NumberAxis();
-        _xAxis.setLabel("Time");
+        _xAxis = new NumberAxis(0, 5, 0.5);
+        _xAxis.setLabel("Time (seconds)");
         _xAxis.setAutoRanging(false);
-//        NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1); //TODO use this line after Metrics class has been instantiated
-        NumberAxis yAxis = new NumberAxis(1, 10, 1);
+        NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1); 
         yAxis.setLabel("Current level");
 
         //creating the chart
@@ -54,8 +53,6 @@ public class View_LineGraph implements ITaskSchedulerView {
      * The level of the solution tree corresponds to the number of tasks that have been scheduled in the (partial) solution.
      *
      * If the new X value is closely approaching the X axis' upper bound, then recalibrate the X axis to twice its current size.
-     * @param numOfLevels
-     * @param numOfCores
      * @param currentBestCost
      * @param histogram
      * @param coreCurrentLevel
@@ -65,7 +62,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         currentTimeUnit++;
         double currentXAxisUpperBound = _xAxis.getUpperBound();
         if (currentTimeUnit > (currentXAxisUpperBound * 0.8)) {
-            _xAxis.setUpperBound(currentXAxisUpperBound * 2);
+            _xAxis.setUpperBound(Math.ceil(currentXAxisUpperBound * 1.5));
         }
 
         for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {
