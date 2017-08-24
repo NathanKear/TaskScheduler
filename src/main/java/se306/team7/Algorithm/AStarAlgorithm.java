@@ -36,14 +36,22 @@ public class AStarAlgorithm implements IAlgorithm {
         _digraph = digraph;
 
         ValidScheduleGenerator v = new ValidScheduleGenerator();
-        int knownScheduleFinishTime = v.generateValidSchedule(digraph, numOfProcessors).endTime();
+        Schedule validSchedule = v.generateValidSchedule(digraph, numOfProcessors);
+        /*int knownScheduleFinishTime = validSchedule.endTime();*/
 
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
 
         while(true){
-            Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
+            CostEstimatedSchedule costWrappedSchedule = _schedules.poll();
+
+            if (costWrappedSchedule == null) {
+                return validSchedule;
+            }
+
+            Schedule mostPromisingSchedule =  costWrappedSchedule.getSchedule();
+
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
 
             if(possibleSchedules.isEmpty()) {
@@ -52,7 +60,7 @@ public class AStarAlgorithm implements IAlgorithm {
 
             for(Schedule _schedule : possibleSchedules){
                 int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
-                if (cost <= knownScheduleFinishTime) {
+                if (cost < AStarParalleliser.bestCost.get()) {
                     CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
                     _schedules.add(costEstimatedSchedule);
                 }
