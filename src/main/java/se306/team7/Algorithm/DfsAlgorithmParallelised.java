@@ -22,6 +22,7 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
     private int _currentBestCost;
     //private List<Schedule> _subTreeSchedules;
     private PriorityQueue<CostEstimatedSchedule> _subTreeSchedules;
+    private int _batchSize = 500;
 
     public DfsAlgorithmParallelised (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _costEstimators = costEstimators;
@@ -30,32 +31,34 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
         _subTreeSchedules = new PriorityQueue<CostEstimatedSchedule>();
     }
 
-    private Schedule runAllSubtrees(PriorityQueue<CostEstimatedSchedule> partialSchedulesToComplete, Digraph digraph, int processorCount) {
-        try {
+    private Schedule runAllSubtrees(List<PriorityQueue<CostEstimatedSchedule>> batchesToRun, Digraph digraph, int processorCount) {
+        for (PriorityQueue<CostEstimatedSchedule> batch : batchesToRun) {
+            try {
 
-            Method aStarAlgorithmMethod = AStarParalleliser.class.getMethod("getSchedule", Schedule.class, int.class, Digraph.class);
+                Method aStarAlgorithmMethod = AStarParalleliser.class.getMethod("getSchedule", Schedule.class, int.class, Digraph.class);
 
-            TaskIDGroup<Void> id = new TaskIDGroup<Void>(_subTreeSchedules.size());
+                TaskIDGroup<Void> id = new TaskIDGroup<Void>(batch.size());
 
-            for (CostEstimatedSchedule schedule : _subTreeSchedules) {
+                for (CostEstimatedSchedule schedule : batch) {
 
-                TaskInfo taskInfo = new TaskInfo();
-                taskInfo.setMethod(aStarAlgorithmMethod);
-                taskInfo.setParameters(schedule.getSchedule(), processorCount, digraph);
+                    TaskInfo taskInfo = new TaskInfo();
+                    taskInfo.setMethod(aStarAlgorithmMethod);
+                    taskInfo.setParameters(schedule.getSchedule(), processorCount, digraph);
 
-                TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
+                    TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
 
-                id.add(task);
+                    id.add(task);
+                }
+
+                id.waitTillFinished();
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException ex) {
+                System.exit(1); // Something has gone horribly wrong
             }
-
-            id.waitTillFinished();
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException ex) {
-            System.exit(1); // Something has gone horribly wrong
         }
 
         return AStarParalleliser.bestSchedule;
@@ -121,7 +124,8 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
         AStarParalleliser.bestCost.set(greedySchedule.endTime());
         AStarParalleliser.bestSchedule = greedySchedule;
         getOptimalSchedule(digraph, numOfProcessors, new Schedule(numOfProcessors));
-        return runAllSubtrees(_subTreeSchedules, digraph, numOfProcessors);
+        List<PriorityQueue<CostEstimatedSchedule>> batchSchedules = batchSchedules();
+        return runAllSubtrees(batchSchedules, digraph, numOfProcessors);
     }
 
     /**
@@ -139,6 +143,24 @@ public class DfsAlgorithmParallelised implements IAlgorithm{
         }
 
         return currentMax;
+    }
+
+    private List<PriorityQueue<CostEstimatedSchedule>> batchSchedules () {
+        List<PriorityQueue<CostEstimatedSchedule>> batchedSchedules = new ArrayList<PriorityQueue<CostEstimatedSchedule>>();
+
+        while (!_subTreeSchedules.isEmpty()) {
+            PriorityQueue<CostEstimatedSchedule> batch = new PriorityQueue<CostEstimatedSchedule>();
+            for (int i = 0; i < _batchSize; i++) {
+                CostEstimatedSchedule s = _subTreeSchedules.poll();
+                if (s == null) {
+                    break;
+                }
+                batch.add(_subTreeSchedules.poll());
+            }
+            batchedSchedules.add(batch);
+        }
+
+        return batchedSchedules;
     }
 
 }
