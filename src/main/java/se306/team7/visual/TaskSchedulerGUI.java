@@ -32,7 +32,7 @@ public class TaskSchedulerGUI extends Application {
 	VisualModel _model;
 	private List<ITaskSchedulerView> _views;
 	private static Digraph _digraph; // this is needed to execute the background task\
-	private static long _startTime;
+	protected static long _startTime;
 	private static long _endTime;
 
 	@SuppressWarnings("restriction")
