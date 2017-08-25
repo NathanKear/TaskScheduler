@@ -111,7 +111,7 @@ public class Schedule {
             }
         }
 
-        output.add("Final time: " + endTime());
+        //output.add("Final time: " + endTime());
         return output;
     }
 

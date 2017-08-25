@@ -1,6 +1,7 @@
 package schedule.valid;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
+import org.junit.Before;
 import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,7 @@ import se306.team7.Digraph.Digraph;
 import se306.team7.Digraph.DigraphParser;
 import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
+import org.mockito.Mockito;
 
 /**
  * Tests if the schedule produced is valid.
@@ -38,6 +41,12 @@ public class ValidScheduleTest {
 
 	private static final String INPUT_FILE_NAME = "testfile.dot";
 	private static final int NUM_OF_SCHEDULE_PROCESSORS = 2;
+
+	@Before
+	public void setup() {
+		_fileUtilities = Mockito.mock(FileUtilities.class);
+	}
+
 
 	/**
 	 * Digraph is simply 3 nodes in linear sequence.
