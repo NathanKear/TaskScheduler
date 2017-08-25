@@ -14,6 +14,7 @@ public class View_LineGraph implements ITaskSchedulerView {
     private static View_LineGraph _view_lineGraph;
     private static int currentTimeUnit = 0;
     private NumberAxis _xAxis;
+    private static double currentTime;
 
     private View_LineGraph() {
         //defining the axes
@@ -27,7 +28,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart = new LineChart<Number,Number>(_xAxis, yAxis);
         _lineChart.setTitle("Current level explored for each core");
         _lineChart.setAnimated(true);
-        _lineChart.setLegendVisible(false);
+        _lineChart.setLegendVisible(true);
         _lineChart.setCreateSymbols(false);
 
         //Preparing and adding the initial data
@@ -59,16 +60,17 @@ public class View_LineGraph implements ITaskSchedulerView {
      * @param coreCurrentLevel
      */
     public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
-    	
-        currentTimeUnit++;
+
+        currentTime = (System.currentTimeMillis() - TaskSchedulerGUI._startTime)/1000.00;
+        System.out.println(currentTime);
         double currentXAxisUpperBound = _xAxis.getUpperBound();
-        if (currentTimeUnit > (currentXAxisUpperBound * 0.8)) {
+        if (currentTime > (currentXAxisUpperBound * 0.8)) {
             _xAxis.setUpperBound(Math.ceil(currentXAxisUpperBound * 1.5));
         }
 
         for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {
             _lineChart.getData().get(entry.getKey()-1) //get the series for the corresponding core
-                    .getData().add(new XYChart.Data<Number, Number>(currentTimeUnit, entry.getValue())); //add new Y value for the current time unit
+                    .getData().add(new XYChart.Data<Number, Number>(currentTime, entry.getValue())); //add new Y value for the current time unit
         }
 
     }
