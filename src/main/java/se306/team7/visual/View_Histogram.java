@@ -1,9 +1,16 @@
 package se306.team7.visual;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Bounds;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.text.Text;
 import se306.team7.Metrics;
 
 import java.util.Map;
@@ -35,13 +42,15 @@ public class View_Histogram implements ITaskSchedulerView {
         _barChart.setTitle("Histogram of cost-estimated schedules at each level");
         _barChart.setAnimated(true);
         _barChart.setLegendVisible(false);
+
+        _barChart.setHorizontalGridLinesVisible(false);
+        _barChart.setVerticalGridLinesVisible(false);
         
         //Preparing and adding the initial data
         _series = new XYChart.Series<String, Number>();
 
 		System.out.println(Metrics.getLevels());
-     // for (int i = 1; i <= Metrics.getLevels(); i++) {
-        for (int i = 1; i <= Metrics.getLevels(); i++) { //TODO delete this line after Metrics has been instantiated in TaskScheduler
+        for (int i = 1; i <= Metrics.getLevels(); i++) {
             _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
         }
 
@@ -61,8 +70,6 @@ public class View_Histogram implements ITaskSchedulerView {
      * Keys and values come from the input histogram.
      *
      * If the new Y value is closely approaching the Y axis' upper bound, then recalibrate the Y axis to twice its current size.
-     * @param numOfLevels
-     * @param numOfCores
      * @param currentBestCost
      * @param histogram
      * @param coreCurrentLevel
@@ -80,9 +87,39 @@ public class View_Histogram implements ITaskSchedulerView {
 
             double currentYAxisUpperBound = _yAxis.getUpperBound();
             if (newYValue > (currentYAxisUpperBound * 0.8)) {
-                _yAxis.setUpperBound(currentYAxisUpperBound * 2);
+                _yAxis.setUpperBound(Math.ceil(currentYAxisUpperBound * 1.2));
             }
 
         }
     }
+
+//    /**
+//     * Display the Y value as a text label above the bar node.
+//     * @param data
+//     */
+//    private void displayLabelForData(XYChart.Data<String, Number> data) {
+//        final Node node = data.getNode();
+//        final Text dataText = new Text(data.getYValue() + "");
+//        node.parentProperty().addListener(new ChangeListener<Parent>() {
+//            public void changed(ObservableValue<? extends Parent> ov, Parent oldParent, Parent parent) {
+//                Group parentGroup = (Group) parent;
+//                parentGroup.getChildren().add(dataText);
+//            }
+//        });
+//
+//        node.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
+//            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
+//                dataText.setLayoutX(
+//                        Math.round(
+//                                bounds.getMinX() + bounds.getWidth() / 2 - dataText.prefWidth(-1) / 2
+//                        )
+//                );
+//                dataText.setLayoutY(
+//                        Math.round(
+//                                bounds.getMinY() - dataText.prefHeight(-1) * 0.5
+//                        )
+//                );
+//            }
+//        });
+//    }
 }

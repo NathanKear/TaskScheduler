@@ -20,7 +20,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         _xAxis = new NumberAxis(0, 5, 0.5);
         _xAxis.setLabel("Time (seconds)");
         _xAxis.setAutoRanging(false);
-        NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1); 
+        NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1);
         yAxis.setLabel("Current level");
 
         //creating the chart
@@ -28,6 +28,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart.setTitle("Current level explored for each core");
         _lineChart.setAnimated(true);
         _lineChart.setLegendVisible(false);
+        _lineChart.setCreateSymbols(false);
 
         //Preparing and adding the initial data
        for (int i = 1; i <= Metrics.getNumOfCores(); i++) {
