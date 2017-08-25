@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
+import pt.runtime.ParaTask;
 
 /**
  * Hello world!
@@ -26,6 +27,8 @@ public class TaskScheduler
 
     public static void main( String[] args )
     {
+        ParaTask.init();
+        ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, 4);
         PropertyConfigurator.configure("src/log4j.properties");
 
         CommandLineArgumentConfig commandLineArgumentConfig;
@@ -40,9 +43,20 @@ public class TaskScheduler
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-            AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
-            //DfsAlgorithm a = new DfsAlgorithm(costEstimators, scheduleGenerator);
-            Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
+
+            int size = d.getNodes().size();
+            int numOfProcessors = commandLineArgumentConfig.scheduleProcessors();
+            int applicationProcessors = commandLineArgumentConfig.applicationProcessors();
+            Schedule optimalSchedule;
+            if (applicationProcessors > 1) {
+                AStarParallel a = new AStarParallel(costEstimators, scheduleGenerator);
+                optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
+
+            } else {
+                IAlgorithm a = size < 13 ? new AStarAlgorithm(costEstimators, scheduleGenerator) :
+                                                new DfsAlgorithm(costEstimators, scheduleGenerator);
+                optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
+            }
 
             List<String> output = optimalSchedule.scheduleToStringList();
 
