@@ -17,11 +17,21 @@ public class CostEstimatedSchedule implements Comparable {
         return _estimatedCost;
     }
 
+    /**
+     * Instantiates a Schedule object, with an associated estimated cost
+     * @param schedule
+     * @param estimatedCost
+     */
     public CostEstimatedSchedule(Schedule schedule, int estimatedCost) {
         _schedule = schedule;
         _estimatedCost = estimatedCost;
     }
 
+    /**
+     * Compares this object to another schedule, to determine which schedule has the lowest cost
+     * @param o
+     * @return int
+     */
     public int compareTo(Object o) {
         if(o == null) {
             throw new NullPointerException();
