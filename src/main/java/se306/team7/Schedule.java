@@ -18,7 +18,7 @@ public class Schedule {
     private Task _lastTaskScheduled;
 
     /**
-     * Instantiates a PartialSchedule instance.
+     * Instantiates a Schedule instance
      * @param numOfProcessors the number of processors available for tasks to be scheduled on
      */
     public Schedule(int numOfProcessors) {
@@ -28,7 +28,11 @@ public class Schedule {
 		_processorsToScheduleOn = 1;
     }
 
-    public Schedule(Schedule schedule) {
+	/**
+	 * Instantiates a new Schedule instance, which is the child of another Schedule
+	 * @param schedule the parent Schedule
+	 */
+	public Schedule(Schedule schedule) {
         _numOfProcessors = schedule._numOfProcessors;
         _tasks = new LinkedList<Task>(schedule._tasks);
         _nodesInSchedule = new HashSet<Node>();
@@ -39,7 +43,7 @@ public class Schedule {
     }
 
     /**
-     * Schedules the specified task on a specified processor.
+     * Schedules the specified task on a specified processor
      * @param processor processor on which the specified task is scheduled
      * @param node task to be scheduled on the specified processor
      */
@@ -57,7 +61,11 @@ public class Schedule {
         return newTask;
     }
 
-    public Queue<Task> getTasks () {
+	/**
+	 * Gets the queue of tasks
+	 * @return
+	 */
+	public Queue<Task> getTasks () {
         return _tasks;
     }
 
@@ -86,13 +94,18 @@ public class Schedule {
 	}
 
 	/**
-	 *
+	 * Gets the last task scheduled
 	 * @return
 	 */
 	public Task getLastTaskScheduled () {
 		return _lastTaskScheduled;
 	}
 
+	/**
+	 * Generates a list of strings, representing the Schedule object
+	 * Each string is a representation of a node or link on the Schedule
+	 * @return
+	 */
     public List<String> scheduleToStringList() {
         ArrayList<String> output = new ArrayList<String>();
         for (Task task : _tasks) {
@@ -151,7 +164,13 @@ public class Schedule {
 
 		return startTime;
 	}
-    
+
+	/**
+	 * Calculates the time that a node starts on a given processor
+	 * @param processor
+	 * @param node
+	 * @return
+	 */
     public int calculateTaskStartTime(int processor, Node node){
 
     	int startTime;

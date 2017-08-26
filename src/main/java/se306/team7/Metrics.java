@@ -69,26 +69,50 @@ public class Metrics {
 		_coreCurrentLevel.put(Integer.valueOf(coreID), levelOfScheduleGiven);
 	}
 
+	/**
+	 * Gets total number of levels in the solution tree
+	 * @return
+	 */
 	public static int getLevels(){
 		return _levels;
 	}
 
+	/**
+	 * Gets currently estimated best cost
+	 * @return
+	 */
 	public static int getCurrentBestCost(){
 		return _currentBestCost;
 	}
 
+	/**
+	 * Sets currently estimated best cost
+	 * @param cost
+	 */
 	public static void setCurrentBestCost(int cost) {
 		_currentBestCost = cost;
 	}
-	
+
+	/**
+	 * Gets number of cores used
+	 * @return
+	 */
 	public static int getNumOfCores(){
 		return _cores;
 	}
-	
+
+	/**
+	 * Gets histogram hashmap
+	 * @return
+	 */
 	public static ConcurrentHashMap<Integer, Integer> getHistogram(){
 		return _histogram;
 	}
-	
+
+	/**
+	 * Gets the map referring to the level each core is exploring
+	 * @return
+	 */
 	public static ConcurrentHashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;
 	}

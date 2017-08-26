@@ -23,6 +23,15 @@ public class TaskScheduler
 	private static Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 	private static CommandLineArgumentConfig commandLineArgumentConfig;
 
+    /**
+     * Establishes ParaTask, Metrics, FileUtilities and DigraphParser program management tools to setup
+     * and maintain the program
+     *
+     * If visualisation is active, launches the GUI before executing the algorithm
+     * Otherwise start execution immediately
+     *
+     * @param args
+     */
     public static void main( String[] args ){
         ParaTask.init();
 
@@ -32,7 +41,7 @@ public class TaskScheduler
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
 
             ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, commandLineArgumentConfig.applicationProcessors());
-            
+
 			FileUtilities fileUtilities = new FileUtilities();
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
 			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
@@ -59,7 +68,7 @@ public class TaskScheduler
 	}
 
 	/**
-	 * Print helpful message for user about the format the command should be in
+	 * Prints helpful message for user about the format the command should be in
 	 */
 	private static void printCommandFormatInfo() {
 		System.err.print("Expected command format:\n" +
@@ -73,6 +82,16 @@ public class TaskScheduler
 				"− o OUPUT output file is named OUTPUT (default is INPUT−output.dot)\n");
 	}
 
+    /**
+     * Initialises the Cost Estimating, Schedule Generating and Algorithm objects to derive the
+     * optimal schedule from the digraph, using the command line arguments to configure the search
+     *
+     * The more suitable algorithm type is selected and executed based on the size of the digraph
+     *
+     * Once an optimal schedule has been found, it is printed out to the output file
+     *
+     * @param d
+     */
 	public static void executeAlgorithm(Digraph d){
 		
 			Set<ICostEstimator> costEstimators = new HashSet<ICostEstimator>();
@@ -91,6 +110,7 @@ public class TaskScheduler
                 DfsAlgorithmParallel a = new DfsAlgorithmParallel(costEstimators, scheduleGenerator);
                 optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
             }
+
             List<String> output = optimalSchedule.scheduleToStringList();
 
 			for (String line : output) {
@@ -98,6 +118,5 @@ public class TaskScheduler
 			}
 
 			fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), d._digraphName, output);
-		
 	}
 }
