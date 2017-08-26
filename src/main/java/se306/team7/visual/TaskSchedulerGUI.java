@@ -100,7 +100,6 @@ public class TaskSchedulerGUI extends Application {
 			public Void call() throws Exception {
 				while (true) {
 					Platform.runLater(new Runnable() {
-						@Override
 						public void run() {
 							for (ITaskSchedulerView view : _views){
 								view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
@@ -115,12 +114,11 @@ public class TaskSchedulerGUI extends Application {
 		th.setDaemon(true);
 
 		/*
-		 * Set up algoritjm service on background thread
+		 * Set up algorithm service on background thread
 		 */
 		AlgorithmService service = new AlgorithmService();
 		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
-			@Override
 			public void handle(WorkerStateEvent t) {
 				//System.out.println("done:" + t.getSource().getValue());
 				_endTime = System.currentTimeMillis();
