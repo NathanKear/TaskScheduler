@@ -17,6 +17,8 @@ public class Metrics {
 	private static ConcurrentHashMap<Integer, Integer> _histogram;
 	//the current level being explored for each core
 	private static ConcurrentHashMap<Integer, Integer> _coreCurrentLevel;
+	//are metrics currently initialised
+	private static boolean _isMetricsAvailable = false;
 
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
@@ -35,6 +37,8 @@ public class Metrics {
 
 		_histogram = new ConcurrentHashMap<Integer, Integer>();
 		_coreCurrentLevel = new ConcurrentHashMap<Integer, Integer>();
+
+		_isMetricsAvailable = true;
 	}
 
 	/**
@@ -47,6 +51,9 @@ public class Metrics {
 	 * @param coreID
 	 */
 	public static void doneSchedule(CostEstimatedSchedule ces, int coreID) {
+		if (!_isMetricsAvailable)
+			return;
+
 		//Get the level of the cost-estimated schedule
 		Integer levelOfScheduleGiven = Integer.valueOf(ces.getSchedule().getTasks().size());
 
