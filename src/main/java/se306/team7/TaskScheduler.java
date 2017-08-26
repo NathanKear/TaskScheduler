@@ -38,7 +38,7 @@ public class TaskScheduler
 			
 			if (commandLineArgumentConfig.visualisationOn()){
 
-				Metrics.init(digraph.getNodes().size(), 4); //bogus code
+				//Metrics.init(digraph.getNodes().size(), 4); //bogus code
 				TaskSchedulerGUI.LaunchGUI(args, digraph,commandLineArgumentConfig);
 			}else {
 				executeAlgorithm(digraph);
