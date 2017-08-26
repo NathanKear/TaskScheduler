@@ -26,8 +26,8 @@ public class View_CurrentBest implements ITaskSchedulerView {
     }
 
     private void decorateView() {
-        _text.setFont(new Font(22));
-        _text.setTextAlignment(TextAlignment.CENTER);
+        _text.setFont(new Font(18));
+        _text.setTextAlignment(TextAlignment.LEFT);
     }
 
     /**

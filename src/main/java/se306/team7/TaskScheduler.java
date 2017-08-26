@@ -16,10 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-/**
- * Hello world!
- *
- */
 public class TaskScheduler
 {
 	private static IFileUtilities fileUtilities = new FileUtilities();
@@ -39,10 +35,10 @@ public class TaskScheduler
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
 			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
 
-			Metrics.init(digraph.getNodes().size(), 4); //bogus code
+			Metrics.init(digraph.getNodes().size(), 4);
 
 			if (commandLineArgumentConfig.visualisationOn()){
-				TaskSchedulerGUI.LaunchGUI(args, digraph);
+				TaskSchedulerGUI.LaunchGUI(args, digraph,commandLineArgumentConfig);
 			}else {
 				executeAlgorithm(digraph);
 			}

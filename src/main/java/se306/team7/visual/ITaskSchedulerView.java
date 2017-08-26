@@ -16,14 +16,12 @@ public interface ITaskSchedulerView {
     /**
      * Parameters correspond to the fields in the Metrics class.
      * View/Controller may use any number of these info to update itself.
-     * @param numOfLevels
-     * @param numOfCores
      * @param currentBestCost
-     * @param concurrentHashMap
-     * @param concurrentHashMap2
+     * @param histogram
+     * @param coreCurrentLevel
      */
 	void update(
                 int currentBestCost,
-                ConcurrentHashMap<Integer, Integer> concurrentHashMap,
-                ConcurrentHashMap<Integer, Integer> concurrentHashMap2);
+				ConcurrentHashMap<Integer, Integer> histogram,
+				ConcurrentHashMap<Integer, Integer> coreCurrentLevel);
 }

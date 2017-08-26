@@ -39,7 +39,7 @@ public class View_Histogram implements ITaskSchedulerView {
 
         //Creating the Bar Chart
         _barChart = new BarChart<String, Number>(xAxis, _yAxis);
-        _barChart.setTitle("Histogram of cost-estimated schedules at each level");
+        _barChart.setTitle("Total cost-estimated schedules at each level");
         _barChart.setAnimated(true);
         _barChart.setLegendVisible(false);
 
