@@ -1,11 +1,11 @@
 package se306.team7.Algorithm;
 
-import pt.runtime.TaskID;
-import pt.runtime.TaskIDGroup;
-import pt.runtime.TaskInfo;
-import pt.runtime.TaskpoolFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pt.runtime.*;
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
+import se306.team7.Metrics;
 import se306.team7.Schedule;
 
 import java.lang.reflect.Method;
@@ -15,13 +15,35 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class DfsAlgorithmParallel {
+
+    private static Logger _logger = LoggerFactory.getLogger(DfsAlgorithmParallel.class);
     private static Digraph _digraph;
     private static Set<ICostEstimator> _costEstimators;
     private static IScheduleGenerator _scheduleGenerator;
     private int _processorCount = 1;
     private Method _getOptimalScheduleMethod;
-    private static AtomicInteger _currentBestCost;
-    private static AtomicReference<Schedule> _currentBestSchedule;
+    private static AtomicInteger _bestCost;
+    private static AtomicReference<Schedule> _bestSchedule;
+
+    /**
+     * Attempt to set the best schedule found so far
+     * @param schedule The schedule to try and set as best
+     * @return If the schedule provided is the current best schedule
+     */
+    public static boolean trySetBestSchedule(Schedule schedule) {
+        if (schedule.endTime() < _bestCost.get()) {
+
+            _logger.info("Found new best schedule. Cost = " + schedule.endTime());
+
+            _bestCost.set(schedule.endTime());
+            _bestSchedule.set(schedule);
+            Metrics.setCurrentBestCost(schedule.endTime());
+
+            return true;
+        }
+
+        return false;
+    }
 
     public DfsAlgorithmParallel (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _costEstimators = costEstimators;
@@ -35,14 +57,17 @@ public class DfsAlgorithmParallel {
     }
 
     public Schedule run(Digraph digraph, int numOfProcessors, int threadCount) {
+
+        _logger.info("Starting DFS search. Parallel threads = " + threadCount);
+
         _digraph = digraph;
         _processorCount = threadCount;
 
         ValidScheduleGenerator validScheduleGenerator = new ValidScheduleGenerator();
         Schedule greedySchedule = validScheduleGenerator.generateValidSchedule(digraph, numOfProcessors);
 
-        _currentBestCost = new AtomicInteger(greedySchedule.endTime());
-        _currentBestSchedule = new AtomicReference<Schedule>(greedySchedule);
+        _bestCost = new AtomicInteger(greedySchedule.endTime());
+        _bestSchedule = new AtomicReference<Schedule>(greedySchedule);
 
         // Get list of schedules at base of subtrees to parallelise
         List<Schedule> topLevelSchedules = new ArrayList<Schedule>();
@@ -67,7 +92,6 @@ public class DfsAlgorithmParallel {
             taskInfo.setParameters(_digraph, numOfProcessors, schedule);
             TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
             taskGroup.add(task);
-
         }
 
         try {
@@ -78,23 +102,21 @@ public class DfsAlgorithmParallel {
 
         }
 
-        return _currentBestSchedule.get();
+        _logger.info("Finished DFS search. Optimal schedule length = " + _bestCost.get());
+
+        return _bestSchedule.get();
     }
 
 
 
     public static void getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
+
         // Generate next schedules
         List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
         // Base case, at leaf of tree
         if (nextSchedules.isEmpty()) {
-            if (schedule.endTime() < _currentBestCost.get()) {
-                System.out.println("New best: " + schedule.endTime());
-                _currentBestSchedule.set(schedule);
-                _currentBestCost.set(schedule.endTime());
-            }
-
+            trySetBestSchedule(schedule);
             return;
         }
 
@@ -103,7 +125,7 @@ public class DfsAlgorithmParallel {
 
         for (Schedule nextSchedule : nextSchedules) {
             int costEstimate = getCostEstimate(nextSchedule);
-            if (costEstimate < _currentBestCost.get())
+            if (costEstimate < _bestCost.get())
                 costEstimatedSchedules.add(new CostEstimatedSchedule(nextSchedule, costEstimate));
         }
 
@@ -113,6 +135,11 @@ public class DfsAlgorithmParallel {
 
         // Find and return best sub-schedule
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
+
+            if (CurrentTask.insideTask()) {
+                Metrics.doneSchedule(nextSchedule, CurrentTask.relativeID() + 1);
+            }
+
             getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());
         }
     }
