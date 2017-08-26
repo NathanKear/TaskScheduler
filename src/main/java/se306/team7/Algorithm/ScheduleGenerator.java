@@ -21,10 +21,7 @@ public class ScheduleGenerator implements IScheduleGenerator {
         List<Schedule> generatedSchedules = new ArrayList<Schedule>();
         List<Node> currentHeads = calculateCurrentHeads(current, digraph);
 
-        int numOfProcessors = current.getNumberOfProcessors();
-        if (current.getNumberOfProcessorsToScheduleOn() < numOfProcessors - 1) {
-            numOfProcessors = current.getNumberOfProcessorsToScheduleOn();
-        }
+        int numOfProcessors = current.getNumberOfProcessorsToScheduleOn();
 
         for (Node head : currentHeads) {
             for (int i = 0; i <= numOfProcessors; i++) {

@@ -49,8 +49,8 @@ public class Schedule {
      */
     public Task scheduleTask(int processor, Node node) {
 
-    	if (processor > _processorsToScheduleOn) {
-			_processorsToScheduleOn++;
+    	if (processor >= _processorsToScheduleOn) {
+			_processorsToScheduleOn = Math.min(++_processorsToScheduleOn, _numOfProcessors - 1);
 		}
     	int startTime = calculateTaskStartTime(processor, node);
         Task newTask = new Task(node, processor,startTime);
