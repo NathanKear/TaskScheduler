@@ -1,5 +1,8 @@
 package se306.team7;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -7,6 +10,22 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Metrics {
 
+	public enum AlgorithmType {
+		A_STAR("A*"),
+		DFS("DFS");
+
+		private final String algorithmName;
+
+		AlgorithmType(String name) {
+			algorithmName = name;
+		}
+
+		public String getAlgorithmName() {
+			return algorithmName;
+		}
+	}
+
+	private static Logger _logger = LoggerFactory.getLogger(Metrics.class);
 	//the total number of levels in the task scheduler solution tree
 	private static int _levels;
 	//the total number of cores for execution
@@ -19,6 +38,10 @@ public class Metrics {
 	private static ConcurrentHashMap<Integer, Integer> _coreCurrentLevel;
 	//are metrics currently initialised
 	private static boolean _isMetricsAvailable = false;
+	//the total number of schedules that have been estimated so far
+	private static int _totalSchedulesEstimated;
+
+	public static AlgorithmType _algorithmTypeUsed = AlgorithmType.DFS;
 
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
@@ -39,6 +62,8 @@ public class Metrics {
 		_coreCurrentLevel = new ConcurrentHashMap<Integer, Integer>();
 
 		_isMetricsAvailable = true;
+
+		_totalSchedulesEstimated = 0;
 	}
 
 	/**
@@ -64,6 +89,7 @@ public class Metrics {
 		} else {
 			_histogram.put(levelOfScheduleGiven, 1);
 		}
+		_totalSchedulesEstimated++;
 
 		//Update the core's current level
 		_coreCurrentLevel.put(Integer.valueOf(coreID), levelOfScheduleGiven);
@@ -115,5 +141,19 @@ public class Metrics {
 	 */
 	public static ConcurrentHashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;
+	}
+
+	public static AlgorithmType getAlgorithmTypeUsed() {
+		_logger.info("Metrics.getAlgorithmTypeUsed() is invoked.");
+		return _algorithmTypeUsed;
+	}
+
+	public static void setAlgorithmTypeUsed(AlgorithmType type) {
+		_logger.info("Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = " + type.getAlgorithmName());
+		_algorithmTypeUsed = type;
+	}
+
+	public static int getTotalSchedulesEstimated() {
+		return _totalSchedulesEstimated;
 	}
 }

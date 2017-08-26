@@ -15,7 +15,7 @@ public class LoadBalancerCostEstimator implements ICostEstimator {
      * spread perfectly over all threads starting immediately after the current
      * schedule finish time.
      * @param schedule
-     * @return
+     * @return int estimated cost
      */
     public int estimateCost(Schedule schedule, IDigraph digraph) {
 

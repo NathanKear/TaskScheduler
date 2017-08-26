@@ -11,7 +11,7 @@ public class CriticalPathCostEstimator implements ICostEstimator{
      * Critical path is the most expensive direct path from any node currently in the schedule
      * to the end of the schedule.
      * @param schedule
-     * @return
+     * @return int, estimated cost
      */
     public int estimateCost(Schedule schedule, IDigraph digraph) {
 

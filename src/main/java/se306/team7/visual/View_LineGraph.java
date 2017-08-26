@@ -3,6 +3,7 @@ package se306.team7.visual;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javafx.geometry.Side;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -34,6 +35,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart.setTitle("Current level explored for each core");
         _lineChart.setAnimated(true);
         _lineChart.setLegendVisible(true);
+        _lineChart.setLegendSide(Side.RIGHT);
         _lineChart.setCreateSymbols(false);
 
         //Preparing and adding the initial data
@@ -42,6 +44,10 @@ public class View_LineGraph implements ITaskSchedulerView {
             newCoreSeries.setName("Core " + i);
             newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
             _lineChart.getData().add(newCoreSeries);
+        }
+
+        for (XYChart.Series<Number, Number> s : _lineChart.getData()) {
+           s.getNode().setStyle("-fx-stroke-width: 0.75px;");
         }
     }
     
@@ -67,7 +73,6 @@ public class View_LineGraph implements ITaskSchedulerView {
     public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
 
         currentTime = (System.currentTimeMillis() - TaskSchedulerGUI._startTime)/1000.00;
-        System.out.println(currentTime);
         double currentXAxisUpperBound = _xAxis.getUpperBound();
         if (currentTime > (currentXAxisUpperBound * 0.8)) {
             double newXAxisUpperBound = Math.ceil((currentXAxisUpperBound * 1.5) / 10) * 10;
