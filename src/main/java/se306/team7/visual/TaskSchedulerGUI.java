@@ -82,7 +82,7 @@ public class TaskSchedulerGUI extends Application {
 		leftBox.setPadding(new Insets(20, 190, 15, 45));
 		leftBox.setSpacing(18);
 		
-		VBox rightBox = new VBox(timerText,currentBest._text);
+		VBox rightBox = new VBox(currentBest._text,timerText);
 		rightBox.setPadding(new Insets(20, 45, 15, 100));
 		rightBox.setSpacing(18);
 		
@@ -172,6 +172,7 @@ public class TaskSchedulerGUI extends Application {
 	}
 
 	public static void LaunchGUI(String[] args, Digraph d, CommandLineArgumentConfig commandLineArgumentConfig) {
+		Metrics.init(d.getNodes().size(), commandLineArgumentConfig.applicationProcessors()); //bogus code
 		_digraph = d;
 		_commandLineArgumentConfig = commandLineArgumentConfig;
 		launch(args);

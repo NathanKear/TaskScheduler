@@ -24,8 +24,10 @@ public class View_LineGraph implements ITaskSchedulerView {
         _xAxis = new NumberAxis(0, 5, 0.5);
         _xAxis.setLabel("Time (seconds)");
         _xAxis.setAutoRanging(false);
+        _xAxis.setAnimated(false);
         NumberAxis yAxis = new NumberAxis(1, Metrics.getLevels(), 1);
         yAxis.setLabel("Current level");
+        yAxis.setAnimated(false);
 
         //creating the chart
         _lineChart = new LineChart<Number,Number>(_xAxis, yAxis);
@@ -68,7 +70,10 @@ public class View_LineGraph implements ITaskSchedulerView {
         System.out.println(currentTime);
         double currentXAxisUpperBound = _xAxis.getUpperBound();
         if (currentTime > (currentXAxisUpperBound * 0.8)) {
-            _xAxis.setUpperBound(Math.ceil(currentXAxisUpperBound * 1.5));
+            double newXAxisUpperBound = Math.ceil((currentXAxisUpperBound * 1.5) / 10) * 10;
+            _xAxis.setUpperBound(newXAxisUpperBound);
+            _xAxis.setTickUnit(Math.round(newXAxisUpperBound/10));
+
         }
 
         for (Map.Entry<Integer, Integer> entry : coreCurrentLevel.entrySet()) {
