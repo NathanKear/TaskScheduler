@@ -73,8 +73,10 @@ public class DfsAlgorithmParallel {
         // Break schedule problem down into several sub-problems
         List<Schedule> topLevelSchedules = decomposeSchedules(digraph, numOfProcessors, threadCount);
         // if decompose has failed to break down problem then the real solution is returned
-        if (topLevelSchedules.size() == 1 && threadCount > 1) {
-            return topLevelSchedules.get(0);
+        if (topLevelSchedules.size() < threadCount) {
+            _logger.info("Problem cannot be parallelised across " + threadCount + " threads");
+            threadCount = topLevelSchedules.size();
+            _logger.info("Thread count reduced to " + threadCount);
         }
 
         TaskIDGroup taskGroup = new TaskIDGroup(topLevelSchedules.size());
@@ -109,31 +111,25 @@ public class DfsAlgorithmParallel {
     private static List<Schedule> decomposeSchedules(Digraph digraph, int numOfProcessors, int minScheduleCount) {
         // Get list of schedules at base of subtrees to parallelise
         List<Schedule> topLevelSchedules = new ArrayList<Schedule>();
-        topLevelSchedules.add(new Schedule(numOfProcessors));
+        List<Schedule> currentDecompisition = new ArrayList<Schedule>();
+        currentDecompisition.add(new Schedule(numOfProcessors));
 
-        Schedule bestSchedule = null;
+        while (currentDecompisition.size() + topLevelSchedules.size() < minScheduleCount) {
+            Schedule schedule = currentDecompisition.remove(0);
+            List<Schedule> childSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
-        while (topLevelSchedules.size() < minScheduleCount) {
-            Schedule scheduleToDecompose = topLevelSchedules.remove(0);
-            List<Schedule> childSchedules = _scheduleGenerator.generateSchedules(scheduleToDecompose, digraph);
-
-            if (childSchedules.isEmpty()) {
-                for (Schedule childSchedule : childSchedules) {
-                    if (bestSchedule == null || bestSchedule.endTime() > childSchedule.endTime()) {
-                        bestSchedule = childSchedule;
-                    }
-                }
+            if (childSchedules == null || childSchedules.isEmpty()) {
+                topLevelSchedules.add(schedule);
             } else {
-                topLevelSchedules.addAll(childSchedules);
+                currentDecompisition.addAll(childSchedules);
             }
 
-            if (topLevelSchedules.isEmpty()) {
-                List<Schedule> bestSchedules = new ArrayList<Schedule>();
-                bestSchedules.add(bestSchedule);
-                return bestSchedules;
+            if (currentDecompisition.isEmpty()) {
+                return topLevelSchedules;
             }
         }
 
+        topLevelSchedules.addAll(currentDecompisition);
         return topLevelSchedules;
     }
 
