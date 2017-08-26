@@ -137,7 +137,7 @@ public class DfsAlgorithmParallel {
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
 
             if (CurrentTask.insideTask()) {
-                Metrics.doneSchedule(nextSchedule, CurrentTask.relativeID() + 1);
+                Metrics.doneSchedule(nextSchedule, CurrentTask.globalID() + 1);
             }
 
             getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());

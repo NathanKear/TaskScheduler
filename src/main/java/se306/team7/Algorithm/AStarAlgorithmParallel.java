@@ -139,7 +139,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
     public static void pollAndGenerateSchedules (int loopThreshold) {
 
         if (CurrentTask.insideTask()) {
-            _logger.info("Start thread. Id = " + (CurrentTask.relativeID() + 1));
+            _logger.info("Start thread. Id = " + (CurrentTask.globalID() + 1));
         }
 
         while (true) {
@@ -152,8 +152,10 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
             Schedule mostPromisingSchedule =  polledSchedule.getSchedule();
 
+            Metrics.setCurrentBestCost(polledSchedule.getEstimatedCost());
+
             if (CurrentTask.insideTask()) {
-                Metrics.doneSchedule(polledSchedule, CurrentTask.relativeID() + 1);
+                Metrics.doneSchedule(polledSchedule, CurrentTask.globalID() + 1);
             }
 
 
