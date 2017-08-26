@@ -42,14 +42,14 @@ public class ScheduleTest {
         List<String> output = s.scheduleToStringList();
 
         assertEquals(output.size(), 8);
-        assertEquals("1\t\t[Weight=2,Start=0,Processor=1];", output.get(0));
-        assertEquals("2\t\t[Weight=3,Start=2,Processor=1];", output.get(1));
-        assertEquals("1 -> 2\t[Weight=3];", output.get(2));
-        assertEquals("3\t\t[Weight=1,Start=4,Processor=2];", output.get(3));
-        assertEquals("1 -> 3\t[Weight=2];", output.get(4));
-        assertEquals("4\t\t[Weight=5,Start=7,Processor=2];", output.get(5));
-        assertEquals("2 -> 4\t[Weight=2];", output.get(6));
-        assertEquals("3 -> 4\t[Weight=4];", output.get(7));
+        assertEquals("1\t\t[Weight=2,Start=0,Processor=1];\n", output.get(0));
+        assertEquals("2\t\t[Weight=3,Start=2,Processor=1];\n", output.get(1));
+        assertEquals("1 -> 2\t[Weight=3];\n", output.get(2));
+        assertEquals("3\t\t[Weight=1,Start=4,Processor=2];\n", output.get(3));
+        assertEquals("1 -> 3\t[Weight=2];\n", output.get(4));
+        assertEquals("4\t\t[Weight=5,Start=7,Processor=2];\n", output.get(5));
+        assertEquals("2 -> 4\t[Weight=2];\n", output.get(6));
+        assertEquals("3 -> 4\t[Weight=4];\n", output.get(7));
     }
 
 }

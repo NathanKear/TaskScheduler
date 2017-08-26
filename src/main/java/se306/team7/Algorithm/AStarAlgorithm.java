@@ -1,6 +1,7 @@
 package se306.team7.Algorithm;
 
 import se306.team7.CostEstimatedSchedule;
+import se306.team7.Metrics;
 import se306.team7.Digraph.Digraph;
 import se306.team7.Schedule;
 
@@ -31,19 +32,22 @@ public class AStarAlgorithm implements IAlgorithm {
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
 
         _schedules.add(emptySchedule);
-
+        
         while(true){
             Schedule mostPromisingSchedule =  _schedules.poll().getSchedule();
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, digraph);
 
+        	Metrics.setCurrentBestCost(mostPromisingSchedule.endTime()); //bogus code
             if(possibleSchedules.isEmpty()) {
                 return mostPromisingSchedule;
             }
 
             for(Schedule _schedule : possibleSchedules){
+
                 int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
                 if (cost <= knownScheduleFinishTime) {
                     CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
+                    Metrics.doneSchedule(costEstimatedSchedule, costEstimatedSchedule.getSchedule().getNumberOfProcessors()); // bogus code
                     _schedules.add(costEstimatedSchedule);
                 }
             }

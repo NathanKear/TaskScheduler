@@ -22,7 +22,6 @@ public class DfsAlgorithm implements IAlgorithm {
 
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _digraph = digraph;
-
         List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
         if (nextSchedules.isEmpty()) {

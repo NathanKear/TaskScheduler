@@ -1,0 +1,191 @@
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	22		[Weight=6,Start=0,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	23		[Weight=4,Start=6,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	24		[Weight=7,Start=10,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	25		[Weight=7,Start=17,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	26		[Weight=8,Start=24,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	27		[Weight=6,Start=32,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	28		[Weight=5,Start=38,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	29		[Weight=6,Start=43,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	30		[Weight=4,Start=49,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	10		[Weight=6,Start=53,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	11		[Weight=4,Start=59,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	12		[Weight=7,Start=63,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	13		[Weight=7,Start=70,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	14		[Weight=8,Start=77,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	15		[Weight=6,Start=85,Processor=0];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	16		[Weight=5,Start=0,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	17		[Weight=6,Start=5,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	18		[Weight=4,Start=11,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	19		[Weight=7,Start=15,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	0		[Weight=5,Start=22,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	1		[Weight=6,Start=27,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	2		[Weight=5,Start=33,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	3		[Weight=6,Start=38,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	4		[Weight=4,Start=44,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	5		[Weight=7,Start=48,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	6		[Weight=7,Start=55,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	7		[Weight=8,Start=62,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	8		[Weight=6,Start=70,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	9		[Weight=5,Start=76,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	20		[Weight=7,Start=81,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - 	21		[Weight=8,Start=88,Processor=1];
+
+2017-08-20 20:26:43 INFO  TaskScheduler:47 - Final time: 96
+2017-08-20 20:50:19 ERROR TaskScheduler:53 - Expected at least two arguments
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	22		[Weight=6,Start=0,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	23		[Weight=4,Start=6,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	24		[Weight=7,Start=10,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	25		[Weight=7,Start=17,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	26		[Weight=8,Start=24,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	27		[Weight=6,Start=32,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	28		[Weight=5,Start=38,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	29		[Weight=6,Start=43,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	30		[Weight=4,Start=49,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	10		[Weight=6,Start=53,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	11		[Weight=4,Start=59,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	12		[Weight=7,Start=63,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	13		[Weight=7,Start=70,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	14		[Weight=8,Start=77,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	15		[Weight=6,Start=85,Processor=0];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	16		[Weight=5,Start=0,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	17		[Weight=6,Start=5,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	18		[Weight=4,Start=11,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	19		[Weight=7,Start=15,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	0		[Weight=5,Start=22,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	1		[Weight=6,Start=27,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	2		[Weight=5,Start=33,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	3		[Weight=6,Start=38,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	4		[Weight=4,Start=44,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	5		[Weight=7,Start=48,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	6		[Weight=7,Start=55,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	7		[Weight=8,Start=62,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	8		[Weight=6,Start=70,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	9		[Weight=5,Start=76,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	20		[Weight=7,Start=81,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - 	21		[Weight=8,Start=88,Processor=1];
+
+2017-08-20 20:50:57 INFO  TaskScheduler:47 - Final time: 96
+2017-08-20 20:51:19 ERROR TaskScheduler:53 - Expected at least two arguments
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	22		[Weight=6,Start=0,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	23		[Weight=4,Start=6,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	24		[Weight=7,Start=10,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	25		[Weight=7,Start=17,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	26		[Weight=8,Start=24,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	27		[Weight=6,Start=32,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	28		[Weight=5,Start=38,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	29		[Weight=6,Start=43,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	30		[Weight=4,Start=49,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	10		[Weight=6,Start=53,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	11		[Weight=4,Start=59,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	12		[Weight=7,Start=63,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	13		[Weight=7,Start=70,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	14		[Weight=8,Start=77,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	15		[Weight=6,Start=85,Processor=0];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	16		[Weight=5,Start=0,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	17		[Weight=6,Start=5,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	18		[Weight=4,Start=11,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	19		[Weight=7,Start=15,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	0		[Weight=5,Start=22,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	1		[Weight=6,Start=27,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	2		[Weight=5,Start=33,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	3		[Weight=6,Start=38,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	4		[Weight=4,Start=44,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	5		[Weight=7,Start=48,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	6		[Weight=7,Start=55,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	7		[Weight=8,Start=62,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	8		[Weight=6,Start=70,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	9		[Weight=5,Start=76,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	20		[Weight=7,Start=81,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	21		[Weight=8,Start=88,Processor=1];
+
+2017-08-20 20:51:31 INFO  TaskScheduler:47 - Final time: 96
