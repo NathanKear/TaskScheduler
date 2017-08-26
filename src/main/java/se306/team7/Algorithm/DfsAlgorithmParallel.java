@@ -69,21 +69,14 @@ public class DfsAlgorithmParallel {
         _bestCost = new AtomicInteger(greedySchedule.endTime());
         _bestSchedule = new AtomicReference<Schedule>(greedySchedule);
 
-        // Get list of schedules at base of subtrees to parallelise
-        List<Schedule> topLevelSchedules = new ArrayList<Schedule>();
-        topLevelSchedules.add(new Schedule(numOfProcessors));
 
-        while (topLevelSchedules.size() < _processorCount) {
-            List<Schedule> newTopLevelSchedules = new ArrayList<Schedule>();
-
-            for (Schedule topLevelSchedule : topLevelSchedules) {
-                newTopLevelSchedules.addAll(_scheduleGenerator.generateSchedules(topLevelSchedule, digraph));
-            }
-
-            topLevelSchedules = newTopLevelSchedules;
+        // Break schedule problem down into several sub-problems
+        List<Schedule> topLevelSchedules = decomposeSchedules(digraph, numOfProcessors, threadCount);
+        // if decompose has failed to break down problem then the real solution is returned
+        if (topLevelSchedules.size() == 1 && threadCount > 1) {
+            return topLevelSchedules.get(0);
         }
 
-        //
         TaskIDGroup taskGroup = new TaskIDGroup(topLevelSchedules.size());
 
         for (Schedule schedule : topLevelSchedules) {
@@ -105,6 +98,43 @@ public class DfsAlgorithmParallel {
         _logger.info("Finished DFS search. Optimal schedule length = " + _bestCost.get());
 
         return _bestSchedule.get();
+    }
+
+    /**
+     * Decompose a problem into a minimum number of smaller scheduling problems to solve
+     * @param digraph
+     * @param minScheduleCount
+     * @return List of schedules that problem has been parallelise over. If the list has only one element then it may be the real solution.
+     */
+    private static List<Schedule> decomposeSchedules(Digraph digraph, int numOfProcessors, int minScheduleCount) {
+        // Get list of schedules at base of subtrees to parallelise
+        List<Schedule> topLevelSchedules = new ArrayList<Schedule>();
+        topLevelSchedules.add(new Schedule(numOfProcessors));
+
+        Schedule bestSchedule = null;
+
+        while (topLevelSchedules.size() < minScheduleCount) {
+            Schedule scheduleToDecompose = topLevelSchedules.remove(0);
+            List<Schedule> childSchedules = _scheduleGenerator.generateSchedules(scheduleToDecompose, digraph);
+
+            if (childSchedules.isEmpty()) {
+                for (Schedule childSchedule : childSchedules) {
+                    if (bestSchedule == null || bestSchedule.endTime() > childSchedule.endTime()) {
+                        bestSchedule = childSchedule;
+                    }
+                }
+            } else {
+                topLevelSchedules.addAll(childSchedules);
+            }
+
+            if (topLevelSchedules.isEmpty()) {
+                List<Schedule> bestSchedules = new ArrayList<Schedule>();
+                bestSchedules.add(bestSchedule);
+                return bestSchedules;
+            }
+        }
+
+        return topLevelSchedules;
     }
 
 
