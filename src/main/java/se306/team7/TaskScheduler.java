@@ -33,19 +33,18 @@ public class TaskScheduler
         ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, 4);
         PropertyConfigurator.configure("src/log4j.properties");
 
-
 		try {
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
 
 			FileUtilities fileUtilities = new FileUtilities();
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
-			Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
+			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
 			
 			if (commandLineArgumentConfig.visualisationOn()){
-				TaskSchedulerGUI.LaunchGUI(args, d);
+				Metrics.init(digraph.getNodes().size(), 4); //bogus code
+				TaskSchedulerGUI.LaunchGUI(args, digraph);
 			}else {
-				
-				executeAlgorithm(d);
+				executeAlgorithm(digraph);
 			}
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());

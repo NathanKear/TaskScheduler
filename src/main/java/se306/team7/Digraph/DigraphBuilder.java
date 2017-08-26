@@ -42,7 +42,6 @@ public class DigraphBuilder implements IDigraphBuilder {
     public IDigraph build() {
         IDigraph digraph = new Digraph(_digraphName, _currentNodes);
 
-       new Metrics(digraph.getNodes().size(), 4); //bogus code
         return digraph;
     }
 
