@@ -41,7 +41,7 @@ public class Node {
 
     /**
      * Checks whether the node is a head node (a node at level 0 of the digraph)
-     * @return
+     * @return boolean
      */
     public boolean isHead () {
         return (_incomingLinks.size() == 0);
@@ -49,7 +49,7 @@ public class Node {
 
     /**
      * Returns incoming links for this node
-     * 
+     * @return List<Link>
      */
     public List<Link> getIncomingLinks(){
     	return _incomingLinks;
@@ -57,13 +57,13 @@ public class Node {
 
     /**
      * Returns outgoing links for this node
-     * @return
+     * @return List<Link>
      */
     public List<Link> getOutgoingLinks() { return _outgoingLinks; }
 
     /**
      * Get nodes that have an outgoing link to this node
-     * @return
+     * @return List<Node>
      */
     public List<Node> getIncomingNodes() {
         List<Node> nodes = new ArrayList<Node>();
@@ -77,7 +77,7 @@ public class Node {
 
     /**
      * Get nodes that have an incoming link from this node
-     * @return
+     * @return List<Node>
      */
     public List<Node> getOutgoingNodes() {
         List<Node> nodes = new ArrayList<Node>();
@@ -91,6 +91,7 @@ public class Node {
 
     /**
      * Returns weight cost of the node
+     * @return int
      */
     public int getCost() {
     	return _cost;
@@ -98,6 +99,7 @@ public class Node {
     
     /**
      * Returns bottom level of the node
+     * @return int
      */
     public int getBottomLevel(){
     	return _bottomLevel;
@@ -105,14 +107,14 @@ public class Node {
 
     /**
      * Return name of this node
-     * @return
+     * @return String
      */
     public String getName() { return _name; }
 
     /**
      * Override equals method to compare two Node objects
      * @param other
-     * @return
+     * @return boolean
      */
     @Override
     public boolean equals(Object other) {
@@ -165,7 +167,7 @@ public class Node {
 
     /**
      * Override hashCode method so that equals method can compare two Node objects accurately
-     * @return
+     * @return int
      */
     @Override
     public int hashCode() {

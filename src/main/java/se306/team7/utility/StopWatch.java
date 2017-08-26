@@ -9,7 +9,7 @@ public class StopWatch implements IStopWatch {
     private final int MINUTES_IN_HOUR = 60;
 
     /**
-     * Create a new stop watch
+     * Creates a new stop watch
      * @param unit Returns timed results in the given units
      */
     public StopWatch(TimeUnit unit) {
@@ -17,7 +17,7 @@ public class StopWatch implements IStopWatch {
     }
 
     /**
-     * Start timing
+     * Starts timing
      */
     public void Start() {
         _startTime = System.currentTimeMillis();
