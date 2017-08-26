@@ -75,11 +75,11 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=2,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	C	 [Weight=3,Start=3,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=4];\n");
-		expectedScheduleStringList.add("	B -> C	 [Weight=5];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=3,Start=1,Processor=0];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=5];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=2,Start=4,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=4];");
 
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -112,8 +112,8 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=2,Start=0,Processor=2];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=2,Start=0,Processor=1];");
 
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -148,10 +148,10 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=2,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	C	 [Weight=2,Start=0,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=10];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=2,Start=0,Processor=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=2,Start=1,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=10];");
 		
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -188,11 +188,11 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=4,Start=3,Processor=2];\n");
-		expectedScheduleStringList.add("	C	 [Weight=5,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=2];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=4];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=5,Start=1,Processor=0];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=4];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=4,Start=3,Processor=1];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=2];");
 
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -232,14 +232,14 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=2,Start=0,Processor=2];\n");
-		expectedScheduleStringList.add("	C	 [Weight=3,Start=8,Processor=1];\n");
-		expectedScheduleStringList.add("	D	 [Weight=4,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=5];\n");
-		expectedScheduleStringList.add("	B -> C	 [Weight=6];\n");
-		expectedScheduleStringList.add("	B -> D	 [Weight=7];\n");
-		
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=2,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=4,Start=2,Processor=0];");
+		expectedScheduleStringList.add("\tB -> D\t[Weight=7];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=3,Start=6,Processor=0];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=5];");
+		expectedScheduleStringList.add("\tB -> C\t[Weight=6];");
+
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
 
@@ -279,14 +279,14 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=2,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=10];\n");
-		expectedScheduleStringList.add("	C	 [Weight=2,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=1];\n");
-		expectedScheduleStringList.add("	D	 [Weight=1,Start=5,Processor=1];\n");
-		expectedScheduleStringList.add("	B -> D	 [Weight=10];\n");
-		expectedScheduleStringList.add("	C -> D	 [Weight=1];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=2,Start=1,Processor=1];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=10];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=2,Start=2,Processor=0];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=1];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=1,Start=5,Processor=1];");
+		expectedScheduleStringList.add("\tB -> D\t[Weight=10];");
+		expectedScheduleStringList.add("\tC -> D\t[Weight=1];");
 		
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -327,14 +327,14 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=1,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=1];\n");
-		expectedScheduleStringList.add("	C	 [Weight=1,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=10];\n");
-		expectedScheduleStringList.add("	D	 [Weight=1,Start=4,Processor=1];\n");
-		expectedScheduleStringList.add("	B -> D	 [Weight=1];\n");
-		expectedScheduleStringList.add("	C -> D	 [Weight=10];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=1,Start=1,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=1];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=1,Start=2,Processor=0];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=10];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=1,Start=3,Processor=0];");
+		expectedScheduleStringList.add("\tB -> D\t[Weight=1];");
+		expectedScheduleStringList.add("\tC -> D\t[Weight=10];");
 		
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -375,14 +375,14 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=5,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=10];\n");
-		expectedScheduleStringList.add("	C	 [Weight=1,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=1];\n");
-		expectedScheduleStringList.add("	D	 [Weight=1,Start=6,Processor=1];\n");
-		expectedScheduleStringList.add("	B -> D	 [Weight=1];\n");
-		expectedScheduleStringList.add("	C -> D	 [Weight=1];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=0];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=1,Start=2,Processor=1];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=5,Start=1,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=10];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=1,Start=6,Processor=0];");
+		expectedScheduleStringList.add("\tB -> D\t[Weight=1];");
+		expectedScheduleStringList.add("\tC -> D\t[Weight=1];");
 		
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -426,16 +426,16 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=3,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=1];\n");
-		expectedScheduleStringList.add("	C	 [Weight=1,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=10];\n");
-		expectedScheduleStringList.add("	D	 [Weight=5,Start=2,Processor=1];\n");
-		expectedScheduleStringList.add("	C -> D	 [Weight=10];\n");
-		expectedScheduleStringList.add("	E	 [Weight=1,Start=7,Processor=1];\n");
-		expectedScheduleStringList.add("	D -> E	 [Weight=10];\n");
-		expectedScheduleStringList.add("	B -> E	 [Weight=1];\n");
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=3,Start=2,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=1];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=1,Start=1,Processor=1];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=10];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=5,Start=2,Processor=1];");
+		expectedScheduleStringList.add("\tC -> D\t[Weight=10];");
+		expectedScheduleStringList.add("\tE\t\t[Weight=1,Start=7,Processor=1];");
+		expectedScheduleStringList.add("\tD -> E\t[Weight=10];");
+		expectedScheduleStringList.add("\tB -> E\t[Weight=1];");
 		
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
@@ -478,17 +478,17 @@ public class ValidScheduleTest {
 		Schedule optimalSchedule = a.getOptimalSchedule(d, NUM_OF_SCHEDULE_PROCESSORS);
 
 		List<String> expectedScheduleStringList = new ArrayList<String>();
-		expectedScheduleStringList.add("	A	 [Weight=1,Start=0,Processor=1];\n");
-		expectedScheduleStringList.add("	B	 [Weight=1,Start=2,Processor=2];\n");
-		expectedScheduleStringList.add("	A -> B	 [Weight=1];\n");
-		expectedScheduleStringList.add("	C	 [Weight=3,Start=1,Processor=1];\n");
-		expectedScheduleStringList.add("	A -> C	 [Weight=10];\n");
-		expectedScheduleStringList.add("	D	 [Weight=1,Start=4,Processor=1];\n");
-		expectedScheduleStringList.add("	C -> D	 [Weight=10];\n");
-		expectedScheduleStringList.add("	E	 [Weight=1,Start=5,Processor=1];\n");
-		expectedScheduleStringList.add("	D -> E	 [Weight=10];\n");
-		expectedScheduleStringList.add("	B -> E	 [Weight=1];\n");
-		
+		expectedScheduleStringList.add("\tA\t\t[Weight=1,Start=0,Processor=1];");
+		expectedScheduleStringList.add("\tB\t\t[Weight=1,Start=2,Processor=0];");
+		expectedScheduleStringList.add("\tA -> B\t[Weight=1];");
+		expectedScheduleStringList.add("\tC\t\t[Weight=3,Start=1,Processor=1];");
+		expectedScheduleStringList.add("\tA -> C\t[Weight=10];");
+		expectedScheduleStringList.add("\tD\t\t[Weight=1,Start=4,Processor=1];");
+		expectedScheduleStringList.add("\tC -> D\t[Weight=10];");
+		expectedScheduleStringList.add("\tE\t\t[Weight=1,Start=5,Processor=1];");
+		expectedScheduleStringList.add("\tD -> E\t[Weight=10];");
+		expectedScheduleStringList.add("\tB -> E\t[Weight=1];");
+
 		//Act
 		List<String> actualScheduleStringList = optimalSchedule.scheduleToStringList();
 
