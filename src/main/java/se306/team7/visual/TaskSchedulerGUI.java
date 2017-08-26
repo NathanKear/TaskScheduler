@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import se306.team7.CommandLineArgumentConfig;
 import se306.team7.Metrics;
 import se306.team7.TaskScheduler;
 import se306.team7.Digraph.Digraph;
@@ -34,6 +35,7 @@ public class TaskSchedulerGUI extends Application {
 	private static Digraph _digraph; // this is needed to execute the background task\
 	protected static long _startTime;
 	private static long _endTime;
+	private static CommandLineArgumentConfig _commandLineArgumentConfig;
 
 	@SuppressWarnings("restriction")
 	@Override
@@ -60,6 +62,9 @@ public class TaskSchedulerGUI extends Application {
 		timerText.setTextAlignment(TextAlignment.CENTER);
 		timerText.setOpacity(0);//set transparent text
 		
+		final Text parallelOn = new Text("Parallelisation:");
+
+		
 		View_Histogram hist = View_Histogram.getInstance();
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
 		View_CurrentBest currentBest = View_CurrentBest.getInstance();
@@ -67,6 +72,10 @@ public class TaskSchedulerGUI extends Application {
 		/*
         Visual look option 2
 		 */
+		
+		VBox leftBox = new VBox();
+		VBox rightBox = new VBox();
+		
 		HBox topHBox = new HBox(status,statusText,timerText);
 		topHBox.setPadding(new Insets(15, 12, 15, 12));
 		topHBox.setSpacing(10);
@@ -143,8 +152,9 @@ public class TaskSchedulerGUI extends Application {
 		th.start();
 	}
 
-	public static void LaunchGUI(String[] args, Digraph d) {
+	public static void LaunchGUI(String[] args, Digraph d, CommandLineArgumentConfig commandLineArgumentConfig) {
 		_digraph = d;
+		_commandLineArgumentConfig = commandLineArgumentConfig;
 		launch(args);
 	}
 

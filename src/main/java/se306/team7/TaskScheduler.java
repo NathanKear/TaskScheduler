@@ -42,8 +42,8 @@ public class TaskScheduler
 			Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
 			
 			if (commandLineArgumentConfig.visualisationOn()){
-				TaskSchedulerGUI.LaunchGUI(args, d);
-			}else {
+				TaskSchedulerGUI.LaunchGUI(args, d, commandLineArgumentConfig);
+			}else { 
 				
 				executeAlgorithm(d);
 			}
