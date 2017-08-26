@@ -8,6 +8,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import se306.team7.Metrics;
 
+/**
+ * A class for the line graph representation in the Task Scheduler GUI
+ */
 public class View_LineGraph implements ITaskSchedulerView {
 
     public LineChart<Number,Number> _lineChart;

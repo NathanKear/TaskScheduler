@@ -38,6 +38,10 @@ public class TaskSchedulerGUI extends Application {
 	private static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
 
+	/**
+	 * Constructs the GUI.
+	 * @param primaryStage
+	 */
 	@SuppressWarnings("restriction")
 	@Override
 	public void start(Stage primaryStage) {
@@ -90,6 +94,7 @@ public class TaskSchedulerGUI extends Application {
 				"-fx-border-height: 1px;");*/
 		
 		/*
+		HBox topHBox = new HBox(status,statusText,timerText);
 		topHBox.setPadding(new Insets(15, 12, 15, 12));
 		topHBox.setSpacing(10);
 
@@ -125,7 +130,6 @@ public class TaskSchedulerGUI extends Application {
 			public Void call() throws Exception {
 				while (true) {
 					Platform.runLater(new Runnable() {
-						@Override
 						public void run() {
 							for (ITaskSchedulerView view : _views){
 								view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
@@ -140,12 +144,11 @@ public class TaskSchedulerGUI extends Application {
 		th.setDaemon(true);
 
 		/*
-		 * Set up algoritjm service on background thread
+		 * Set up algorithm service on background thread
 		 */
 		AlgorithmService service = new AlgorithmService();
 		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
-			@Override
 			public void handle(WorkerStateEvent t) {
 				//System.out.println("done:" + t.getSource().getValue());
 				_endTime = System.currentTimeMillis();
@@ -176,7 +179,6 @@ public class TaskSchedulerGUI extends Application {
 
 	/**
 	 * Inner class for Javafx Service to run the search algorithm in background thread
-	 * @author cli727
 	 *
 	 */
 	private static class AlgorithmService extends Service<Void> {

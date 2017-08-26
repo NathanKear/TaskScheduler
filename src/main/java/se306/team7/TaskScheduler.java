@@ -17,10 +17,6 @@ import java.util.Set;
 import java.util.List;
 import pt.runtime.ParaTask;
 
-/**
- * Hello world!
- *
- */
 public class TaskScheduler
 {
 	private static IFileUtilities fileUtilities = new FileUtilities();
@@ -33,19 +29,19 @@ public class TaskScheduler
         ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, 4);
         PropertyConfigurator.configure("src/log4j.properties");
 
-
 		try {
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
 
 			FileUtilities fileUtilities = new FileUtilities();
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
-			Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
+			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
 			
 			if (commandLineArgumentConfig.visualisationOn()){
-				TaskSchedulerGUI.LaunchGUI(args, d, commandLineArgumentConfig);
-			}else { 
-				
-				executeAlgorithm(d);
+
+				Metrics.init(digraph.getNodes().size(), 4); //bogus code
+				TaskSchedulerGUI.LaunchGUI(args, digraph,commandLineArgumentConfig);
+			}else {
+				executeAlgorithm(digraph);
 			}
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
@@ -58,37 +54,6 @@ public class TaskScheduler
             System.err.println("Digraph Parsing Failed");
             logger.error("Digraph Parsing Failed");
         }
-
-//<<<<<<< HEAD
-//        try {
-//            commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
-//            FileUtilities fileUtilities = new FileUtilities();
-//            DigraphParser digraphParser = new DigraphParser(fileUtilities);
-//            Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-//
-//            int size = d.getNodes().size();
-//            int numOfProcessors = commandLineArgumentConfig.scheduleProcessors();
-//            int applicationProcessors = commandLineArgumentConfig.applicationProcessors();
-//            Schedule optimalSchedule;
-//            if (size < 13) {
-//                AStarParallel a = new AStarParallel(costEstimators, scheduleGenerator);
-//                optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
-//            } else {
-//                DfsAlgorithmParallel a = new DfsAlgorithmParallel(costEstimators, scheduleGenerator);
-//                optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
-//            }
-//=======
-//		} catch (CommandLineArgumentException ex) {
-//			System.err.println(ex.getMessage());
-//			logger.error(ex.getMessage());
-//			printCommandFormatInfo();
-//			System.exit(1);
-//		} catch (IOException IOex) {
-//			System.err.println(IOex.getMessage());
-//			logger.error(IOex.getMessage());
-//			System.err.println("Digraph Parsing Failed");
-//			logger.error("Digraph Parsing Failed");
-//		}
 	}
 
 	/**
@@ -112,12 +77,6 @@ public class TaskScheduler
 			costEstimators.add(new CriticalPathCostEstimator());
 			costEstimators.add(new LoadBalancerCostEstimator());
 			IScheduleGenerator scheduleGenerator = new ScheduleGenerator();
-
-//			AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
-//			//DfsAlgorithm a = new DfsAlgorithm(costEstimators, scheduleGenerator);
-//			Schedule optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
-//
-
 
             int size = d.getNodes().size();
             int numOfProcessors = commandLineArgumentConfig.scheduleProcessors();

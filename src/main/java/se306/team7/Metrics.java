@@ -29,7 +29,7 @@ public class Metrics {
 	 * @param numOfNodes
 	 * @param numOfCores;
 	 */
-	public Metrics(int numOfNodes, int numOfCores) {
+	public static void init(int numOfNodes, int numOfCores) {
 		_levels = numOfNodes;
 		_cores = numOfCores;
 
