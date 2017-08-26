@@ -60,6 +60,8 @@ public class DfsAlgorithmParallel {
 
         _logger.info("Starting DFS search. Parallel threads = " + threadCount);
 
+        Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.DFS);
+
         _digraph = digraph;
         _processorCount = threadCount;
 

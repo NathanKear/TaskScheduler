@@ -188,6 +188,8 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
         _logger.info("Starting A* search. Parallel threads = " + threadCount);
 
+        Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.A_STAR);
+
         _numOfCores = threadCount;
         Schedule optimalSchedule = getOptimalSchedule(digraph, numOfProcessors);
 

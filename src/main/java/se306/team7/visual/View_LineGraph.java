@@ -67,7 +67,6 @@ public class View_LineGraph implements ITaskSchedulerView {
     public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
 
         currentTime = (System.currentTimeMillis() - TaskSchedulerGUI._startTime)/1000.00;
-        System.out.println(currentTime);
         double currentXAxisUpperBound = _xAxis.getUpperBound();
         if (currentTime > (currentXAxisUpperBound * 0.8)) {
             double newXAxisUpperBound = Math.ceil((currentXAxisUpperBound * 1.5) / 10) * 10;

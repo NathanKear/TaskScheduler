@@ -4,19 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import se306.team7.CommandLineArgumentConfig;
 import se306.team7.Metrics;
@@ -37,6 +31,8 @@ public class TaskSchedulerGUI extends Application {
 	protected static long _startTime;
 	private static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
+	private Text _algorithmTypeText;
+	protected Text totalSchedulesCostEstimatedText;
 
 	/**
 	 * Constructs the GUI.
@@ -66,19 +62,19 @@ public class TaskSchedulerGUI extends Application {
 		
 		final Text parallelText = new Text("Parallelisation:" + (_commandLineArgumentConfig.applicationProcessors() > 1 ? " On" : " Off"));
 		parallelText.setFont(new Font(18));
-		
-		
+
+		totalSchedulesCostEstimatedText = new Text("Total schedules estimated: 0");
+
+		_algorithmTypeText = new Text("Algorithm used: pending...");
+		_algorithmTypeText.setFont(new Font(18));
+
 		View_Histogram hist = View_Histogram.getInstance();
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
 		View_CurrentBest currentBest = View_CurrentBest.getInstance();
-
-		/*
-        Visual look option 2
-		 */
 		
 		HBox statusBox = new HBox(status,statusText);
 		
-		VBox leftBox = new VBox(statusBox, parallelText);
+		VBox leftBox = new VBox(statusBox, parallelText, _algorithmTypeText);
 		leftBox.setPadding(new Insets(20, 190, 15, 45));
 		leftBox.setSpacing(18);
 		
@@ -133,6 +129,7 @@ public class TaskSchedulerGUI extends Application {
 						public void run() {
 							for (ITaskSchedulerView view : _views){
 								view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+								totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
 							}
 						}
 					});
