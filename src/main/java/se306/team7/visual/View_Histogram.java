@@ -4,12 +4,20 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import se306.team7.Metrics;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javafx.scene.text.Text;
+import javafx.scene.Group;
+import javafx.geometry.Bounds;
+import javafx.scene.Parent;
 
 public class View_Histogram implements ITaskSchedulerView {
+
     public BarChart<String, Number> _barChart;
     public XYChart.Series<String, Number> _series;
     private static View_Histogram _view_histogram;

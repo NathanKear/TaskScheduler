@@ -1,5 +1,7 @@
 package se306.team7.visual;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,9 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 public class TaskSchedulerGUI extends Application {
 
@@ -32,6 +37,8 @@ public class TaskSchedulerGUI extends Application {
 	private static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
 	private Text _algorithmTypeText;
+	protected Text totalSchedulesCostEstimatedText;
+	protected static Button _button ;
 	protected Text _totalSchedulesCostEstimatedText;
 
 	/**
@@ -41,7 +48,7 @@ public class TaskSchedulerGUI extends Application {
 	@SuppressWarnings("restriction")
 	@Override
 	public void start(Stage primaryStage) {
-		
+
 		_views = new ArrayList<ITaskSchedulerView>();
 		_views.add(View_CurrentBest.getInstance());
 		_views.add(View_Histogram.getInstance());
@@ -55,11 +62,11 @@ public class TaskSchedulerGUI extends Application {
 
 		final Text status = new Text("Current status: ");
 		status.setFont(new Font(18));
-		
+
 		final Text timerText = new Text("Time taken:	");
 		timerText.setFont(new Font(18));
 		timerText.setOpacity(0);//set transparent text
-		
+
 		final Text parallelText = new Text("Parallelisation:" + (_commandLineArgumentConfig.applicationProcessors() > 1 ? " On" : " Off"));
 		parallelText.setFont(new Font(18));
 
@@ -72,9 +79,9 @@ public class TaskSchedulerGUI extends Application {
 		View_Histogram hist = View_Histogram.getInstance();
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
 		View_CurrentBest currentBest = View_CurrentBest.getInstance();
-		
+
 		HBox statusBox = new HBox(status,statusText);
-		
+
 		VBox leftBox = new VBox(statusBox, parallelText, _algorithmTypeText);
 		leftBox.setPadding(new Insets(20, 190, 15, 45));
 		leftBox.setSpacing(18);
@@ -82,34 +89,53 @@ public class TaskSchedulerGUI extends Application {
 		VBox rightBox = new VBox(currentBest._text,_totalSchedulesCostEstimatedText, timerText);
 		rightBox.setPadding(new Insets(20, 45, 15, 100));
 		rightBox.setSpacing(18);
-		
+
 		Separator separator = new Separator();
 		separator.setMaxWidth(1200);
-		/*separator.setStyle("-fx-color: orange ;"
-				+ "-fx-border-style: dotted;"+
-				"-fx-border-width: 1px;"+
-				"-fx-border-height: 1px;");*/
-		
-		/*
-		HBox topHBox = new HBox(status,statusText,timerText);
-		topHBox.setPadding(new Insets(15, 12, 15, 12));
-		topHBox.setSpacing(10);
-
-		HBox midHBox = new HBox(currentBest._text);
-		midHBox.setPadding(new Insets(5, 12, 15, 12));
-		midHBox.setSpacing(10);
-		
-		topHBox.setAlignment(Pos.CENTER);
-		midHBox.setAlignment(Pos.CENTER);
-		*/
 
 		HBox topHBox = new HBox(leftBox, rightBox); // stats box
-		HBox bottomHBox = new HBox(hist._barChart, lineGraph._lineChart);
-		bottomHBox.setPadding(new Insets(25, 12, 25, 12));
-		bottomHBox.setSpacing(10);
+		HBox middleHBox = new HBox(hist._barChart, lineGraph._lineChart);
+		middleHBox.setPadding(new Insets(25, 12, 25, 12));
+		middleHBox.setSpacing(10);
 
+		Separator separatorTwo = new Separator();
+		separatorTwo.setMaxWidth(1200);
 
-		VBox root = new VBox(topHBox,separator,bottomHBox);
+		final Text outputText = new Text("Your output file path is: \n\n"+Paths.get(".").toAbsolutePath().normalize().toString()+ _commandLineArgumentConfig.outputFileName());
+		outputText.setFont(new Font(15));
+
+		VBox bottomLeftBox = new VBox(outputText);
+		bottomLeftBox.setPadding(new Insets(20, 20, 25, 25));
+		bottomLeftBox.setSpacing(18);
+		
+		_button  = new Button("Open file in gedit");
+		_button.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Process p;
+				try {
+					p = Runtime.getRuntime().exec("gedit " + _commandLineArgumentConfig.outputFileName());
+					p.waitFor();
+					//System.out.println ("exit: " + p.exitValue());
+					p.destroy();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		VBox bottomRightBox = new VBox(_button);
+		bottomRightBox.setPadding(new Insets(90, 20, 25, 12));
+		bottomRightBox.setSpacing(10);
+
+		HBox bottomBox = new HBox(bottomLeftBox,bottomRightBox);
+
+		VBox root = new VBox(topHBox,separator,middleHBox,separatorTwo, bottomBox);
 
 		primaryStage.setResizable(false);
 
@@ -118,7 +144,7 @@ public class TaskSchedulerGUI extends Application {
 		primaryStage.setScene(scene);
 
 		primaryStage.show();
-	
+
 		/*
 		 * Set up timer task
 		 */
@@ -150,12 +176,13 @@ public class TaskSchedulerGUI extends Application {
 			public void handle(WorkerStateEvent t) {
 				//System.out.println("done:" + t.getSource().getValue());
 				_endTime = System.currentTimeMillis();
+				_button.setDisable(false);
 				timerText.setText("Time taken: " + (_endTime - _startTime)/1000.00 + " seconds");
 				timerText.setOpacity(1);//set transparent text
 				//update GUI text
 				statusText.setText("Finished");
 				statusText.setFill(Color.GREEN);
-				
+
 				task.cancel(true);
 				//final update
 				for (ITaskSchedulerView view : _views){
@@ -187,6 +214,7 @@ public class TaskSchedulerGUI extends Application {
 			return new Task<Void>() {
 
 				protected Void call() {
+					TaskSchedulerGUI._button.setDisable(true);
 					_startTime = System.currentTimeMillis();
 					TaskScheduler.executeAlgorithm(_digraph);
 
