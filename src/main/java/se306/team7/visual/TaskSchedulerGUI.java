@@ -104,7 +104,7 @@ public class TaskSchedulerGUI extends Application {
 		final Text outputText = new Text("Your output file path is: \n\n"+Paths.get(".").toAbsolutePath().normalize().toString()+ _commandLineArgumentConfig.outputFileName());
 		outputText.setFont(new Font(15));
 
-		VBox bottomLeftBox = new VBox(outputText);
+		HBox bottomLeftBox = new HBox(outputText);
 		bottomLeftBox.setPadding(new Insets(20, 20, 25, 25));
 		bottomLeftBox.setSpacing(18);
 		
@@ -129,13 +129,13 @@ public class TaskSchedulerGUI extends Application {
 			}
 		});
 
-		VBox bottomRightBox = new VBox(_button);
-		bottomRightBox.setPadding(new Insets(90, 20, 25, 12));
+		HBox bottomRightBox = new HBox(_button);
+		bottomRightBox.setPadding(new Insets(20, 20, 25, 850));
 		bottomRightBox.setSpacing(10);
 
-		HBox bottomBox = new HBox(bottomLeftBox,bottomRightBox);
+		//HBox bottomBox = new HBox(bottomLeftBox,bottomRightBox);
 
-		VBox root = new VBox(topHBox,separator,middleHBox,separatorTwo, bottomBox);
+		VBox root = new VBox(topHBox,separator,middleHBox,separatorTwo, bottomLeftBox,bottomRightBox);
 
 		primaryStage.setResizable(false);
 
