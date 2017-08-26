@@ -71,7 +71,7 @@ public class Metrics {
 
 	/**
 	 * Gets total number of levels in the solution tree
-	 * @return
+	 * @return int
 	 */
 	public static int getLevels(){
 		return _levels;
@@ -79,7 +79,7 @@ public class Metrics {
 
 	/**
 	 * Gets currently estimated best cost
-	 * @return
+	 * @return int
 	 */
 	public static int getCurrentBestCost(){
 		return _currentBestCost;
@@ -95,7 +95,7 @@ public class Metrics {
 
 	/**
 	 * Gets number of cores used
-	 * @return
+	 * @return int
 	 */
 	public static int getNumOfCores(){
 		return _cores;
@@ -103,7 +103,7 @@ public class Metrics {
 
 	/**
 	 * Gets histogram hashmap
-	 * @return
+	 * @return ConcurrentHashMap<Integer, Integer>
 	 */
 	public static ConcurrentHashMap<Integer, Integer> getHistogram(){
 		return _histogram;
@@ -111,7 +111,7 @@ public class Metrics {
 
 	/**
 	 * Gets the map referring to the level each core is exploring
-	 * @return
+	 * @return ConcurrentHashMap<Integer, Integer>
 	 */
 	public static ConcurrentHashMap<Integer, Integer> getCoreCurrentLevel(){
 		return _coreCurrentLevel;

@@ -63,7 +63,7 @@ public class Schedule {
 
 	/**
 	 * Gets the queue of tasks
-	 * @return
+	 * @return Queue<Task>
 	 */
 	public Queue<Task> getTasks () {
         return _tasks;
@@ -71,7 +71,7 @@ public class Schedule {
 
     /**
      * Gets the number of processors
-     * @return
+     * @return int
      */
     public int getNumberOfProcessors() {
         return _numOfProcessors;
@@ -79,7 +79,7 @@ public class Schedule {
 
     /**
      * Gets the nodes in the schedule
-     * @return
+     * @return HashSet<Node>
      */
     public HashSet<Node> getNodesInSchedule () {
         return _nodesInSchedule;
@@ -87,7 +87,7 @@ public class Schedule {
 
 	/**
 	 * Gets the number of the highest processor with tasks scheduled
-	 * @return
+	 * @return int
 	 */
 	public int getNumberOfProcessorsToScheduleOn () {
     	return _processorsToScheduleOn;
@@ -95,7 +95,7 @@ public class Schedule {
 
 	/**
 	 * Gets the last task scheduled
-	 * @return
+	 * @return Task
 	 */
 	public Task getLastTaskScheduled () {
 		return _lastTaskScheduled;
@@ -104,7 +104,7 @@ public class Schedule {
 	/**
 	 * Generates a list of strings, representing the Schedule object
 	 * Each string is a representation of a node or link on the Schedule
-	 * @return
+	 * @return List<String>
 	 */
     public List<String> scheduleToStringList() {
         ArrayList<String> output = new ArrayList<String>();
@@ -130,7 +130,7 @@ public class Schedule {
 
 	/**
 	 * Get the end time of the final task in the schedule, i.e. how long the entire schedule takes to run
-	 * @return
+	 * @return int
 	 */
 	public int endTime() {
 		int endTime = 0;
@@ -169,7 +169,7 @@ public class Schedule {
 	 * Calculates the time that a node starts on a given processor
 	 * @param processor
 	 * @param node
-	 * @return
+	 * @return int
 	 */
     public int calculateTaskStartTime(int processor, Node node){
 
