@@ -27,6 +27,7 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
+import javafx.scene.control.Separator;
 
 public class TaskSchedulerGUI extends Application {
 
@@ -50,20 +51,18 @@ public class TaskSchedulerGUI extends Application {
 
 		final Text statusText = new Text(" In progress...");
 		statusText.setFill(Color.ORANGE);
-		statusText.setFont(new Font(20));
-		statusText.setTextAlignment(TextAlignment.CENTER);
+		statusText.setFont(new Font(18));
 
 		final Text status = new Text("Current status: ");
-		status.setFont(new Font(20));
-		status.setTextAlignment(TextAlignment.CENTER);
+		status.setFont(new Font(18));
 		
 		final Text timerText = new Text("Time taken:	");
-		timerText.setFont(new Font(20));
-		timerText.setTextAlignment(TextAlignment.CENTER);
+		timerText.setFont(new Font(18));
 		timerText.setOpacity(0);//set transparent text
 		
-		final Text parallelOn = new Text("Parallelisation:");
-
+		final Text parallelText = new Text("Parallelisation:" + (_commandLineArgumentConfig.applicationProcessors() > 1 ? " On" : " Off"));
+		parallelText.setFont(new Font(18));
+		
 		
 		View_Histogram hist = View_Histogram.getInstance();
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
@@ -73,25 +72,42 @@ public class TaskSchedulerGUI extends Application {
         Visual look option 2
 		 */
 		
-		VBox leftBox = new VBox();
-		VBox rightBox = new VBox();
+		HBox statusBox = new HBox(status,statusText);
 		
-		HBox topHBox = new HBox(status,statusText,timerText);
+		VBox leftBox = new VBox(statusBox, parallelText);
+		leftBox.setPadding(new Insets(20, 190, 15, 45));
+		leftBox.setSpacing(18);
+		
+		VBox rightBox = new VBox(timerText,currentBest._text);
+		rightBox.setPadding(new Insets(20, 45, 15, 100));
+		rightBox.setSpacing(18);
+		
+		Separator separator = new Separator();
+		separator.setMaxWidth(1200);
+		/*separator.setStyle("-fx-color: orange ;"
+				+ "-fx-border-style: dotted;"+
+				"-fx-border-width: 1px;"+
+				"-fx-border-height: 1px;");*/
+		
+		/*
 		topHBox.setPadding(new Insets(15, 12, 15, 12));
 		topHBox.setSpacing(10);
 
 		HBox midHBox = new HBox(currentBest._text);
 		midHBox.setPadding(new Insets(5, 12, 15, 12));
 		midHBox.setSpacing(10);
-
-		HBox bottomHBox = new HBox(hist._barChart, lineGraph._lineChart);
-		bottomHBox.setPadding(new Insets(5, 12, 25, 12));
-		bottomHBox.setSpacing(10);
-
+		
 		topHBox.setAlignment(Pos.CENTER);
 		midHBox.setAlignment(Pos.CENTER);
+		*/
 
-		VBox root = new VBox(topHBox, midHBox, bottomHBox);
+		HBox topHBox = new HBox(leftBox, rightBox); // stats box
+		HBox bottomHBox = new HBox(hist._barChart, lineGraph._lineChart);
+		bottomHBox.setPadding(new Insets(25, 12, 25, 12));
+		bottomHBox.setSpacing(10);
+
+
+		VBox root = new VBox(topHBox,separator,bottomHBox);
 
 		primaryStage.setResizable(false);
 
