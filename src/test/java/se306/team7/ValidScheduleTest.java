@@ -73,23 +73,30 @@ public class ValidScheduleTest {
     @Test
     public void AStarParallel_ReturnsValidSchedule () {
         AStarAlgorithmParallel a = new AStarAlgorithmParallel(_costEstimators, _scheduleGenerator);
-        for (Digraph d : _digraphsToTest) {
+        for (int i = 0; i < _digraphsToTest.size(); i++) {
+            Digraph d = _digraphsToTest.get(i);
             Metrics.init(d.getNodes().size(), 1);
             Schedule s = a.run(d, 2, 1);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 1 core");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 1);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 1 core");
             assertTrue(isScheduleValid(s));
 
             Metrics.init(d.getNodes().size(), 2);
             s = a.run(d, 2, 2);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 2 cores");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 2);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 2 cores");
             assertTrue(isScheduleValid(s));
 
             Metrics.init(d.getNodes().size(), 4);
             s = a.run(d, 2, 4);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 4 cores");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 4);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 4 cores");
             assertTrue(isScheduleValid(s));
         }
     }

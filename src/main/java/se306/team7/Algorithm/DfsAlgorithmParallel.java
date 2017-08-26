@@ -79,6 +79,8 @@ public class DfsAlgorithmParallel {
 
         _logger.info("Starting DFS search. Parallel threads = " + threadCount);
 
+        Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.DFS);
+
         _digraph = digraph;
         _processorCount = threadCount;
 
@@ -184,7 +186,7 @@ public class DfsAlgorithmParallel {
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
 
             if (CurrentTask.insideTask()) {
-                Metrics.doneSchedule(nextSchedule, CurrentTask.relativeID() + 1);
+                Metrics.doneSchedule(nextSchedule, CurrentTask.globalID() + 1);
             }
 
             getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());
