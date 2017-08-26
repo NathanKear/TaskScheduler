@@ -65,7 +65,7 @@ public class ValidScheduleTest {
 
     @Test
     public void AStarParallel_ReturnsValidSchedule () {
-        AStarParallel a = new AStarParallel(_costEstimators, _scheduleGenerator);
+        AStarAlgorithmParallel a = new AStarAlgorithmParallel(_costEstimators, _scheduleGenerator);
         for (Digraph d : _digraphsToTest) {
             Schedule s = a.run(d, 2, 1);
             assertTrue(isScheduleValid(s));
