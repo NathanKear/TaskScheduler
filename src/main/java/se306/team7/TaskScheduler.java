@@ -15,7 +15,6 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
-import pt.runtime.ParaTask;
 
 public class TaskScheduler
 {
@@ -26,23 +25,25 @@ public class TaskScheduler
 
     public static void main( String[] args ){
         ParaTask.init();
-        ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, 4);
+
         PropertyConfigurator.configure("src/log4j.properties");
 
 		try {
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
 
+            ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, commandLineArgumentConfig.applicationProcessors());
+            
 			FileUtilities fileUtilities = new FileUtilities();
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
 			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
-			
+
 			if (commandLineArgumentConfig.visualisationOn()){
 
-				//Metrics.init(digraph.getNodes().size(), 4); //bogus code
 				TaskSchedulerGUI.LaunchGUI(args, digraph,commandLineArgumentConfig);
 			}else {
 				executeAlgorithm(digraph);
 			}
+
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
             logger.error(ex.getMessage());
@@ -83,7 +84,7 @@ public class TaskScheduler
             int applicationProcessors = commandLineArgumentConfig.applicationProcessors();
             Schedule optimalSchedule;
             if (size < 13) {
-                AStarParallel a = new AStarParallel(costEstimators, scheduleGenerator);
+                AStarAlgorithmParallel a = new AStarAlgorithmParallel(costEstimators, scheduleGenerator);
                 optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
             } else {
                 DfsAlgorithmParallel a = new DfsAlgorithmParallel(costEstimators, scheduleGenerator);

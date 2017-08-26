@@ -3,6 +3,7 @@
 *.ims
 target/
 log/
+*.log
 .DS_Store
 .project
 .classpath
