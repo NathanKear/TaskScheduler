@@ -29,7 +29,7 @@ public class AStarAlgorithm implements IAlgorithm {
         ValidScheduleGenerator v = new ValidScheduleGenerator();
         int knownScheduleFinishTime = v.generateValidSchedule(digraph, numOfProcessors).endTime();
 
-        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, Integer.MAX_VALUE);
+        CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, 0);
 
         _schedules.add(emptySchedule);
         

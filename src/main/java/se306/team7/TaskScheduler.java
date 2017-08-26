@@ -102,19 +102,32 @@ public class TaskScheduler
             int numOfProcessors = commandLineArgumentConfig.scheduleProcessors();
             int applicationProcessors = commandLineArgumentConfig.applicationProcessors();
             Schedule optimalSchedule;
+
+			AStarAlgorithmParallel a = new AStarAlgorithmParallel(costEstimators, scheduleGenerator);
+			optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
+
+			/*
+			AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
+			optimalSchedule = a.getOptimalSchedule(d, numOfProcessors);
+			*/
+
+            /*
             if (size < 13) {
                 AStarAlgorithmParallel a = new AStarAlgorithmParallel(costEstimators, scheduleGenerator);
                 optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
             } else {
                 DfsAlgorithmParallel a = new DfsAlgorithmParallel(costEstimators, scheduleGenerator);
                 optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
-            }
+            }*/
+
+            logger.info("Time = " + optimalSchedule.endTime());
 
             List<String> output = optimalSchedule.scheduleToStringList();
 
+            /*
 			for (String line : output) {
 				logger.info(line);
-			}
+			}*/
 
 			fileUtilities.writeToFile(commandLineArgumentConfig.outputFileName(), d._digraphName, output);
 	}

@@ -15,7 +15,7 @@ import java.util.*;
 public class ValidScheduleTest {
 
     private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot", "Nodes_7_OutTree.dot", "Nodes_8_Random.dot",
-            "Nodes_9_SeriesParallel.dot", "Nodes_10_Random.dot", "Nodes_11_OutTree.dot"};
+            "Nodes_9_SeriesParallel.dot", "Nodes_10_Random.dot", "Nodes_11_OutTree.dot" };
     private static Set<ICostEstimator> _costEstimators;
     private static IScheduleGenerator _scheduleGenerator;
     private IDigraphParser _digraphParser;
