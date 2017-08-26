@@ -3,6 +3,7 @@ package se306.team7.visual;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javafx.geometry.Side;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -34,6 +35,7 @@ public class View_LineGraph implements ITaskSchedulerView {
         _lineChart.setTitle("Current level explored for each core");
         _lineChart.setAnimated(true);
         _lineChart.setLegendVisible(true);
+        _lineChart.setLegendSide(Side.RIGHT);
         _lineChart.setCreateSymbols(false);
 
         //Preparing and adding the initial data
