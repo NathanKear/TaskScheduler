@@ -12,12 +12,12 @@ public class PerformanceTests {
     /**
      * Number of times to repeat test for each test input
      */
-    private final int TEST_COUNT = 10;
+    private final int TEST_COUNT = 1;
 
     /**
      * test input files for performance tests
      */
-    private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot" };
+    private final String[] TEST_INPUT_FILES = { "Nodes_13_Random.dot" };
 
     private final Logger _logger = LoggerFactory.getLogger(PerformanceTests.class);
 
@@ -37,7 +37,7 @@ public class PerformanceTests {
                 IStopWatch stopWatch = new StopWatch(TimeUnit.Millisecond);
                 stopWatch.Start();
                 
-                TaskScheduler.main(new String[] { input, "4" } );
+                TaskScheduler.main(new String[] { input, "2" } );
 
                 double time = stopWatch.Stop();
 

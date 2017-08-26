@@ -40,6 +40,7 @@ public class TaskScheduler
 
         try {
             commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
+
             FileUtilities fileUtilities = new FileUtilities();
             DigraphParser digraphParser = new DigraphParser(fileUtilities);
             Digraph d = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
@@ -48,15 +49,19 @@ public class TaskScheduler
             int numOfProcessors = commandLineArgumentConfig.scheduleProcessors();
             int applicationProcessors = commandLineArgumentConfig.applicationProcessors();
             Schedule optimalSchedule;
+
+            AStarDfsHybrid a = new AStarDfsHybrid(costEstimators, scheduleGenerator);
+            optimalSchedule = a.run(d, numOfProcessors, /*applicationProcessors*/ 4);
+
+            /*
             if (applicationProcessors > 1) {
                 AStarParallel a = new AStarParallel(costEstimators, scheduleGenerator);
                 optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
-
             } else {
                 IAlgorithm a = size < 13 ? new AStarAlgorithm(costEstimators, scheduleGenerator) :
                                                 new DfsAlgorithm(costEstimators, scheduleGenerator);
                 optimalSchedule = a.getOptimalSchedule(d, commandLineArgumentConfig.scheduleProcessors());
-            }
+            }*/
 
             List<String> output = optimalSchedule.scheduleToStringList();
 
