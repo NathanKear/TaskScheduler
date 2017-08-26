@@ -17,10 +17,6 @@ import java.util.Set;
 import java.util.List;
 import pt.runtime.ParaTask;
 
-/**
- * Hello world!
- *
- */
 public class TaskScheduler
 {
 	private static IFileUtilities fileUtilities = new FileUtilities();

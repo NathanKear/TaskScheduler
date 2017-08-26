@@ -35,6 +35,10 @@ public class TaskSchedulerGUI extends Application {
 	protected static long _startTime;
 	private static long _endTime;
 
+	/**
+	 * Constructs the GUI.
+	 * @param primaryStage
+	 */
 	@SuppressWarnings("restriction")
 	@Override
 	public void start(Stage primaryStage) {
@@ -64,9 +68,6 @@ public class TaskSchedulerGUI extends Application {
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
 		View_CurrentBest currentBest = View_CurrentBest.getInstance();
 
-		/*
-        Visual look option 2
-		 */
 		HBox topHBox = new HBox(status,statusText,timerText);
 		topHBox.setPadding(new Insets(15, 12, 15, 12));
 		topHBox.setSpacing(10);
@@ -148,7 +149,6 @@ public class TaskSchedulerGUI extends Application {
 
 	/**
 	 * Inner class for Javafx Service to run the search algorithm in background thread
-	 * @author cli727
 	 *
 	 */
 	private static class AlgorithmService extends Service<Void> {
