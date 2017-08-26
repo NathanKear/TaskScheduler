@@ -27,7 +27,7 @@ public class ScheduleGenerator implements IScheduleGenerator {
         }
 
         for (Node head : currentHeads) {
-            for (int i = 0; i < numOfProcessors; i++) {
+            for (int i = 0; i <= numOfProcessors; i++) {
                 Schedule newSchedule = new Schedule(current);
                 //_currentHeads.put(newSchedule, new ArrayList<Node>(currentHeads));
                 newSchedule.scheduleTask(i, head);

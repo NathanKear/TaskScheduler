@@ -25,7 +25,7 @@ public class Schedule {
         _numOfProcessors = numOfProcessors;
         _tasks = new LinkedList<Task>();
         _nodesInSchedule = new HashSet<Node>();
-		_processorsToScheduleOn = 1;
+		_processorsToScheduleOn = 0;
     }
 
 	/**
@@ -49,7 +49,7 @@ public class Schedule {
      */
     public Task scheduleTask(int processor, Node node) {
 
-    	if (processor >= _processorsToScheduleOn - 1) {
+    	if (processor > _processorsToScheduleOn) {
 			_processorsToScheduleOn++;
 		}
     	int startTime = calculateTaskStartTime(processor, node);
