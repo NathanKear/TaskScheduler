@@ -50,6 +50,12 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         return false;
     }
 
+    /**
+     * Instantiate AStarAlgorithmParallel object using a costEstimators set, scheduleGenerator object, a concurrent priority queue
+     * and two Atomic fields to reduce concurrency errors
+     * @param costEstimators
+     * @param scheduleGenerator
+     */
     public AStarAlgorithmParallel(Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _schedules = new PriorityBlockingQueue<CostEstimatedSchedule>();
         _costEstimators = costEstimators;
@@ -119,7 +125,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
      * (newestAddedTask's start time plus its bottom level)
      * @param schedule
-     * @return
+     * @return int
      */
     public static int getCostEstimate(Schedule schedule) {
 
@@ -182,6 +188,13 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         }
     }
 
+    /**
+     * Executes the algorithm, called by TaskScheduler main method
+     * @param digraph
+     * @param numOfProcessors
+     * @param threadCount
+     * @return Schedule most optimal schedule
+     */
     public Schedule run (Digraph digraph, int numOfProcessors, int threadCount)  {
 
         _logger.info("Starting A* search. Parallel threads = " + threadCount);

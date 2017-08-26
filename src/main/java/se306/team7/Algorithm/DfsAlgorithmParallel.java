@@ -45,6 +45,12 @@ public class DfsAlgorithmParallel {
         return false;
     }
 
+    /**
+     * Instantiate DFSAlgorithmParallel object using a costEstimators set, a scheduleGenerator object and
+     * method to use by parallel threads
+     * @param costEstimators
+     * @param scheduleGenerator
+     */
     public DfsAlgorithmParallel (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _costEstimators = costEstimators;
         _scheduleGenerator = scheduleGenerator;
@@ -56,6 +62,19 @@ public class DfsAlgorithmParallel {
         }
     }
 
+    /**
+     * Runs algorithm, is called by TaskScheduler
+     *
+     * Initialises variables required to keep track of the best cost and schedule when exploring the solution tree in DFS
+     *
+     * Breaks the schedule problem down into sub-problems, which are assigned to taskGroup to be parallelised
+     *
+     * If the decomposition fails to break dwon the problem, the real solution is returned
+     * @param digraph
+     * @param numOfProcessors
+     * @param threadCount
+     * @return optimal Solution Schedule
+     */
     public Schedule run(Digraph digraph, int numOfProcessors, int threadCount) {
 
         _logger.info("Starting DFS search. Parallel threads = " + threadCount);
@@ -69,10 +88,8 @@ public class DfsAlgorithmParallel {
         _bestCost = new AtomicInteger(greedySchedule.endTime());
         _bestSchedule = new AtomicReference<Schedule>(greedySchedule);
 
-
-        // Break schedule problem down into several sub-problems
         List<Schedule> topLevelSchedules = decomposeSchedules(digraph, numOfProcessors, threadCount);
-        // if decompose has failed to break down problem then the real solution is returned
+
         if (topLevelSchedules.size() < threadCount) {
             _logger.info("Problem cannot be parallelised across " + threadCount + " threads");
             threadCount = topLevelSchedules.size();
@@ -133,20 +150,25 @@ public class DfsAlgorithmParallel {
         return topLevelSchedules;
     }
 
-
-
+    /**
+     * Searches through tree using DFS methodology to generate the optimal schedule in the given digraph
+     *
+     * Using the input schedule, a list of sub schedules is generated
+     *
+     * getOptimalSchedule is recursively called on each sub schedule to eventually derive the best schedule
+     * @param digraph
+     * @param numOfProcessors
+     * @param schedule
+     */
     public static void getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
 
-        // Generate next schedules
         List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
-        // Base case, at leaf of tree
         if (nextSchedules.isEmpty()) {
             trySetBestSchedule(schedule);
             return;
         }
 
-        // Get cost estimates for next schedules
         PriorityQueue<CostEstimatedSchedule> costEstimatedSchedules = new PriorityQueue<CostEstimatedSchedule>();
 
         for (Schedule nextSchedule : nextSchedules) {
@@ -159,7 +181,6 @@ public class DfsAlgorithmParallel {
             return;
         }
 
-        // Find and return best sub-schedule
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
 
             if (CurrentTask.insideTask()) {

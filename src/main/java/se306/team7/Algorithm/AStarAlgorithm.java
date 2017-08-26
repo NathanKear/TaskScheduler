@@ -16,12 +16,34 @@ public class AStarAlgorithm implements IAlgorithm {
     private Set<ICostEstimator> _costEstimators;
     private IScheduleGenerator _scheduleGenerator;
 
+    /**
+     * Instantiates AStarAlgorithm with a costEstimator and scheduleGenerator object and an empty priority queue
+     * of schedules
+     * @param costEstimators
+     * @param scheduleGenerator
+     */
     public AStarAlgorithm (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _schedules = new PriorityQueue<CostEstimatedSchedule>();
         _costEstimators = costEstimators;
         _scheduleGenerator = scheduleGenerator;
     }
 
+    /**
+     * Searches through tree using A* methodology to generate the optimal schedule in the given digraph
+     *
+     * Using the most promising schedule, which is at the head of the priority queue due to its low estimated cost,
+     * a list of possible sub schedules is generated
+     *
+     * If a sub schedule is better than or the same as the currently best known time, it is added to the priority queue
+     * The algorithm continues polling schedules off the priority queue and repeating the schedule generation process
+     *
+     * Once the algorithm reaches a schedule that can not have any more sub schedules (i.e. is at the bottom most level
+     * in the solution tree), this schedule is complete and optimal and is returned
+     * @param digraph
+     * @param numOfProcessors
+     * @param schedule
+     * @return Schedule complete optimal schedule
+     */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _schedules.clear();
         _digraph = digraph;
@@ -58,7 +80,7 @@ public class AStarAlgorithm implements IAlgorithm {
      * Get the optimal schedule for a given digraph containing tasks and task dependencies
      * @param digraph Represents tasks and task dependencies
      * @param numOfProcessors Processors available to concurrently complete tasks
-     * @return Optimal complete schedule
+     * @return Schedule Optimal complete schedule
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
         Schedule schedule = new Schedule(numOfProcessors);
@@ -70,7 +92,7 @@ public class AStarAlgorithm implements IAlgorithm {
      * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
      * (newestAddedTask's start time plus its bottom level)
      * @param schedule
-     * @return
+     * @return int
      */
     public int getCostEstimate(Schedule schedule) {
 

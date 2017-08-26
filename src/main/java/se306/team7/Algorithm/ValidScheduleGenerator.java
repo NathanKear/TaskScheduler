@@ -11,7 +11,7 @@ public class ValidScheduleGenerator {
      *
      * @param d An instance of IDigraph
      * @param numOfProcessors The number of processors to can schedule tasks on
-     * @return
+     * @return valid Schedule
      */
     public Schedule generateValidSchedule (IDigraph d, int numOfProcessors) {
         Schedule s = new Schedule(numOfProcessors);

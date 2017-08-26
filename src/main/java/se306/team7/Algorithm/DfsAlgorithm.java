@@ -14,12 +14,29 @@ public class DfsAlgorithm implements IAlgorithm {
     private IScheduleGenerator _scheduleGenerator;
     private int _currentBestCost;
 
+    /**
+     * Instantiates DFS algorithm with a costEstimator and scheduleGenerator object and a current best cost value
+     * @param costEstimators
+     * @param scheduleGenerator
+     */
     public DfsAlgorithm (Set<ICostEstimator> costEstimators, IScheduleGenerator scheduleGenerator) {
         _costEstimators = costEstimators;
         _scheduleGenerator = scheduleGenerator;
         _currentBestCost = Integer.MAX_VALUE;
     }
 
+    /**
+     * Searches through tree using DFS methodology to generate the optimal schedule in the given digraph
+     *
+     * Using the input schedule, a list of sub schedules is generated
+     * The list is pruned by removing any sub schedule with a cost estimate higher than the current schedule
+     *
+     * getOptimalSchedule is recursively called on each sub schedule to eventually derive the best schedule
+     * @param digraph
+     * @param numOfProcessors
+     * @param schedule
+     * @return Schedule the complete, optimal schedule
+     */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _digraph = digraph;
         List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
@@ -82,7 +99,7 @@ public class DfsAlgorithm implements IAlgorithm {
      * Cost estimate of a schedule is given by the maximum out of (the latest task end time) or
      * (newestAddedTask's start time plus its bottom level)
      * @param schedule
-     * @return
+     * @return int cost estimate
      */
     public int getCostEstimate(Schedule schedule) {
 
