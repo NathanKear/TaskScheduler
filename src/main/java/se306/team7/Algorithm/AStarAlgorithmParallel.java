@@ -13,6 +13,7 @@ import se306.team7.utility.StopWatch;
 import se306.team7.utility.TimeUnit;
 
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.Set;
@@ -40,7 +41,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @return If the schedule provided is the current best schedule
      */
     public static boolean trySetBestSchedule(Schedule schedule) {
-        _logger.info("Foo");
         if (schedule.endTime() < _bestCost.get()) {
 
             _logger.info("Found new best schedule. Cost = " + schedule.endTime());
@@ -92,8 +92,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         _digraph = digraph;
         ValidScheduleGenerator v = new ValidScheduleGenerator();
         Schedule knownSchedule = v.generateValidSchedule(digraph, numOfProcessors);
-        _bestSchedule.set(knownSchedule);
-        _bestCost.set(knownSchedule.endTime());
+        trySetBestSchedule(knownSchedule);
         CostEstimatedSchedule emptySchedule = new CostEstimatedSchedule(schedule, 0);
         _schedules.add(emptySchedule);
 
@@ -103,10 +102,12 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             _bestSchedule.get();
         }
 
+
+
         try {
             Method aStarAlgorithmMethod = AStarAlgorithmParallel.class.getMethod("pollAndGenerateSchedules", int.class);
 
-             TaskIDGroup<Void> id = new TaskIDGroup<Void>(_numOfCores);
+            TaskIDGroup<Void> id = new TaskIDGroup<Void>(_numOfCores);
 
             for (int i = 0; i < _numOfCores; i++) {
 
@@ -117,6 +118,8 @@ public class AStarAlgorithmParallel implements IAlgorithm {
                 TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
 
                 id.add(task);
+
+
             }
 
             id.waitTillFinished();
@@ -153,9 +156,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @param loopThreshold Maximum number of times to poll the queue before giving up
      */
     public static void pollAndGenerateSchedules (int loopThreshold) {
-
-        StopWatch sw = new StopWatch(TimeUnit.Millisecond);
-        sw.Start();
+        int i = 0;
 
         if (CurrentTask.insideTask()) {
             _logger.info("Start thread. Id = " + (CurrentTask.globalID() + 1));
@@ -165,14 +166,15 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             CostEstimatedSchedule polledSchedule = _schedules.poll();
 
             if (polledSchedule == null) {
-                _logger.info("" + sw.Stop());
-                _logger.info("Thread " + CurrentTask.globalID() + " returns. Queue Empty");
+                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Queue Empty");
                 return;
             }
 
+            //_logger.info(i++ + "Queue Size = " + _schedules.size() + "; cost = " + polledSchedule.getEstimatedCost() + "; size = " + polledSchedule.getSchedule().getTasks().size() + "; hc = " + polledSchedule.getSchedule().hashCode());
+
+
             if (polledSchedule.getEstimatedCost() >= _bestCost.get()) {
-                _logger.info("" + sw.Stop());
-                _logger.info("Thread " + CurrentTask.globalID() + " returns. Worse than best cost");
+                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Worse than best cost");
                 return;
             }
 
@@ -187,32 +189,34 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, _digraph);
 
             if (possibleSchedules.isEmpty()) { // schedule is complete
-
-                _logger.info("" + sw.Stop());
-
                 trySetBestSchedule(mostPromisingSchedule);
                 _foundBestSchedule.set(true);
-                _logger.info("Thread " + CurrentTask.globalID() + " returns. Found best " + mostPromisingSchedule.endTime());
+                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Found best " + mostPromisingSchedule.endTime());
                 return;
 
             } else { // schedule is incomplete
 
                 for (Schedule _schedule : possibleSchedules) {
+
                     int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
-                    if (cost < _bestCost.get()) {
+                    if (cost <= _bestCost.get()) {
                         CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
                         _schedules.add(costEstimatedSchedule);
-                        if (_schedules.size() > 1000000) {
-                            System.out.println(_schedules.remainingCapacity());
-                        }
+//                        if (_schedules.size() > 1000000) {
+//                            System.out.println(_schedules.remainingCapacity());
+//                        }
                     }
                 }
 
-                if (loopThreshold == 0) {
-                    return; // Give up search and return
+                if (loopThreshold >=0) {
+                    if (loopThreshold == 0) {
+                        return; // Give up search and return
+                    }
+
+                    loopThreshold--;
                 }
 
-                loopThreshold--;
+
             }
         }
     }
