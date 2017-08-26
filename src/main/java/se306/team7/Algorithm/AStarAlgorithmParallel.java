@@ -15,6 +15,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.Set;
 import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -28,6 +29,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
     private static AtomicReference<Schedule> _bestSchedule;
     private static AtomicInteger _bestCost;
+    private static AtomicBoolean _foundBestSchedule;
     private int _numOfCores = 4;
 
     /**
@@ -56,6 +58,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         _scheduleGenerator = scheduleGenerator;
         _bestSchedule = new AtomicReference<Schedule>();
         _bestCost = new AtomicInteger(Integer.MAX_VALUE);
+        _foundBestSchedule = new AtomicBoolean(false);
     }
 
     /**
@@ -86,6 +89,10 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         _schedules.add(emptySchedule);
 
         pollAndGenerateSchedules(10);
+
+        if (_foundBestSchedule.get()) {
+            _bestSchedule.get();
+        }
 
         try {
             Method aStarAlgorithmMethod = AStarAlgorithmParallel.class.getMethod("pollAndGenerateSchedules", int.class);
@@ -158,13 +165,12 @@ public class AStarAlgorithmParallel implements IAlgorithm {
                 Metrics.doneSchedule(polledSchedule, CurrentTask.globalID() + 1);
             }
 
-
-
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, _digraph);
 
             if (possibleSchedules.isEmpty()) { // schedule is complete
 
                 trySetBestSchedule(mostPromisingSchedule);
+                _foundBestSchedule.set(true);
                 return;
 
             } else { // schedule is incomplete
@@ -174,6 +180,9 @@ public class AStarAlgorithmParallel implements IAlgorithm {
                     if (cost < _bestCost.get()) {
                         CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
                         _schedules.add(costEstimatedSchedule);
+                        if (_schedules.size() > 1000000) {
+                            System.out.println(_schedules.remainingCapacity());
+                        }
                     }
                 }
 
@@ -185,7 +194,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
     }
 
     public Schedule run (Digraph digraph, int numOfProcessors, int threadCount)  {
-
+        _schedules.clear();
         _logger.info("Starting A* search. Parallel threads = " + threadCount);
 
         Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.A_STAR);

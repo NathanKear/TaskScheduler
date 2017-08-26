@@ -14,7 +14,8 @@ import java.util.*;
 
 public class ValidScheduleTest {
 
-    private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot" };
+    private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot", "Nodes_7_OutTree.dot", "Nodes_8_Random.dot",
+            "Nodes_9_SeriesParallel.dot", "Nodes_10_Random.dot", "Nodes_11_OutTree.dot"};
     private static Set<ICostEstimator> _costEstimators;
     private static IScheduleGenerator _scheduleGenerator;
     private IDigraphParser _digraphParser;
@@ -45,9 +46,12 @@ public class ValidScheduleTest {
     public void AStarAlgorithm_ReturnsValidSchedule () {
         AStarAlgorithm a = new AStarAlgorithm(_costEstimators, _scheduleGenerator);
         for (Digraph d : _digraphsToTest) {
-            Schedule s = a.getOptimalSchedule(d, 2, new Schedule(2));
+            Metrics.init(d.getNodes().size(), 1);
+            Schedule s = a.getOptimalSchedule(d, 2);
             assertTrue(isScheduleValid(s));
-            s = a.getOptimalSchedule(d, 4, new Schedule(4));
+
+            Metrics.init(d.getNodes().size(), 1);
+            s = a.getOptimalSchedule(d, 4);
             assertTrue(isScheduleValid(s));
         }
     }
@@ -56,9 +60,12 @@ public class ValidScheduleTest {
     public void DfsAlgorithm_ReturnsValidSchedule () {
         DfsAlgorithm a = new DfsAlgorithm(_costEstimators, _scheduleGenerator);
         for (Digraph d : _digraphsToTest) {
-            Schedule s = a.getOptimalSchedule(d, 2, new Schedule(2));
+            Metrics.init(d.getNodes().size(), 1);
+            Schedule s = a.getOptimalSchedule(d, 2);
             assertTrue(isScheduleValid(s));
-            s = a.getOptimalSchedule(d, 4, new Schedule(4));
+
+            Metrics.init(d.getNodes().size(), 1);
+            s = a.getOptimalSchedule(d, 4);
             assertTrue(isScheduleValid(s));
         }
     }
@@ -66,18 +73,30 @@ public class ValidScheduleTest {
     @Test
     public void AStarParallel_ReturnsValidSchedule () {
         AStarAlgorithmParallel a = new AStarAlgorithmParallel(_costEstimators, _scheduleGenerator);
-        for (Digraph d : _digraphsToTest) {
+        for (int i = 0; i < _digraphsToTest.size(); i++) {
+            Digraph d = _digraphsToTest.get(i);
+            Metrics.init(d.getNodes().size(), 1);
             Schedule s = a.run(d, 2, 1);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 1 core");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 1);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 1 core");
             assertTrue(isScheduleValid(s));
+
+            Metrics.init(d.getNodes().size(), 2);
             s = a.run(d, 2, 2);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 2 cores");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 2);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 2 cores");
             assertTrue(isScheduleValid(s));
+
+            Metrics.init(d.getNodes().size(), 4);
             s = a.run(d, 2, 4);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 2 processors and running on 4 cores");
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 4);
+            System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 4 cores");
             assertTrue(isScheduleValid(s));
         }
     }
@@ -86,14 +105,19 @@ public class ValidScheduleTest {
     public void DfsAlgorithmParallel_ReturnsValidSchedule () {
         DfsAlgorithmParallel a = new DfsAlgorithmParallel(_costEstimators, _scheduleGenerator);
         for (Digraph d : _digraphsToTest) {
+            Metrics.init(d.getNodes().size(), 1);
             Schedule s = a.run(d, 2, 1);
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 1);
             assertTrue(isScheduleValid(s));
+
+            Metrics.init(d.getNodes().size(), 2);
             s = a.run(d, 2, 2);
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 2);
             assertTrue(isScheduleValid(s));
+
+            Metrics.init(d.getNodes().size(), 4);
             s = a.run(d, 2, 4);
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 4);
@@ -102,8 +126,7 @@ public class ValidScheduleTest {
     }
 
     private boolean isScheduleValid (Schedule s) {
-        boolean isScheduleValid = true;
-        /*int scheduleEndTime = s.endTime();
+        int scheduleEndTime = s.endTime();
         ArrayList<Integer[]> processors = new ArrayList<Integer[]>();
 
         for (int i = 0; i < s._numOfProcessors; i++) {
@@ -115,25 +138,21 @@ public class ValidScheduleTest {
             Integer[] processorBusyTimes = processors.get(processor);
 
             for (int i = t.getStartTime(); i < t.getEndTime(); i++) {
-                if (processorBusyTimes[i] == 1) {
-                    isScheduleValid = false;
-                    break;
+                if (processorBusyTimes[i] != null && processorBusyTimes[i] == 1) {
+                    return false;
                 }
                 processorBusyTimes[i] = 1;
             }
 
             if (!containParents(s, t)) {
-                isScheduleValid = false;
-                break;
+                return false;
             }
-        }*/
+        }
 
-        return isScheduleValid;
+        return true;
     }
 
     private boolean containParents (Schedule s, Task task) {
-        boolean containsParents = true;
-
         int taskProcessor = task.getProcessor();
         int taskStartTime = task.getStartTime();
 
@@ -143,28 +162,28 @@ public class ValidScheduleTest {
             nodeToTaskMap.put(t.getNode(), t);
         }
 
-        for (Task t : s.getTasks()) {
-            Node taskNode = t.getNode();
-            List<Link> incomingLinks = taskNode.getIncomingLinks();
+        List<Link> incomingLinks = task.getNode().getIncomingLinks();
 
-            for (Link link : incomingLinks) {
-                Node parentNode = link.getOriginNode();
-                Task parentTask = nodeToTaskMap.get(parentNode);
+        for (Link link : incomingLinks) {
+            Node parentNode = link.getOriginNode();
+            Task parentTask = nodeToTaskMap.get(parentNode);
 
-                int validStartTime = parentTask.getEndTime();
-
-                /*if (parentTask.getProcessor() != task.getProcessor()) {
-                    validStartTime +=
-                }*/
-
-                if (taskStartTime < validStartTime) {
-                    containsParents = false;
-                }
+            if (parentTask == null) {
+                return false;
             }
 
+            int validStartTime = parentTask.getEndTime();
+
+            if (parentTask.getProcessor() != taskProcessor) {
+                validStartTime += link.getTransferCost();
+            }
+
+            if (taskStartTime < validStartTime) {
+                return false;
+            }
         }
 
-        return containsParents;
+        return true;
     }
 
 }

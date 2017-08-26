@@ -19,7 +19,7 @@ public class FileUtilities implements IFileUtilities {
     /**
      * Checks if the file does exists and is not a directory
      * @param filename Relative name of file to load
-     * @return
+     * @return boolean
      */
     public boolean doesFileExist(String filename) {
         File file = new File(filename);
@@ -29,7 +29,7 @@ public class FileUtilities implements IFileUtilities {
     /**
      * Create BufferedReader for specified file
      * @param filename Relative name of file to load
-     * @return Returns BufferedReader to read file
+     * @return BufferedReader to read file
      * @throws FileNotFoundException
      */
     public BufferedReader createFileReader(String filename) throws FileNotFoundException {
@@ -39,6 +39,13 @@ public class FileUtilities implements IFileUtilities {
         return bufferedReader;
     }
 
+    /**
+     * Writes the derived optimal schedule to an output file, using the correct notation, as specified
+     * in the project documentation
+     * @param fileName
+     * @param digraphName
+     * @param output
+     */
     public void writeToFile(String fileName, String digraphName, List<String> output) {
         Path file = Paths.get(fileName);
         try {

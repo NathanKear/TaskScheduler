@@ -23,7 +23,7 @@ public class Task {
 
     /**
      * Gets the node associated with the task
-     * @return
+     * @return Node
      */
     public Node getNode () {
         return _node;
@@ -31,7 +31,7 @@ public class Task {
 
     /**
      * Gets the processor associated with the task
-     * @return
+     * @return int
      */
     public int getProcessor () {
         return _processor;
@@ -39,7 +39,7 @@ public class Task {
 
     /**
      * Gets the start time of the task
-     * @return
+     * @return int
      */
     public int getStartTime(){
         return _startTime;
@@ -47,7 +47,7 @@ public class Task {
 
     /**
      * Gets the end time of the task
-     * @return
+     * @return int
      */
     public int getEndTime(){
         return _endTime;

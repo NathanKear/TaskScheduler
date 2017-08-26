@@ -23,14 +23,13 @@ public class DigraphParser implements IDigraphParser {
     }
 
     /**
-     * Returns newly constructed Digraph from input file
+     * Returns Digraph, constructed using the DigraphBuilder, with the information parsed in from input file
      * @param fileName
-     * @return
+     * @return IDigraph
      */
     public IDigraph parseDigraph(String fileName) throws IOException{
         IDigraphBuilder db = new DigraphBuilder();
         BufferedReader reader = null;
-
 
         try {
 
@@ -60,10 +59,10 @@ public class DigraphParser implements IDigraphParser {
     }
 
     /**
-     * Returns Digraph copy with an added Node/Link object
+     * Returns DigraphBuilder with an added Node/Link object
      * @param db
      * @param line
-     * @return
+     * @return IDigraphBuilder
      */
     private IDigraphBuilder parseLine(IDigraphBuilder db, String line){
 

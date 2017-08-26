@@ -8,6 +8,14 @@ public class CommandLineArgumentConfig {
     private int _scheduleProcessors; // Number of processors that tasks should be distributed over
     private int _applicationProcessors; // Number of processors to distribute this application across
 
+    /**
+     * Instantiates the program settings handler to manage the input arguments
+     * @param inputFileName
+     * @param scheduleProcessors
+     * @param applicationProcessors
+     * @param visualisationOn
+     * @param outputFileName
+     */
     public CommandLineArgumentConfig(
             String inputFileName,
             int scheduleProcessors,

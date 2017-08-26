@@ -46,7 +46,7 @@ public class Link {
     /**
      * Overrides equal method to compare two Link objects
      * @param other
-     * @return
+     * @return boolean
      */
     @Override
     public boolean equals(Object other) {
@@ -76,7 +76,7 @@ public class Link {
     }
         /**
          * Override hashCode method so that equals method can compare two Link objects accurately
-         * @return
+         * @return int
          * */
         @Override
         public int hashCode() {
