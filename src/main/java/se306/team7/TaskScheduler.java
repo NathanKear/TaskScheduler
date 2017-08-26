@@ -25,19 +25,20 @@ public class TaskScheduler
 
     public static void main( String[] args ){
         ParaTask.init();
-        ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, 4);
+
         PropertyConfigurator.configure("src/log4j.properties");
 
 		try {
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
 
+            ParaTask.setThreadPoolSize(ParaTask.ThreadPoolType.MULTI, commandLineArgumentConfig.applicationProcessors());
+            
 			FileUtilities fileUtilities = new FileUtilities();
 			DigraphParser digraphParser = new DigraphParser(fileUtilities);
 			Digraph digraph = (Digraph)digraphParser.parseDigraph(commandLineArgumentConfig.inputFileName());
 
-			Metrics.init(digraph.getNodes().size(), 4);
-
 			if (commandLineArgumentConfig.visualisationOn()){
+
 				TaskSchedulerGUI.LaunchGUI(args, digraph,commandLineArgumentConfig);
 			}else {
 				executeAlgorithm(digraph);
