@@ -39,6 +39,7 @@ public class TaskSchedulerGUI extends Application {
 	private Text _algorithmTypeText;
 	protected Text totalSchedulesCostEstimatedText;
 	protected static Button _button ;
+	protected Text _totalSchedulesCostEstimatedText;
 
 	/**
 	 * Constructs the GUI.
@@ -69,7 +70,8 @@ public class TaskSchedulerGUI extends Application {
 		final Text parallelText = new Text("Parallelisation:" + (_commandLineArgumentConfig.applicationProcessors() > 1 ? " On" : " Off"));
 		parallelText.setFont(new Font(18));
 
-		totalSchedulesCostEstimatedText = new Text("Total schedules estimated: 0");
+		_totalSchedulesCostEstimatedText = new Text("Total schedules estimated: 0");
+		_totalSchedulesCostEstimatedText.setFont(new Font(18));
 
 		_algorithmTypeText = new Text("Algorithm used: pending...");
 		_algorithmTypeText.setFont(new Font(18));
@@ -83,8 +85,8 @@ public class TaskSchedulerGUI extends Application {
 		VBox leftBox = new VBox(statusBox, parallelText, _algorithmTypeText);
 		leftBox.setPadding(new Insets(20, 190, 15, 45));
 		leftBox.setSpacing(18);
-
-		VBox rightBox = new VBox(currentBest._text,timerText);
+		
+		VBox rightBox = new VBox(currentBest._text,_totalSchedulesCostEstimatedText, timerText);
 		rightBox.setPadding(new Insets(20, 45, 15, 100));
 		rightBox.setSpacing(18);
 
@@ -154,11 +156,11 @@ public class TaskSchedulerGUI extends Application {
 						public void run() {
 							for (ITaskSchedulerView view : _views){
 								view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
-								totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
+								_totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
 							}
 						}
 					});
-					Thread.sleep(100);
+					Thread.sleep(300);
 				}
 			}
 		};

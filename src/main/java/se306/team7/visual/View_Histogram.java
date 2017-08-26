@@ -17,80 +17,78 @@ import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 
 public class View_Histogram implements ITaskSchedulerView {
-	public BarChart<Number, String> _barChart;
-	public XYChart.Series<Number, String> _series;
-	private static View_Histogram _view_histogram;
-	private Integer test = new Integer(5);
-	private NumberAxis _xAxis;
+
+    public BarChart<String, Number> _barChart;
+    public XYChart.Series<String, Number> _series;
+    private static View_Histogram _view_histogram;
+    private Integer test = new Integer(5);
+    private NumberAxis _yAxis;
 
 
-	private View_Histogram() {
-		initialiseHistogram();
-	}
+    private View_Histogram() {
+        initialiseHistogram();
+    }
 
-	private void initialiseHistogram() {
-		//Defining the axes
-		CategoryAxis yAxis = new CategoryAxis();
-		yAxis.setLabel("Level (schedules with n tasks)");
-		yAxis.setAnimated(false);
-		_xAxis = new NumberAxis();
-		_xAxis.setAnimated(false);
-		_xAxis.setAutoRanging(false);
-		_xAxis.setLabel("Number of cost-estimated schedules");
+    private void initialiseHistogram() {
+        //Defining the axes
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Level (schedules with n tasks)");
+        xAxis.setAnimated(false);
+        _yAxis = new NumberAxis();
+        _yAxis.setAnimated(false);
+        _yAxis.setAutoRanging(false);
+        _yAxis.setLabel("Number of cost-estimated schedules");
 
-		//Creating the Bar Chart
-		_barChart = new BarChart<Number, String>(_xAxis, yAxis);
-		_barChart.setTitle("Total cost-estimated schedules at each level");
-		_barChart.setAnimated(true);
-		_barChart.setLegendVisible(false);
+        //Creating the Bar Chart
+        _barChart = new BarChart<String, Number>(xAxis, _yAxis);
+        _barChart.setTitle("Total cost-estimated schedules at each level");
+        _barChart.setAnimated(true);
+        _barChart.setLegendVisible(false);
 
-		_barChart.setHorizontalGridLinesVisible(false);
-		_barChart.setVerticalGridLinesVisible(false);
-
-		//Preparing and adding the initial data
-		_series = new XYChart.Series<Number, String>();
+        _barChart.setHorizontalGridLinesVisible(false);
+        _barChart.setVerticalGridLinesVisible(false);
+        
+        //Preparing and adding the initial data
+        _series = new XYChart.Series<String, Number>();
 
 		System.out.println(Metrics.getLevels());
-		for (int i = 1; i <= Metrics.getLevels(); i++) {
+        for (int i = 1; i <= Metrics.getLevels(); i++) {
+            _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
+        }
 
-			final XYChart.Data<Number,String> data = new XYChart.Data( i, Integer.toString(i));
+        _barChart.getData().add(_series);
+    }
+    
+    public static View_Histogram getInstance(){
+    	if (_view_histogram == null){
+    		_view_histogram = new View_Histogram();
+    	}
+    		return _view_histogram;
+    }
 
-			_series.getData().add(data);
-		}
+    /**
+     * Updates the histogram view.
+     * For each level, get the XYChart.Data object in the series for the corresponding key (i.e. level) and set its Y-value to the key's value.
+     * Keys and values come from the input histogram.
+     *
+     * If the new Y value is closely approaching the Y axis' upper bound, then recalibrate the Y axis to approx 1.2 times its current size.
+     * @param currentBestCost
+     * @param histogram
+     * @param coreCurrentLevel
+     */
+    public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
 
-		_barChart.getData().add(_series);
+        for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
+            int newYValue = entry.getValue();
+            _series.getData().get(entry.getKey()-1).setYValue(newYValue);
 
-	}
+            double currentYAxisUpperBound = _yAxis.getUpperBound();
+            if (newYValue > (currentYAxisUpperBound * 0.8)) {
+                double newYAxisUpperBound = Math.ceil((currentYAxisUpperBound * 1.2) / 10) * 10;
+                _yAxis.setUpperBound(newYAxisUpperBound);
+                _yAxis.setTickUnit(Math.round(newYAxisUpperBound/10));
 
-	public static View_Histogram getInstance(){
-		if (_view_histogram == null){
-			_view_histogram = new View_Histogram();
-		}
-		return _view_histogram;
-	}
-
-	/**
-	 * Updates the histogram view.
-	 * For each level, get the XYChart.Data object in the series for the corresponding key (i.e. level) and set its Y-value to the key's value.
-	 * Keys and values come from the input histogram.
-	 *
-	 * If the new Y value is closely approaching the Y axis' upper bound, then recalibrate the Y axis to approx 1.2 times its current size.
-	 * @param currentBestCost
-	 * @param histogram
-	 * @param coreCurrentLevel
-	 */
-	public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
-
-		for (Map.Entry<Integer, Integer> entry : histogram.entrySet()) {
-			int newXValue = entry.getValue();
-			_series.getData().get(entry.getKey()-1).setXValue(newXValue);
-			double currentXAxisUpperBound = _xAxis.getUpperBound();
-			if (newXValue > (currentXAxisUpperBound * 0.8)) {
-				double newXAxisUpperBound = Math.ceil((currentXAxisUpperBound * 1.5) / 10) * 10;
-				_xAxis.setUpperBound(newXAxisUpperBound);
-				_xAxis.setTickUnit(Math.round(newXAxisUpperBound/10));
-
-			}
-		}
-	}
+            }
+        }
+    }
 }

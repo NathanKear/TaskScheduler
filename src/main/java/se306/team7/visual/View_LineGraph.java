@@ -43,6 +43,10 @@ public class View_LineGraph implements ITaskSchedulerView {
             newCoreSeries.getData().add(new XYChart.Data<Number, Number>(0, 0));
             _lineChart.getData().add(newCoreSeries);
         }
+
+        for (XYChart.Series<Number, Number> s : _lineChart.getData()) {
+           s.getNode().setStyle("-fx-stroke-width: 0.75px;");
+        }
     }
     
     public static View_LineGraph getInstance(){
