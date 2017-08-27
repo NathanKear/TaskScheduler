@@ -188,6 +188,7 @@ public class TaskSchedulerGUI extends Application {
 				for (ITaskSchedulerView view : _views){
 					System.out.println("update cost is " + Metrics.getCurrentBestCost());
 					view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+					_totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
 				}
 			}
 		});
