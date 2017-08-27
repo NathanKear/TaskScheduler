@@ -1,8 +1,5 @@
 package se306.team7.Digraph;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.BufferedReader;
@@ -11,7 +8,6 @@ import java.io.IOException;
 
 public class DigraphParser implements IDigraphParser {
     IFileUtilities _fileUtilities;
-    private static Logger logger = LoggerFactory.getLogger(DigraphParser.class);
 
     /**
      * Instantiates an instance of DigraphParser
@@ -68,9 +64,7 @@ public class DigraphParser implements IDigraphParser {
             } else {
                 db.addLink(splitLine[0], splitLine[2], Integer.parseInt(splitLine[3].replaceAll("[^0-9]", "")));
             }
-        } catch (Exception ex) {
-            logger.warn("Unable to parse line: " + line);
-        }
+        } catch (Exception ex) {ex.printStackTrace();}
         return db;
     }
 }

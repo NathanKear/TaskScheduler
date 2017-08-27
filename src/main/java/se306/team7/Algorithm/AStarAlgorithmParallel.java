@@ -1,7 +1,5 @@
 package se306.team7.Algorithm;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pt.runtime.*;
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
@@ -19,7 +17,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class AStarAlgorithmParallel implements IAlgorithm {
 
-    private static Logger _logger = LoggerFactory.getLogger(AStarAlgorithmParallel.class);
     private static PriorityBlockingQueue<CostEstimatedSchedule> _schedules;
     private static Digraph _digraph;
     private static Set<ICostEstimator> _costEstimators;
@@ -38,8 +35,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      */
     public static boolean trySetBestSchedule (Schedule schedule) {
         if (schedule.endTime() < _bestCost.get()) {
-
-            _logger.info("Found new best schedule. Cost = " + schedule.endTime());
 
             _bestCost.set(schedule.endTime());
             _bestSchedule.set(schedule);
@@ -147,9 +142,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @param loopThreshold Maximum number of times to poll the queue before giving up
      */
     public static void pollAndGenerateSchedules (int loopThreshold) {
-        if (CurrentTask.insideTask()) {
-            _logger.info("Start thread. Id = " + (CurrentTask.globalID() + 1));
-        }
 
         DfsAlgorithm dfs = new DfsAlgorithm(_costEstimators, _scheduleGenerator);
 
@@ -221,14 +213,11 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      */
     public Schedule run (Digraph digraph, int numOfProcessors, int threadCount)  {
         _schedules.clear();
-        _logger.info("Starting A* search. Parallel threads = " + threadCount);
 
         Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.A_STAR);
 
         _numOfCores = threadCount;
         Schedule optimalSchedule = getOptimalSchedule(digraph, numOfProcessors);
-
-        _logger.info("Finished A* search. Optimal schedule length = " + optimalSchedule.endTime());
 
         Metrics.setCurrentBestCost(optimalSchedule.endTime());
         return optimalSchedule;

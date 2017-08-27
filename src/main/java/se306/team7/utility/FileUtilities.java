@@ -1,8 +1,5 @@
 package se306.team7.utility;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.util.List;
 import java.io.File;
@@ -15,8 +12,6 @@ import java.nio.charset.Charset;
  * Provides utility methods related to finding, reading and writing to files
  */
 public class FileUtilities implements IFileUtilities {
-
-    private static Logger logger = LoggerFactory.getLogger(FileUtilities.class);
 
     /**
      * Checks if the file does exists and is not a directory
@@ -57,9 +52,7 @@ public class FileUtilities implements IFileUtilities {
             Files.write(file, fileContents, Charset.forName("UTF-8"));
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
-            logger.error(ex.getMessage());
             System.err.println("Output Failed");
-            logger.error("Output Failed");
         }
     }
 }
