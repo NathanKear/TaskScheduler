@@ -184,7 +184,7 @@ public class TaskSchedulerGUI extends Application {
 	}
 
 	public static void LaunchGUI(String[] args, Digraph d, CommandLineArgumentConfig commandLineArgumentConfig) {
-		Metrics.init(d.getNodes().size(), commandLineArgumentConfig.applicationProcessors()); //bogus code
+		Metrics.init(d.getNodes().size(), commandLineArgumentConfig.applicationProcessors()); 
 		_digraph = d;
 		_commandLineArgumentConfig = commandLineArgumentConfig;
 		launch(args);
