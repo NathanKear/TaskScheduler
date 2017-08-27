@@ -178,7 +178,7 @@ public class TaskSchedulerGUI extends Application {
 				}
 			}
 		});
-
+		_startTime = System.currentTimeMillis();
 		service.start();
 		th.start();
 	}
@@ -202,7 +202,6 @@ public class TaskSchedulerGUI extends Application {
 
 				protected Void call() {
 					_button.setDisable(true);
-					_startTime = System.currentTimeMillis();
 					TaskScheduler.executeAlgorithm(_digraph);
 
 					return null;

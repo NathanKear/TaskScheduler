@@ -33,7 +33,7 @@ public class View_Histogram implements ITaskSchedulerView {
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Level (schedules with n tasks)");
         xAxis.setAnimated(false);
-        _yAxis = new NumberAxis();
+        _yAxis = new NumberAxis(0, 10, 1);
         _yAxis.setAnimated(false);
         _yAxis.setAutoRanging(false);
         _yAxis.setLabel("Number of cost-estimated schedules");

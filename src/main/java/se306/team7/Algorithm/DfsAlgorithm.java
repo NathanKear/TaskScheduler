@@ -72,9 +72,7 @@ public class DfsAlgorithm implements IAlgorithm {
 
             if (CurrentTask.insideTask()) {
                 Metrics.doneSchedule(nextSchedule, CurrentTask.globalID() + 1);
-            } else {
-                Metrics.doneSchedule(nextSchedule, 1);
-            }
+            } 
 
             Schedule s = getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());
 
