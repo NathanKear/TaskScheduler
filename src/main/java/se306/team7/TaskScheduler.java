@@ -1,8 +1,5 @@
 package se306.team7;
 
-import org.apache.log4j.PropertyConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pt.runtime.ParaTask;
 import se306.team7.Algorithm.*;
 import se306.team7.Digraph.Digraph;
@@ -11,7 +8,7 @@ import se306.team7.utility.FileUtilities;
 import se306.team7.utility.IFileUtilities;
 import se306.team7.visual.TaskSchedulerGUI;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
@@ -20,7 +17,6 @@ public class TaskScheduler
 {
 	private static IFileUtilities fileUtilities = new FileUtilities();
 	private static ICommandLineArgumentParser commandLineArgumentParser = new CommandLineArgumentParser(fileUtilities);
-	private static Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 	private static CommandLineArgumentConfig commandLineArgumentConfig;
 
     /**
@@ -34,8 +30,6 @@ public class TaskScheduler
      */
     public static void main( String[] args ){
         ParaTask.init();
-
-        PropertyConfigurator.configure("src/log4j.properties");
 
 		try {
 			commandLineArgumentConfig = commandLineArgumentParser.parseCommandLineArguments(args);
@@ -54,14 +48,11 @@ public class TaskScheduler
 
         } catch (CommandLineArgumentException ex) {
             System.err.println(ex.getMessage());
-            logger.error(ex.getMessage());
             printCommandFormatInfo();
             System.exit(1);
         } catch (IOException IOex) {
             System.err.println(IOex.getMessage());
-            logger.error(IOex.getMessage());
             System.err.println("Digraph Parsing Failed");
-            logger.error("Digraph Parsing Failed");
         }
 	}
 
@@ -103,8 +94,6 @@ public class TaskScheduler
 
 			AStarAlgorithmParallel a = new AStarAlgorithmParallel(costEstimators, scheduleGenerator);
 			optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
-
-            logger.info("Time = " + optimalSchedule.endTime());
 
             List<String> output = optimalSchedule.scheduleToStringList();
 

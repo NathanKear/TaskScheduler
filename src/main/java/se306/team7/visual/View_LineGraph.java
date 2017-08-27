@@ -16,7 +16,6 @@ public class View_LineGraph implements ITaskSchedulerView {
 
 	public LineChart<Number,Number> _lineChart;
 	private static View_LineGraph _view_lineGraph;
-	private static int currentTimeUnit = 0;
 	private NumberAxis _xAxis;
 	private static double currentTime;
 
@@ -73,9 +72,9 @@ public class View_LineGraph implements ITaskSchedulerView {
 	@SuppressWarnings("restriction")
 	public void update( int currentBestCost, ConcurrentHashMap<Integer, Integer> histogram, ConcurrentHashMap<Integer, Integer> coreCurrentLevel) {
 
-		/* if algorithm has not finished, plot current time on line graph;
+		/* If algorithm has not finished, plot current time on line graph;
 		 * else if is final GUI update, plot end time on line graph
-		*/
+		 */
 		if (TaskSchedulerGUI._isDone){
 			currentTime = (TaskSchedulerGUI._endTime - TaskSchedulerGUI._startTime)/1000.00;
 		}else {

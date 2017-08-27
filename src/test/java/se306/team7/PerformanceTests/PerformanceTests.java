@@ -1,7 +1,5 @@
 package se306.team7.PerformanceTests;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import se306.team7.TaskScheduler;
 import se306.team7.utility.IStopWatch;
 import se306.team7.utility.StopWatch;
@@ -28,8 +26,6 @@ public class PerformanceTests {
             "Nodes_17_OutTree.dot",
             "Nodes_19_OutTree.dot",
             "Nodes_21_OutTree.dot"};
-
-    private final Logger _logger = LoggerFactory.getLogger(PerformanceTests.class);
 
     public static void main(String[] args) {
         new PerformanceTests().run();

@@ -1,12 +1,9 @@
 package se306.team7;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import se306.team7.utility.IFileUtilities;
 
 public class CommandLineArgumentParser implements ICommandLineArgumentParser {
 
-    private Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
     private IFileUtilities _fileUtilities;
 
     /**

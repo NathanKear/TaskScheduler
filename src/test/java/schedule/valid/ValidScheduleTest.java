@@ -1,7 +1,6 @@
 package schedule.valid;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
@@ -33,8 +32,6 @@ import org.mockito.Mockito;
  *
  */
 public class ValidScheduleTest {
-	private static Logger _logger = LoggerFactory.getLogger(ValidScheduleTest.class);
-
 	@Mock private FileUtilities _fileUtilities;
 
 	private static final String INPUT_FILE_NAME = "testfile.dot";

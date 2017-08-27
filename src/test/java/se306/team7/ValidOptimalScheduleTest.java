@@ -10,9 +10,14 @@ import se306.team7.Digraph.*;
 import se306.team7.utility.FileUtilities;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
+import java.util.HashMap;
 
-public class ValidScheduleTest {
+
+public class ValidOptimalScheduleTest {
 
     private final String[] TEST_INPUT_FILES = { "inputs/test1.dot", "inputs/test2.dot", "Nodes_7_OutTree.dot", "Nodes_8_Random.dot",
             "Nodes_9_SeriesParallel.dot", "Nodes_10_Random.dot", "Nodes_11_OutTree.dot" };

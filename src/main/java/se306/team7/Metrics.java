@@ -1,8 +1,5 @@
 package se306.team7;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,7 +22,6 @@ public class Metrics {
 		}
 	}
 
-	private static Logger _logger = LoggerFactory.getLogger(Metrics.class);
 	//the total number of levels in the task scheduler solution tree
 	private static int _levels;
 	//the total number of cores for execution
@@ -144,12 +140,10 @@ public class Metrics {
 	}
 
 	public static AlgorithmType getAlgorithmTypeUsed() {
-		_logger.info("Metrics.getAlgorithmTypeUsed() is invoked.");
 		return _algorithmTypeUsed;
 	}
 
 	public static void setAlgorithmTypeUsed(AlgorithmType type) {
-		_logger.info("Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = " + type.getAlgorithmName());
 		_algorithmTypeUsed = type;
 	}
 
