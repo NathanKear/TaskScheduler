@@ -46,8 +46,8 @@ public class PerformanceTests {
 
                 IStopWatch stopWatch = new StopWatch(TimeUnit.Millisecond);
                 stopWatch.Start();
-
-                TaskScheduler.main(new String[] { input, "4", "-p", "1" } );
+                
+                TaskScheduler.main(new String[] { input, "2", "-p", "2" } );
 
                 double time = stopWatch.Stop();
 

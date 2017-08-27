@@ -98,7 +98,7 @@ public class TaskSchedulerGUI extends Application {
 		Separator separatorTwo = new Separator();
 		separatorTwo.setMaxWidth(1200);
 
-		final Text outputText = new Text("Your output file path is: \n\n"+Paths.get(".").toAbsolutePath().normalize().toString()+ _commandLineArgumentConfig.outputFileName());
+		final Text outputText = new Text("Your output file path is: \n\n"+Paths.get(".").toAbsolutePath().normalize().toString()+ "/" + _commandLineArgumentConfig.outputFileName());
 		outputText.setFont(new Font(15));
 
 		HBox bottomLeftBox = new HBox(outputText);

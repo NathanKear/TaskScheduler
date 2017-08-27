@@ -3,7 +3,6 @@ package se306.team7.Digraph;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se306.team7.TaskScheduler;
 import se306.team7.utility.IFileUtilities;
 
 import java.io.BufferedReader;
@@ -25,34 +24,30 @@ public class DigraphParser implements IDigraphParser {
     /**
      * Returns Digraph, constructed using the DigraphBuilder, with the information parsed in from input file
      * @param fileName
-     * @return IDigraph
+     * @return IDigraph The constructed, immutable Digraph
      */
     public IDigraph parseDigraph(String fileName) throws IOException{
         IDigraphBuilder db = new DigraphBuilder();
         BufferedReader reader = null;
 
         try {
-
             reader = _fileUtilities.createFileReader(fileName);
 
+            //Set name of digraph
             String name = reader.readLine();
-
             name = name.split("\"")[1];
             db.setName(name);
 
+            //Read line in from input and add link/node accordingly
             String line;
             while (!(line = reader.readLine()).contains("}")) {
                 db = parseLine(db, line);
             }
-
-        }catch(FileNotFoundException e){
-            e.printStackTrace();
-        }finally{
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
+        catch(FileNotFoundException e) { e.printStackTrace(); }
+        finally{
+            try { reader.close(); }
+            catch (IOException e) { e.printStackTrace(); }
         }
 
         return db.build();
@@ -62,10 +57,9 @@ public class DigraphParser implements IDigraphParser {
      * Returns DigraphBuilder with an added Node/Link object
      * @param db
      * @param line
-     * @return IDigraphBuilder
+     * @return IDigraphBuilder Instance of DigraphBuilder with additional link/node
      */
     private IDigraphBuilder parseLine(IDigraphBuilder db, String line){
-
         try {
             line = line.trim();
             String[] splitLine = line.split("\\s+");
@@ -77,7 +71,6 @@ public class DigraphParser implements IDigraphParser {
         } catch (Exception ex) {
             logger.warn("Unable to parse line: " + line);
         }
-
         return db;
     }
 }
