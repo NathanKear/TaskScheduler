@@ -14,8 +14,6 @@ import java.util.Set;
 import org.junit.Test;
 import org.junit.Before;
 import org.mockito.Mock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import se306.team7.Algorithm.AStarAlgorithmParallel;
 import se306.team7.Algorithm.ICostEstimator;
