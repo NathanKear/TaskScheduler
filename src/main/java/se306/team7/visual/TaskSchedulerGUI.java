@@ -186,7 +186,6 @@ public class TaskSchedulerGUI extends Application {
 				task.cancel(true);
 				//final update
 				for (ITaskSchedulerView view : _views){
-					System.out.println("update cost is " + Metrics.getCurrentBestCost());
 					view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
 				}
 			}
