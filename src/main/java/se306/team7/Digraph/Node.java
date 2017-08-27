@@ -9,7 +9,6 @@ public class Node {
     private int _cost;
     private List<Link> _incomingLinks;
     private List<Link> _outgoingLinks;
-    private int _bottomLevel;
 
     /**
      * Instantiates an instance of Node
@@ -96,14 +95,6 @@ public class Node {
     public int getCost() {
     	return _cost;
     }
-    
-    /**
-     * Returns bottom level of the node
-     * @return int
-     */
-    public int getBottomLevel(){
-    	return _bottomLevel;
-    }
 
     /**
      * Return name of this node
@@ -120,11 +111,9 @@ public class Node {
     public boolean equals(Object other) {
         if (other == null) {
             return false;
-        }
-        if (other == this) {
+        }else if (other == this) {
             return true;
-        }
-        if (!(other instanceof Node)) {
+        }else if (!(other instanceof Node)) {
             return false;
         }
 
@@ -132,14 +121,11 @@ public class Node {
 
         if(!n._name.equals(this._name)){
             return false;
-        }
-        if(n._cost != this._cost){
+        }else if(n._cost != this._cost){
             return false;
-        }
-        if(n._incomingLinks.size() != this._incomingLinks.size()){
+        }else if(n._incomingLinks.size() != this._incomingLinks.size()){
             return false;
-        }
-        if(n._outgoingLinks.size() != this._outgoingLinks.size()) {
+        }else if(n._outgoingLinks.size() != this._outgoingLinks.size()) {
             return false;
         }
 
@@ -167,7 +153,7 @@ public class Node {
 
     /**
      * Override hashCode method so that equals method can compare two Node objects accurately
-     * @return int
+     * @return int The hashcode
      */
     @Override
     public int hashCode() {
