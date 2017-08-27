@@ -1,7 +1,9 @@
 package se306.team7.Algorithm;
 
+import pt.runtime.CurrentTask;
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
+import se306.team7.Metrics;
 import se306.team7.Schedule;
 
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class DfsAlgorithm implements IAlgorithm {
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors, Schedule schedule) {
         _digraph = digraph;
+
         List<Schedule> nextSchedules = _scheduleGenerator.generateSchedules(schedule, digraph);
 
         if (nextSchedules.isEmpty()) {
@@ -66,6 +69,13 @@ public class DfsAlgorithm implements IAlgorithm {
         Schedule bestSchedule = null;
 
         for (CostEstimatedSchedule nextSchedule : costEstimatedSchedules) {
+
+            if (CurrentTask.insideTask()) {
+                Metrics.doneSchedule(nextSchedule, CurrentTask.globalID() + 1);
+            } else {
+                Metrics.doneSchedule(nextSchedule, 1);
+            }
+
             Schedule s = getOptimalSchedule(digraph, numOfProcessors, nextSchedule.getSchedule());
 
             if (s == null)
