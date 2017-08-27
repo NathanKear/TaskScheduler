@@ -17,8 +17,17 @@ public class PerformanceTests {
     /**
      * test input files for performance tests
      */
-    private final String[] TEST_INPUT_FILES = { "Nodes_7_OutTree.dot", "Nodes_8_Random.dot",
-            "Nodes_9_SeriesParallel.dot", "Nodes_10_Random.dot", "Nodes_11_OutTree.dot", "Nodes_13_Random.dot" };
+    private final String[] TEST_INPUT_FILES = {
+            "Nodes_7_OutTree.dot",
+            "Nodes_8_Random.dot",
+            "Nodes_9_SeriesParallel.dot",
+            "Nodes_10_Random.dot",
+            "Nodes_11_OutTree.dot",
+            "Nodes_13_Random.dot",
+            "Nodes_15_OutTree.dot",
+            "Nodes_17_OutTree.dot",
+            "Nodes_19_OutTree.dot",
+            "Nodes_21_OutTree.dot"};
 
     private final Logger _logger = LoggerFactory.getLogger(PerformanceTests.class);
 

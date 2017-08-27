@@ -1,5 +1,8 @@
 package se306.team7;
 
+/**
+ * Exception that occurs where there is a failure in passing the command line arguments
+ */
 public class CommandLineArgumentException extends RuntimeException {
     /**
      * Instantiates a CommandLineArgumentException, which is thrown when

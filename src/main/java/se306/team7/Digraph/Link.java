@@ -52,11 +52,9 @@ public class Link {
     public boolean equals(Object other) {
         if (other == null) {
             return false;
-        }
-        if (other == this) {
+        }else if (other == this) {
             return true;
-        }
-        if (!(other instanceof Link)) {
+        }else if (!(other instanceof Link)) {
             return false;
         }
 
@@ -64,19 +62,16 @@ public class Link {
 
         if (!l._destinationNode.getName().equals(this._destinationNode.getName())) {
             return false;
-        }
-        if (!l._originNode.getName().equals(this._originNode.getName())) {
+        }else if (!l._originNode.getName().equals(this._originNode.getName())) {
+            return false;
+        }else if (l._transferCost != this._transferCost) {
             return false;
         }
-        if (l._transferCost != this._transferCost) {
-            return false;
-        }
-
         return true;
     }
         /**
          * Override hashCode method so that equals method can compare two Link objects accurately
-         * @return int
+         * @return int The hashcode
          * */
         @Override
         public int hashCode() {

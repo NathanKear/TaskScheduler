@@ -1,0 +1,35 @@
+digraph "OutTree-Balanced-MaxBf-3_Nodes_15_CCR_0.1_WeightType_Random" {
+	0	 [Weight=50];
+	1	 [Weight=70];
+	0 -> 1	 [Weight=9];
+	2	 [Weight=90];
+	0 -> 2	 [Weight=7];
+	3	 [Weight=100];
+	0 -> 3	 [Weight=4];
+	4	 [Weight=40];
+	1 -> 4	 [Weight=10];
+	5	 [Weight=20];
+	1 -> 5	 [Weight=7];
+	6	 [Weight=100];
+	1 -> 6	 [Weight=5];
+	7	 [Weight=80];
+	2 -> 7	 [Weight=5];
+	8	 [Weight=50];
+	2 -> 8	 [Weight=3];
+	9	 [Weight=20];
+	2 -> 9	 [Weight=10];
+	10	 [Weight=20];
+	3 -> 10	 [Weight=4];
+	11	 [Weight=30];
+    3 -> 11	 [Weight=6];
+    12	 [Weight=40];
+    3 -> 12	 [Weight=4];
+    13	 [Weight=40];
+    4 -> 13	 [Weight=4];
+    14	 [Weight=40];
+    4 -> 14	 [Weight=4];
+    15	 [Weight=40];
+    4 -> 15	 [Weight=4];
+    16	 [Weight=40];
+    12 -> 16	 [Weight=4];
+}

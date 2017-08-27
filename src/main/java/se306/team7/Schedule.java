@@ -9,6 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * Represents a schedule that may or may not be complete
+ */
 public class Schedule {
 
     public int _numOfProcessors;
@@ -143,28 +146,6 @@ public class Schedule {
 		return endTime;
 	}
 
-	private int precedenceConstraint(Node node, int processor) {
-		int startTime = 0;
-
-		for (Link incomingLink : node.getIncomingLinks()) {
-			for (Task task : _tasks) {
-
-				// Find tasks that are on node's incoming links
-				if (incomingLink.getOriginNode() == task.getNode()) {
-					if (task.getProcessor() == processor) {
-						// If preceding task on same processor don't use transfer cost
-						startTime = Math.max(startTime, task.getEndTime());
-					} else {
-						// If preceding task on different process then do use transfer cost
-						startTime = Math.max(startTime, task.getEndTime() + incomingLink.getTransferCost());
-					}
-				}
-			}
-		}
-
-		return startTime;
-	}
-
 	/**
 	 * Calculates the time that a node starts on a given processor
 	 * @param processor
@@ -210,8 +191,7 @@ public class Schedule {
     				}
     			}
     		}
-    				
-    		
+
     		// latest node end time on the specified processor
     		int processorEndTime = 0;
     		for (Task task : _tasks){
