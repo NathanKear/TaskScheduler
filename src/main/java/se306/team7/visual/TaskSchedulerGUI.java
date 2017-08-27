@@ -34,12 +34,12 @@ public class TaskSchedulerGUI extends Application {
 	private List<ITaskSchedulerView> _views;
 	private static Digraph _digraph; // this is needed to execute the background task\
 	protected static long _startTime;
-	private static long _endTime;
+	protected static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
-	private Text _algorithmTypeText;
 	protected Text totalSchedulesCostEstimatedText;
 	protected static Button _button ;
 	protected Text _totalSchedulesCostEstimatedText;
+	protected static boolean _isDone = false;
 
 	/**
 	 * Constructs the GUI.
@@ -73,20 +73,17 @@ public class TaskSchedulerGUI extends Application {
 		_totalSchedulesCostEstimatedText = new Text("Total schedules estimated: 0");
 		_totalSchedulesCostEstimatedText.setFont(new Font(18));
 
-		_algorithmTypeText = new Text("Algorithm used: pending...");
-		_algorithmTypeText.setFont(new Font(18));
-
 		View_Histogram hist = View_Histogram.getInstance();
 		View_LineGraph lineGraph = View_LineGraph.getInstance();
 		View_CurrentBest currentBest = View_CurrentBest.getInstance();
 
 		HBox statusBox = new HBox(status,statusText);
 
-		VBox leftBox = new VBox(statusBox, parallelText, _algorithmTypeText);
+		VBox leftBox = new VBox(statusBox, parallelText, timerText);
 		leftBox.setPadding(new Insets(20, 190, 15, 45));
 		leftBox.setSpacing(18);
 		
-		VBox rightBox = new VBox(currentBest._text,_totalSchedulesCostEstimatedText, timerText);
+		VBox rightBox = new VBox(currentBest._text,_totalSchedulesCostEstimatedText);
 		rightBox.setPadding(new Insets(20, 45, 15, 100));
 		rightBox.setSpacing(18);
 
@@ -160,7 +157,7 @@ public class TaskSchedulerGUI extends Application {
 							}
 						}
 					});
-					Thread.sleep(1);
+					Thread.sleep(100);
 				}
 			}
 		};
@@ -175,6 +172,9 @@ public class TaskSchedulerGUI extends Application {
 
 			public void handle(WorkerStateEvent t) {
 				//System.out.println("done:" + t.getSource().getValue());
+
+				task.cancel(true);
+				_isDone = true;
 				_endTime = System.currentTimeMillis();
 				_button.setDisable(false);
 				timerText.setText("Time taken: " + (_endTime - _startTime)/1000.00 + " seconds");
@@ -182,8 +182,6 @@ public class TaskSchedulerGUI extends Application {
 				//update GUI text
 				statusText.setText("Finished");
 				statusText.setFill(Color.GREEN);
-
-				task.cancel(true);
 				//final update
 				for (ITaskSchedulerView view : _views){
 					view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
