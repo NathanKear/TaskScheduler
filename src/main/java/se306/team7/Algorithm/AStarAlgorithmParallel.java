@@ -8,12 +8,7 @@ import se306.team7.Digraph.Digraph;
 import se306.team7.Metrics;
 import se306.team7.Schedule;
 
-import se306.team7.TaskScheduler;
-import se306.team7.utility.StopWatch;
-import se306.team7.utility.TimeUnit;
-
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.Set;
@@ -41,7 +36,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @param schedule The schedule to try and set as best
      * @return If the schedule provided is the current best schedule
      */
-    public static boolean trySetBestSchedule(Schedule schedule) {
+    public static boolean trySetBestSchedule (Schedule schedule) {
         if (schedule.endTime() < _bestCost.get()) {
 
             _logger.info("Found new best schedule. Cost = " + schedule.endTime());
@@ -111,16 +106,11 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             TaskIDGroup<Void> id = new TaskIDGroup<Void>(_numOfCores);
 
             for (int i = 0; i < _numOfCores; i++) {
-
                 TaskInfo taskInfo = new TaskInfo();
                 taskInfo.setMethod(aStarAlgorithmMethod);
                 taskInfo.setParameters(-1);
-
                 TaskID<Void> task = TaskpoolFactory.getTaskpool().enqueue(taskInfo);
-
                 id.add(task);
-
-
             }
 
             id.waitTillFinished();
@@ -167,15 +157,10 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             CostEstimatedSchedule polledSchedule = _schedules.poll();
 
             if (polledSchedule == null) {
-                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Queue Empty");
                 return;
             }
 
-            //_logger.info(i++ + "Queue Size = " + _schedules.size() + "; cost = " + polledSchedule.getEstimatedCost() + "; size = " + polledSchedule.getSchedule().getTasks().size() + "; hc = " + polledSchedule.getSchedule().hashCode());
-
-
             if (polledSchedule.getEstimatedCost() >= _bestCost.get()) {
-                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Worse than best cost");
                 return;
             }
 
@@ -192,12 +177,11 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             if (possibleSchedules.isEmpty()) { // schedule is complete
                 trySetBestSchedule(mostPromisingSchedule);
                 _foundBestSchedule.set(true);
-                //_logger.info("Thread " + CurrentTask.globalID() + " returns. Found best " + mostPromisingSchedule.endTime());
                 return;
 
             } else { // schedule is incomplete
 
-                if (_schedules.size() > 1000000) {
+                if (_schedules.size() > 1400000) {
                     dfs.setCurrentBestCost(_bestCost.get());
                     Schedule s = dfs.getOptimalSchedule(_digraph, _numOfProcessors.get(), mostPromisingSchedule);
                     if (s != null) {
@@ -220,11 +204,8 @@ public class AStarAlgorithmParallel implements IAlgorithm {
                     if (loopThreshold == 0) {
                         return; // Give up search and return
                     }
-
                     loopThreshold--;
                 }
-
-
             }
         }
     }
