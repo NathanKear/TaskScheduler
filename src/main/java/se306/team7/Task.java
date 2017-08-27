@@ -2,6 +2,9 @@ package se306.team7;
 
 import se306.team7.Digraph.Node;
 
+/**
+ * Represents a task(node in the digraph) scheduled on a processor
+ */
 public class Task {
 
     private Node _node;

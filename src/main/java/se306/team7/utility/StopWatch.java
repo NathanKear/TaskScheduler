@@ -1,5 +1,8 @@
 package se306.team7.utility;
 
+/**
+ * Provides stopwatch style timing functionality
+ */
 public class StopWatch implements IStopWatch {
 
     long _startTime;
@@ -24,7 +27,7 @@ public class StopWatch implements IStopWatch {
     }
 
     /**
-     * Stops timing and returns the time difference between the most recent Start() call and now
+     * Stops timing and returns the time difference between the most recent Start() call and now.
      * @ Time difference in units specified by constructor
      */
     public double Stop() {

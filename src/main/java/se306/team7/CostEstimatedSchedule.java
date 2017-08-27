@@ -1,18 +1,26 @@
 package se306.team7;
 
-import se306.team7.Digraph.Digraph;
-
 import java.util.Queue;
-import java.util.Comparator;
 
+/**
+ * Represents a schedule with an estimated cost attached
+ */
 public class CostEstimatedSchedule implements Comparable {
     private final Schedule _schedule;
     private final int _estimatedCost;
 
+    /**
+     * Get the schedule
+     * @return
+     */
     public Schedule getSchedule() {
         return _schedule;
     }
 
+    /**
+     * Get the estimated cost of this schedule
+     * @return
+     */
     public int getEstimatedCost() {
         return _estimatedCost;
     }
