@@ -30,7 +30,7 @@ import javafx.event.ActionEvent;
 public class TaskSchedulerGUI extends Application {
 
 	private List<ITaskSchedulerView> _views;
-	private static Digraph _digraph; // this is needed to execute the background task
+	private static Digraph _digraph; // this is needed to execute the background task\
 	protected static long _startTime;
 	private static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
@@ -124,6 +124,8 @@ public class TaskSchedulerGUI extends Application {
 		HBox bottomRightBox = new HBox(_button);
 		bottomRightBox.setPadding(new Insets(20, 20, 25, 850));
 		bottomRightBox.setSpacing(10);
+
+		//HBox bottomBox = new HBox(bottomLeftBox,bottomRightBox);
 
 		VBox root = new VBox(topHBox,separator,middleHBox,separatorTwo, bottomLeftBox,bottomRightBox);
 

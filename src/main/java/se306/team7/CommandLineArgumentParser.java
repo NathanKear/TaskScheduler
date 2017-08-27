@@ -90,7 +90,11 @@ public class CommandLineArgumentParser implements ICommandLineArgumentParser {
                     throw new CommandLineArgumentException("Optional arg -o must include the output file name to use");
                 }
 
-                outputFileName = args[i + 1];
+                String userCustomOutputFileName = args[i + 1];
+
+                outputFileName = userCustomOutputFileName.endsWith(".dot")
+                        ? userCustomOutputFileName
+                        : userCustomOutputFileName + ".dot";
 
                 i++;
 

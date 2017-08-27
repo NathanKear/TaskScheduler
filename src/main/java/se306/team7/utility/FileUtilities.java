@@ -50,7 +50,7 @@ public class FileUtilities implements IFileUtilities {
         Path file = Paths.get(fileName);
         try {
         	List<String> fileContents = output;
-        	fileContents.add(0, "digraph \"output_" + digraphName + "\" {\n");
+        	fileContents.add(0, "digraph \"output" + digraphName + "\" {");
         	fileContents.add("}");
             Files.write(file, fileContents, Charset.forName("UTF-8"));
         } catch (IOException ex) {
