@@ -1,5 +1,8 @@
 package se306.team7;
 
+/**
+ * Program configuration passed in by the user using command line arguments
+ */
 public class CommandLineArgumentConfig {
 
     private boolean _visualisationOn;
