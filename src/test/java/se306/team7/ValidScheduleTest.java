@@ -43,20 +43,6 @@ public class ValidScheduleTest {
     }
 
     @Test
-    public void AStarAlgorithm_ReturnsValidSchedule () {
-        AStarAlgorithm a = new AStarAlgorithm(_costEstimators, _scheduleGenerator);
-        for (Digraph d : _digraphsToTest) {
-            Metrics.init(d.getNodes().size(), 1);
-            Schedule s = a.getOptimalSchedule(d, 2);
-            assertTrue(isScheduleValid(s));
-
-            Metrics.init(d.getNodes().size(), 1);
-            s = a.getOptimalSchedule(d, 4);
-            assertTrue(isScheduleValid(s));
-        }
-    }
-
-    @Test
     public void DfsAlgorithm_ReturnsValidSchedule () {
         DfsAlgorithm a = new DfsAlgorithm(_costEstimators, _scheduleGenerator);
         for (Digraph d : _digraphsToTest) {
@@ -97,30 +83,6 @@ public class ValidScheduleTest {
             assertTrue(isScheduleValid(s));
             s = a.run(d, 4, 4);
             System.out.println("Finished digraph " + TEST_INPUT_FILES[i] + " scheduling on 4 processors and running on 4 cores");
-            assertTrue(isScheduleValid(s));
-        }
-    }
-
-    @Test
-    public void DfsAlgorithmParallel_ReturnsValidSchedule () {
-        DfsAlgorithmParallel a = new DfsAlgorithmParallel(_costEstimators, _scheduleGenerator);
-        for (Digraph d : _digraphsToTest) {
-            Metrics.init(d.getNodes().size(), 1);
-            Schedule s = a.run(d, 2, 1);
-            assertTrue(isScheduleValid(s));
-            s = a.run(d, 4, 1);
-            assertTrue(isScheduleValid(s));
-
-            Metrics.init(d.getNodes().size(), 2);
-            s = a.run(d, 2, 2);
-            assertTrue(isScheduleValid(s));
-            s = a.run(d, 4, 2);
-            assertTrue(isScheduleValid(s));
-
-            Metrics.init(d.getNodes().size(), 4);
-            s = a.run(d, 2, 4);
-            assertTrue(isScheduleValid(s));
-            s = a.run(d, 4, 4);
             assertTrue(isScheduleValid(s));
         }
     }
