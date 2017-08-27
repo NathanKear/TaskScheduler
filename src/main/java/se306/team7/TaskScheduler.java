@@ -106,10 +106,9 @@ public class TaskScheduler
 			AStarAlgorithmParallel a = new AStarAlgorithmParallel(costEstimators, scheduleGenerator);
 			optimalSchedule = a.run(d, numOfProcessors, applicationProcessors);
 
-			/*
-			AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
-			optimalSchedule = a.getOptimalSchedule(d, numOfProcessors);
-			*/
+
+//			AStarAlgorithm a = new AStarAlgorithm(costEstimators, scheduleGenerator);
+//			optimalSchedule = a.getOptimalSchedule(d, numOfProcessors);
 
             /*
             if (size < 13) {
