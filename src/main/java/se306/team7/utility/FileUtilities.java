@@ -2,24 +2,26 @@ package se306.team7.utility;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se306.team7.TaskScheduler;
 
 import java.io.*;
 import java.util.List;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
 
-
+/**
+ * Provides utility methods related to finding, reading and writing to files
+ */
 public class FileUtilities implements IFileUtilities {
 
     private static Logger logger = LoggerFactory.getLogger(FileUtilities.class);
 
     /**
      * Checks if the file does exists and is not a directory
-     * @param filename Relative name of file to load
-     * @return boolean
+     * @param filename Relative name of file
+     * @return boolean True if file exists
      */
     public boolean doesFileExist(String filename) {
         File file = new File(filename);
