@@ -2,11 +2,12 @@ package se306.team7.Algorithm;
 
 import se306.team7.CostEstimatedSchedule;
 import se306.team7.Digraph.Digraph;
-import se306.team7.Digraph.Link;
-import se306.team7.Digraph.Node;
 import se306.team7.Schedule;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class DfsAlgorithm implements IAlgorithm {
     private Digraph _digraph;
@@ -110,6 +111,10 @@ public class DfsAlgorithm implements IAlgorithm {
         }
 
         return currentMax;
+    }
+
+    public void setCurrentBestCost (int cost) {
+        _currentBestCost = cost;
     }
 
 }

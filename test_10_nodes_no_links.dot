@@ -1,0 +1,12 @@
+digraph "TestTree_10_nodes_no_links" {
+	A		[Weight=10];
+	B		[Weight=20];
+	C		[Weight=30];
+	D		[Weight=10];
+	E		[Weight=40];
+	F		[Weight=5];
+	G		[Weight=15];
+	H		[Weight=3];
+	I		[Weight=43];
+	J		[Weight=23];
+	}
