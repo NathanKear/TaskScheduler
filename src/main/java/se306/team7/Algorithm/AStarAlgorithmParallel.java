@@ -32,6 +32,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
     private static AtomicReference<Schedule> _bestSchedule;
     private static AtomicInteger _bestCost;
+    private static AtomicInteger _numOfProcessors;
     private static AtomicBoolean _foundBestSchedule;
     private int _numOfCores = 4;
 
@@ -68,6 +69,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
         _bestSchedule = new AtomicReference<Schedule>();
         _bestCost = new AtomicInteger(Integer.MAX_VALUE);
         _foundBestSchedule = new AtomicBoolean(false);
+        _numOfProcessors = new AtomicInteger();
     }
 
     /**
@@ -77,6 +79,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @return Guaranteed optimal schedule
      */
     public Schedule getOptimalSchedule(Digraph digraph, int numOfProcessors) {
+        _numOfProcessors.set(numOfProcessors);
         Schedule schedule = new Schedule(numOfProcessors);
         return getOptimalSchedule(digraph, numOfProcessors, schedule);
     }
@@ -154,11 +157,11 @@ public class AStarAlgorithmParallel implements IAlgorithm {
      * @param loopThreshold Maximum number of times to poll the queue before giving up
      */
     public static void pollAndGenerateSchedules (int loopThreshold) {
-        int i = 0;
-
         if (CurrentTask.insideTask()) {
             _logger.info("Start thread. Id = " + (CurrentTask.globalID() + 1));
         }
+
+        DfsAlgorithm dfs = new DfsAlgorithm(_costEstimators, _scheduleGenerator);
 
         while (true) {
             CostEstimatedSchedule polledSchedule = _schedules.poll();
@@ -194,16 +197,22 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
             } else { // schedule is incomplete
 
-                for (Schedule _schedule : possibleSchedules) {
+                if (_schedules.size() > 1000000) {
+                    dfs.setCurrentBestCost(_bestCost.get());
+                    Schedule s = dfs.getOptimalSchedule(_digraph, _numOfProcessors.get(), mostPromisingSchedule);
+                    if (s != null) {
+                        trySetBestSchedule(s);
+                    }
+                } else {
 
-                    int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
+                    for (Schedule _schedule : possibleSchedules) {
 
-                    if (cost <= _bestCost.get()) {
-                        CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
-                        _schedules.add(costEstimatedSchedule);
-//                        if (_schedules.size() > 1000000) {
-//                            System.out.println(_schedules.remainingCapacity());
-//                        }
+                        int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
+
+                        if (cost <= _bestCost.get()) {
+                            CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
+                            _schedules.add(costEstimatedSchedule);
+                        }
                     }
                 }
 

@@ -1,0 +1,44 @@
+digraph "TestTree_15_nodes" {
+	A		[Weight=1];
+	B		[Weight=1];
+	C		[Weight=2];
+	D		[Weight=3];
+	E		[Weight=5];
+	F		[Weight=8];
+	G		[Weight=1];
+	H		[Weight=2];
+	I		[Weight=3];
+	J		[Weight=5];
+	K		[Weight=8];
+	L		[Weight=1;
+	M		[Weight=2];
+	N		[Weight=3];
+	O		[Weight=6];
+	A -> B		[Weight=2];
+	A -> C		[Weight=4];
+	A -> D		[Weight=2];
+	A -> E		[Weight=4];
+	B -> C		[Weight=2];
+	B -> D		[Weight=4];
+	B -> E		[Weight=2];
+	C -> G		[Weight=4];
+	D -> F		[Weight=2];
+	D -> G		[Weight=4];
+	D -> H		[Weight=2];
+	E -> F		[Weight=4];
+	F -> G		[Weight=2];
+	G -> H		[Weight=4];
+	G -> I		[Weight=2];
+	G -> K		[Weight=4];
+	H -> I		[Weight=2];
+	I -> J		[Weight=2];
+	J -> K		[Weight=2];
+	K -> L		[Weight=2];
+	K -> O		[Weight=2];
+	L -> M		[Weight=2];
+	M -> N		[Weight=2];
+	M -> O		[Weight=2];
+}
+
+
+
