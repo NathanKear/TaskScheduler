@@ -69,7 +69,7 @@ public class AStarAlgorithm implements IAlgorithm {
                 int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
                 if (cost <= knownScheduleFinishTime) {
                     CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
-                    Metrics.doneSchedule(costEstimatedSchedule, costEstimatedSchedule.getSchedule().getNumberOfProcessors()); // bogus code
+                    Metrics.doneSchedule(costEstimatedSchedule, 1); // bogus code
                     _schedules.add(costEstimatedSchedule);
                 }
             }

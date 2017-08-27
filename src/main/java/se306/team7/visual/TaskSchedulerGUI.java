@@ -214,7 +214,7 @@ public class TaskSchedulerGUI extends Application {
 			return new Task<Void>() {
 
 				protected Void call() {
-					TaskSchedulerGUI._button.setDisable(true);
+					_button.setDisable(true);
 					_startTime = System.currentTimeMillis();
 					TaskScheduler.executeAlgorithm(_digraph);
 

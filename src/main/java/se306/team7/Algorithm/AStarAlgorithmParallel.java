@@ -102,8 +102,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             _bestSchedule.get();
         }
 
-
-
         try {
             Method aStarAlgorithmMethod = AStarAlgorithmParallel.class.getMethod("pollAndGenerateSchedules", int.class);
 
@@ -199,6 +197,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
                 for (Schedule _schedule : possibleSchedules) {
 
                     int cost = Math.max(getCostEstimate(_schedule), mostPromisingSchedule.endTime());
+
                     if (cost <= _bestCost.get()) {
                         CostEstimatedSchedule costEstimatedSchedule = new CostEstimatedSchedule(_schedule, cost);
                         _schedules.add(costEstimatedSchedule);
@@ -239,6 +238,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
         _logger.info("Finished A* search. Optimal schedule length = " + optimalSchedule.endTime());
 
+        Metrics.setCurrentBestCost(optimalSchedule.endTime());
         return optimalSchedule;
     }
 

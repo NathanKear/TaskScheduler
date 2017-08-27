@@ -189,3 +189,1027 @@
 2017-08-20 20:51:31 INFO  TaskScheduler:47 - 	21		[Weight=8,Start=88,Processor=1];
 
 2017-08-20 20:51:31 INFO  TaskScheduler:47 - Final time: 96
+2017-08-26 16:59:27 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 16:59:27 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 16:59:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 16:59:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 16:59:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:01:27 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:01:27 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:01:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:01:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:01:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:02:24 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:02:24 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:02:24 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:02:24 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:02:24 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:02:54 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:02:54 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:02:55 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:02:55 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:02:55 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:02:56 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:02:56 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:02:56 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:02:56 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:02:56 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:03:07 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:03:07 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:03:07 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:03:07 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:03:07 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:03:13 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	0		[Weight=50,Start=0,Processor=1];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	1		[Weight=70,Start=50,Processor=1];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=9];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	2		[Weight=90,Start=57,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=7];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	3		[Weight=100,Start=120,Processor=1];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=4];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	4		[Weight=40,Start=147,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	1 -> 4	[Weight=10];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	5		[Weight=20,Start=187,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=7];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	6		[Weight=100,Start=207,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=5];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	7		[Weight=80,Start=220,Processor=1];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=5];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	8		[Weight=50,Start=300,Processor=1];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=3];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	9		[Weight=20,Start=307,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	2 -> 9	[Weight=10];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	10		[Weight=20,Start=327,Processor=0];
+2017-08-26 17:03:13 INFO  TaskScheduler:116 - 	3 -> 10	[Weight=4];
+2017-08-26 17:04:10 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:04:10 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:04:10 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:04:10 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:04:10 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:05:12 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:05:12 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:05:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:05:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:05:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:05:27 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:05:27 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:05:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:05:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:05:27 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:05:35 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:05:35 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:05:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:05:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:05:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:16:12 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 3
+2017-08-26 17:16:12 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:16:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:16:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:16:12 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:16:19 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	0		[Weight=50,Start=0,Processor=1];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	1		[Weight=70,Start=50,Processor=1];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=9];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	2		[Weight=90,Start=57,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=7];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	3		[Weight=100,Start=120,Processor=1];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=4];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	4		[Weight=40,Start=147,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	1 -> 4	[Weight=10];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	5		[Weight=20,Start=187,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=7];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	6		[Weight=100,Start=207,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=5];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	7		[Weight=80,Start=220,Processor=1];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=5];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	8		[Weight=50,Start=300,Processor=1];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=3];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	9		[Weight=20,Start=307,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	2 -> 9	[Weight=10];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	10		[Weight=20,Start=327,Processor=0];
+2017-08-26 17:16:19 INFO  TaskScheduler:116 - 	3 -> 10	[Weight=4];
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:17:49 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 28
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 28
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 28
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0		[Weight=5,Start=0,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1		[Weight=6,Start=5,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=15];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	4		[Weight=4,Start=11,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1 -> 4	[Weight=19];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	2		[Weight=5,Start=15,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=11];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	6		[Weight=7,Start=20,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=21];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	5		[Weight=7,Start=15,Processor=1];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=4];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	3		[Weight=6,Start=22,Processor=1];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=11];
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:17:49 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 581
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 4
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0		[Weight=35,Start=0,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1		[Weight=88,Start=38,Processor=1];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=3];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	2		[Weight=176,Start=35,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=9];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	3		[Weight=159,Start=126,Processor=1];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=7];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	4		[Weight=176,Start=211,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 4	[Weight=5];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1 -> 4	[Weight=10];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	2 -> 4	[Weight=8];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	5		[Weight=141,Start=285,Processor=1];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	2 -> 5	[Weight=6];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	3 -> 5	[Weight=5];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	6		[Weight=141,Start=387,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 6	[Weight=4];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	3 -> 6	[Weight=8];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	4 -> 6	[Weight=2];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	7		[Weight=53,Start=528,Processor=0];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	0 -> 7	[Weight=9];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	1 -> 7	[Weight=6];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=3];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	5 -> 7	[Weight=4];
+2017-08-26 17:17:49 INFO  TaskScheduler:116 - 	6 -> 7	[Weight=8];
+2017-08-26 17:17:49 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:17:49 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 5
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 6
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0		[Weight=10,Start=0,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2		[Weight=6,Start=10,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=51];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	3		[Weight=7,Start=16,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=22];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4		[Weight=5,Start=23,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 4	[Weight=44];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6		[Weight=2,Start=28,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 6	[Weight=59];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	7		[Weight=2,Start=30,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=15];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	8		[Weight=7,Start=32,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=59];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	5		[Weight=9,Start=39,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6 -> 5	[Weight=22];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	7 -> 5	[Weight=59];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	8 -> 5	[Weight=59];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	1		[Weight=7,Start=48,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	3 -> 1	[Weight=59];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4 -> 1	[Weight=66];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	5 -> 1	[Weight=37];
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:17:50 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 7
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 8
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 50
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0		[Weight=6,Start=0,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	1		[Weight=5,Start=6,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4		[Weight=3,Start=11,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 4	[Weight=24];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2		[Weight=5,Start=14,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	1 -> 2	[Weight=48];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6		[Weight=8,Start=19,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=39];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4 -> 6	[Weight=10];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	7		[Weight=3,Start=27,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=48];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4 -> 7	[Weight=48];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6 -> 7	[Weight=15];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	8		[Weight=8,Start=30,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=48];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4 -> 8	[Weight=48];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6 -> 8	[Weight=39];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	7 -> 8	[Weight=15];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	9		[Weight=8,Start=38,Processor=1];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 9	[Weight=44];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	4 -> 9	[Weight=39];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	6 -> 9	[Weight=29];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	7 -> 9	[Weight=34];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	8 -> 9	[Weight=39];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	5		[Weight=7,Start=30,Processor=0];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=19];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	3		[Weight=10,Start=40,Processor=0];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=34];
+2017-08-26 17:17:50 INFO  TaskScheduler:116 - 	2 -> 3	[Weight=10];
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:17:50 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 9
+2017-08-26 17:17:50 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 10
+2017-08-26 17:17:57 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	0		[Weight=50,Start=0,Processor=1];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	1		[Weight=70,Start=50,Processor=1];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=9];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	2		[Weight=90,Start=57,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=7];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	3		[Weight=100,Start=120,Processor=1];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=4];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	4		[Weight=40,Start=147,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	1 -> 4	[Weight=10];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	5		[Weight=20,Start=187,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=7];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	6		[Weight=100,Start=207,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=5];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	7		[Weight=80,Start=220,Processor=1];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=5];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	8		[Weight=50,Start=300,Processor=1];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=3];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	9		[Weight=20,Start=307,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	2 -> 9	[Weight=10];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	10		[Weight=20,Start=327,Processor=0];
+2017-08-26 17:17:57 INFO  TaskScheduler:116 - 	3 -> 10	[Weight=4];
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:61 - Starting DFS search. Parallel threads = 2
+2017-08-26 17:17:57 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = DFS
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 470
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 460
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 450
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 440
+2017-08-26 17:17:57 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 430
+2017-08-26 17:17:59 INFO  DfsAlgorithmParallel:36 - Found new best schedule. Cost = 420
+2017-08-26 17:18:04 INFO  DfsAlgorithmParallel:102 - Finished DFS search. Optimal schedule length = 420
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	0		[Weight=50,Start=0,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	2		[Weight=50,Start=50,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	0 -> 2	[Weight=20];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	3		[Weight=70,Start=100,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	0 -> 3	[Weight=30];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	7		[Weight=70,Start=170,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	2 -> 7	[Weight=70];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	8		[Weight=50,Start=240,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	2 -> 8	[Weight=80];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	1		[Weight=70,Start=60,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	0 -> 1	[Weight=10];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	4		[Weight=50,Start=130,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	0 -> 4	[Weight=40];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	5		[Weight=70,Start=180,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	1 -> 5	[Weight=50];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	6		[Weight=50,Start=290,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	1 -> 6	[Weight=60];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	9		[Weight=70,Start=250,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	2 -> 9	[Weight=90];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	11		[Weight=70,Start=340,Processor=1];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	5 -> 11	[Weight=20];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	6 -> 11	[Weight=30];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	7 -> 11	[Weight=40];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	10		[Weight=50,Start=320,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	3 -> 10	[Weight=100];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	4 -> 10	[Weight=10];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	12		[Weight=50,Start=370,Processor=0];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	8 -> 12	[Weight=50];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	9 -> 12	[Weight=60];
+2017-08-26 17:18:04 INFO  TaskScheduler:116 - 	10 -> 12	[Weight=70];
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:19:08 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:34 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 28
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 29
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 29
+2017-08-26 17:23:34 INFO  TaskScheduler:123 - Time = 29
+2017-08-26 17:23:34 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:34 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 581
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 4
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:23:35 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:35 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 5
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 6
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:23:35 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:35 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 7
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 8
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 50
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:23:35 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:35 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 9
+2017-08-26 17:23:35 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 10
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:23:42 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:23:42 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 11
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 12
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 420
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 420
+2017-08-26 17:23:42 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 420
+2017-08-26 17:23:42 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 1
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 2
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 28
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 28
+2017-08-26 17:25:08 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 3
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 581
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 4
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:25:08 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 5
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 6
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:25:08 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 7
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 8
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 50
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 50
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:25:08 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 9
+2017-08-26 17:25:08 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 10
+2017-08-26 17:25:15 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:25:15 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:25:15 INFO  AStarAlgorithmParallel:198 - Starting A* search. Parallel threads = 2
+2017-08-26 17:25:15 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:25:15 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 11
+2017-08-26 17:25:15 INFO  AStarAlgorithmParallel:149 - Start thread. Id = 12
+2017-08-26 17:25:15 INFO  AStarAlgorithmParallel:43 - Found new best schedule. Cost = 420
+2017-08-26 17:25:24 INFO  AStarAlgorithmParallel:205 - Finished A* search. Optimal schedule length = 420
+2017-08-26 17:25:24 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 17:39:19 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:19 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:191 - 12.0
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 28
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 17:39:20 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:20 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:191 - 0.0
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:195 - Thread 1 returns. Found best 581
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:39:20 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:20 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:168 - 38.0
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:169 - Thread 2 returns. Queue Empty
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:39:20 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:20 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 4
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:191 - 5.0
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:195 - Thread 3 returns. Found best 50
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:39:20 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:20 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:20 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 5
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:168 - 11926.0
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:169 - Thread 4 returns. Queue Empty
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:39:32 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:39:32 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 6
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:191 - 17.0
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:195 - Thread 5 returns. Found best 420
+2017-08-26 17:39:32 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 17:39:32 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:191 - 12.0
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 28
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 17:45:39 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:191 - 0.0
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:195 - Thread 1 returns. Found best 581
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:45:39 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:168 - 34.0
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:169 - Thread 2 returns. Queue Empty
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:45:39 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 4
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:191 - 5.0
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:195 - Thread 3 returns. Found best 50
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:45:39 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 5
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:168 - 12076.0
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:169 - Thread 4 returns. Queue Empty
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:45:52 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:45:52 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 6
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:191 - 18.0
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:195 - Thread 5 returns. Found best 420
+2017-08-26 17:45:52 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 17:45:52 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:21 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:191 - 11.0
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 28
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 17:46:21 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:21 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:191 - 0.0
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:195 - Thread 1 returns. Found best 581
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 17:46:21 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:21 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:168 - 36.0
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:169 - Thread 2 returns. Queue Empty
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 17:46:21 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:21 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 4
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:191 - 5.0
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:195 - Thread 3 returns. Found best 50
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 17:46:21 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:21 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:21 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 5
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:168 - 12093.0
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:169 - Thread 4 returns. Queue Empty
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 17:46:33 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 17:46:33 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 6
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:191 - 18.0
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:195 - Thread 5 returns. Found best 420
+2017-08-26 17:46:33 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 17:46:33 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 18:02:03 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 3
+2017-08-26 18:02:03 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:02:03 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 18:02:03 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:02:03 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 18:02:09 INFO  AStarAlgorithmParallel:168 - 6340.0
+2017-08-26 18:02:09 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:02:11 INFO  AStarAlgorithmParallel:168 - 7715.0
+2017-08-26 18:02:11 INFO  AStarAlgorithmParallel:168 - 7721.0
+2017-08-26 18:02:11 INFO  AStarAlgorithmParallel:169 - Thread 2 returns. Queue Empty
+2017-08-26 18:02:11 INFO  AStarAlgorithmParallel:169 - Thread 1 returns. Queue Empty
+2017-08-26 18:02:11 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:02:11 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:02:35 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 18:02:35 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:02:36 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:02:36 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 18:02:44 INFO  AStarAlgorithmParallel:168 - 8143.0
+2017-08-26 18:02:44 INFO  AStarAlgorithmParallel:169 - Thread 1 returns. Queue Empty
+2017-08-26 18:02:44 INFO  AStarAlgorithmParallel:168 - 8143.0
+2017-08-26 18:02:44 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:02:44 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:02:44 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:03:18 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:03:18 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:03:18 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:03:31 INFO  AStarAlgorithmParallel:168 - 13060.0
+2017-08-26 18:03:31 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:03:31 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:03:31 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:04:43 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:04:43 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:04:43 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:04:56 INFO  AStarAlgorithmParallel:168 - 13470.0
+2017-08-26 18:04:56 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:04:56 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:04:56 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:06:04 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:13:28 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:13:58 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:14:37 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:16:27 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:17:36 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:09 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:22 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:26 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:31 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:40 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:47 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:52 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:25:58 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:26:26 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:26:31 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:26:39 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:28:25 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:28:25 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:28:25 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:28:38 INFO  AStarAlgorithmParallel:168 - 12740.0
+2017-08-26 18:28:38 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:28:38 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:28:38 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:28:57 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:28:57 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:28:57 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:29:09 INFO  AStarAlgorithmParallel:168 - 12612.0
+2017-08-26 18:29:09 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:29:09 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:29:09 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:29:41 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:29:41 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:29:41 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:29:54 INFO  AStarAlgorithmParallel:168 - 12374.0
+2017-08-26 18:29:54 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:29:54 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:29:54 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:31:29 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:31:29 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:31:30 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:31:42 INFO  AStarAlgorithmParallel:168 - 12761.0
+2017-08-26 18:31:42 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:31:42 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:31:42 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:38:17 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:38:17 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:38:17 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:44:17 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:44:17 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:44:17 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:45:39 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 18:45:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:45:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:48:04 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:48:04 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:48:04 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:48:32 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:48:32 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:48:33 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:56:05 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:56:05 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:56:05 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:56:28 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:56:28 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:56:28 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:56:31 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:56:31 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:56:31 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:56:53 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:56:53 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:56:53 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:57:15 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:57:15 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:57:15 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:57:28 INFO  AStarAlgorithmParallel:169 - 12555.0
+2017-08-26 18:57:28 INFO  AStarAlgorithmParallel:170 - Thread 0 returns. Queue Empty
+2017-08-26 18:57:28 INFO  AStarAlgorithmParallel:239 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:57:28 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 18:58:09 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 18:58:09 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:58:09 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 18:59:08 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:59:08 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:59:08 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:59:18 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:59:18 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:59:18 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:59:30 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 18:59:30 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 18:59:31 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 18:59:43 INFO  AStarAlgorithmParallel:168 - 12756.0
+2017-08-26 18:59:43 INFO  AStarAlgorithmParallel:169 - Thread 0 returns. Queue Empty
+2017-08-26 18:59:43 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 350
+2017-08-26 18:59:43 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:00:16 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:00:16 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:00:16 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 19:00:49 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 1
+2017-08-26 19:00:49 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:00:49 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 1
+2017-08-26 19:01:16 INFO  AStarAlgorithmParallel:232 - Starting A* search. Parallel threads = 1
+2017-08-26 19:01:16 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:01:16 INFO  AStarAlgorithmParallel:162 - Start thread. Id = 1
+2017-08-26 19:06:16 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:16 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:191 - 82.0
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 350
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 350
+2017-08-26 19:06:17 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:06:17 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 12.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 28
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 28
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 1.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 1 returns. Found best 581
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 581
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 30.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 55
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 2 returns. Found best 55
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 55
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 4
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 5.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 3 returns. Found best 50
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 50
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 5
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 17.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 350
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 4 returns. Found best 350
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 1
+2017-08-26 19:06:44 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 6
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:191 - 33.0
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:195 - Thread 5 returns. Found best 420
+2017-08-26 19:06:44 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:06:44 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 1
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 2
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:191 - 11.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 29
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:195 - Thread 0 returns. Found best 29
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:191 - 13.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:195 - Thread 1 returns. Found best 28
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 28
+2017-08-26 19:07:39 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 3
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:191 - 0.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:195 - Thread 2 returns. Found best 581
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 4
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:174 - 1.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:175 - Thread 3 returns. Worse than best cost
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 581
+2017-08-26 19:07:39 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 5
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 6
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:191 - 45.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 55
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:195 - Thread 5 returns. Found best 55
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:174 - 47.0
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:175 - Thread 4 returns. Worse than best cost
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 55
+2017-08-26 19:07:39 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 19:07:39 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:39 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 7
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 8
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:191 - 4.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:195 - Thread 7 returns. Found best 50
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:174 - 5.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:175 - Thread 6 returns. Worse than best cost
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 50
+2017-08-26 19:07:40 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:40 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 9
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 10
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:191 - 14.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:191 - 14.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 350
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:195 - Thread 9 returns. Found best 350
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:195 - Thread 8 returns. Found best 350
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:07:40 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:231 - Starting A* search. Parallel threads = 2
+2017-08-26 19:07:40 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 11
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:161 - Start thread. Id = 12
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:191 - 33.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:195 - Thread 11 returns. Found best 420
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:174 - 34.0
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:175 - Thread 10 returns. Worse than best cost
+2017-08-26 19:07:40 INFO  AStarAlgorithmParallel:238 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:07:40 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:36 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 1
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 2
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:190 - 9.0
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:190 - 9.0
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:194 - Thread 0 returns. Found best 29
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:194 - Thread 1 returns. Found best 28
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 19:09:36 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:36 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 3
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 4
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:190 - 2.0
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:194 - Thread 3 returns. Found best 581
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:190 - 2.0
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:194 - Thread 2 returns. Found best 581
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 19:09:36 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 19:09:36 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:36 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 5
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 6
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:190 - 30.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 55
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:194 - Thread 4 returns. Found best 55
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:173 - 30.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:174 - Thread 5 returns. Worse than best cost
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 19:09:37 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:37 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 7
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:190 - 5.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:194 - Thread 6 returns. Found best 50
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 8
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:173 - 5.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:174 - Thread 7 returns. Worse than best cost
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 19:09:37 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:37 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 9
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 10
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:190 - 16.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 350
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:194 - Thread 9 returns. Found best 350
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:173 - 17.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:174 - Thread 8 returns. Worse than best cost
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:09:37 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:09:37 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 11
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 12
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:190 - 34.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:194 - Thread 10 returns. Found best 420
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:190 - 35.0
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:194 - Thread 11 returns. Found best 420
+2017-08-26 19:09:37 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:09:37 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 19:10:02 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:02 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 1
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 2
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 9.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 1 returns. Found best 28
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 9.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 0 returns. Found best 29
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 19:10:03 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:03 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 3
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 4
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 2.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 1.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 3 returns. Found best 581
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 2 returns. Found best 581
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 19:10:03 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:03 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 5
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 6
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:167 - 30.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:168 - Thread 4 returns. Queue Empty
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:167 - 32.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:168 - Thread 5 returns. Queue Empty
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 19:10:03 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:03 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 7
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 8
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 4.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 7 returns. Found best 50
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:190 - 4.0
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:194 - Thread 6 returns. Found best 50
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 19:10:03 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:03 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 9
+2017-08-26 19:10:03 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 10
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:167 - 7219.0
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:168 - Thread 8 returns. Queue Empty
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:167 - 7210.0
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:168 - Thread 9 returns. Queue Empty
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:10:10 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:10:10 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:10:10 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 12
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 11
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:190 - 14.0
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:194 - Thread 11 returns. Found best 420
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:190 - 14.0
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:194 - Thread 10 returns. Found best 420
+2017-08-26 19:10:11 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:10:11 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:25 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 1
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 2
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:190 - 9.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 28
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:194 - Thread 1 returns. Found best 28
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:173 - 12.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:174 - Thread 0 returns. Worse than best cost
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 28
+2017-08-26 19:12:25 INFO  TaskScheduler:123 - Time = 28
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:25 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 3
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 4
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:190 - 0.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:190 - 1.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:194 - Thread 3 returns. Found best 581
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 581
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:194 - Thread 2 returns. Found best 581
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 581
+2017-08-26 19:12:25 INFO  TaskScheduler:123 - Time = 581
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:25 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 5
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 6
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:167 - 30.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:168 - Thread 5 returns. Queue Empty
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:167 - 30.0
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:168 - Thread 4 returns. Queue Empty
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 55
+2017-08-26 19:12:25 INFO  TaskScheduler:123 - Time = 55
+2017-08-26 19:12:25 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:25 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 7
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 8
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:190 - 3.0
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 50
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:194 - Thread 7 returns. Found best 50
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:173 - 6.0
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:174 - Thread 6 returns. Worse than best cost
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 50
+2017-08-26 19:12:26 INFO  TaskScheduler:123 - Time = 50
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:26 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 9
+2017-08-26 19:12:26 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 10
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:167 - 7073.0
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:168 - Thread 9 returns. Queue Empty
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:167 - 7079.0
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:168 - Thread 8 returns. Queue Empty
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 350
+2017-08-26 19:12:33 INFO  TaskScheduler:123 - Time = 350
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:33 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 11
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 12
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:190 - 15.0
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:194 - Thread 10 returns. Found best 420
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:190 - 13.0
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:194 - Thread 11 returns. Found best 420
+2017-08-26 19:12:33 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:12:33 INFO  TaskScheduler:123 - Time = 420
+2017-08-26 19:12:57 INFO  AStarAlgorithmParallel:230 - Starting A* search. Parallel threads = 2
+2017-08-26 19:12:57 INFO  Metrics:152 - Metrics.setAlgorithmTypeUsed() is invoked. Algorithm  = A*
+2017-08-26 19:12:57 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 1
+2017-08-26 19:12:57 INFO  AStarAlgorithmParallel:160 - Start thread. Id = 2
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:190 - 99.0
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:46 - Found new best schedule. Cost = 420
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:194 - Thread 0 returns. Found best 420
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:190 - 99.0
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:43 - Foo
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:194 - Thread 1 returns. Found best 420
+2017-08-26 19:12:58 INFO  AStarAlgorithmParallel:237 - Finished A* search. Optimal schedule length = 420
+2017-08-26 19:12:58 INFO  TaskScheduler:123 - Time = 420
