@@ -186,7 +186,6 @@ public class TaskSchedulerGUI extends Application {
 				task.cancel(true);
 				//final update
 				for (ITaskSchedulerView view : _views){
-					System.out.println("update cost is " + Metrics.getCurrentBestCost());
 					view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
 					_totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
 				}
@@ -215,7 +214,7 @@ public class TaskSchedulerGUI extends Application {
 			return new Task<Void>() {
 
 				protected Void call() {
-					TaskSchedulerGUI._button.setDisable(true);
+					_button.setDisable(true);
 					_startTime = System.currentTimeMillis();
 					TaskScheduler.executeAlgorithm(_digraph);
 
