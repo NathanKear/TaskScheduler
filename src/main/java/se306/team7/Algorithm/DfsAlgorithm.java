@@ -112,4 +112,8 @@ public class DfsAlgorithm implements IAlgorithm {
         return currentMax;
     }
 
+    public void setCurrentBestCost (int cost) {
+        _currentBestCost = cost;
+    }
+
 }

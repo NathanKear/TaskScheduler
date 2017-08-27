@@ -198,6 +198,7 @@ public class AStarAlgorithmParallel implements IAlgorithm {
             } else { // schedule is incomplete
 
                 if (_schedules.size() > 1000000) {
+                    dfs.setCurrentBestCost(_bestCost.get());
                     Schedule s = dfs.getOptimalSchedule(_digraph, _numOfProcessors.get(), mostPromisingSchedule);
                     if (s != null) {
                         trySetBestSchedule(s);
