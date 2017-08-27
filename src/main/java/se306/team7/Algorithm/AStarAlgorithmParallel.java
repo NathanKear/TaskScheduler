@@ -170,8 +170,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
 
             if (CurrentTask.insideTask()) {
                 Metrics.doneSchedule(polledSchedule, CurrentTask.globalID() + 1);
-            } else {
-                Metrics.doneSchedule(polledSchedule, 1);
             }
 
             List<Schedule> possibleSchedules = _scheduleGenerator.generateSchedules(mostPromisingSchedule, _digraph);
