@@ -25,25 +25,21 @@ import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Button;
-import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
 public class TaskSchedulerGUI extends Application {
 
-	VisualModel _model;
 	private List<ITaskSchedulerView> _views;
-	private static Digraph _digraph; // this is needed to execute the background task\
+	private static Digraph _digraph; // this is needed to execute the background task
 	protected static long _startTime;
 	private static long _endTime;
 	private static CommandLineArgumentConfig _commandLineArgumentConfig;
 	private Text _algorithmTypeText;
-	protected Text totalSchedulesCostEstimatedText;
 	protected static Button _button ;
 	protected Text _totalSchedulesCostEstimatedText;
 
 	/**
 	 * Constructs the GUI.
-	 * @param primaryStage
 	 */
 	@SuppressWarnings("restriction")
 	@Override
@@ -101,7 +97,7 @@ public class TaskSchedulerGUI extends Application {
 		Separator separatorTwo = new Separator();
 		separatorTwo.setMaxWidth(1200);
 
-		final Text outputText = new Text("Your output file path is: \n\n"+Paths.get(".").toAbsolutePath().normalize().toString()+ _commandLineArgumentConfig.outputFileName());
+		final Text outputText = new Text("Your output file path is: \n\n"+ Paths.get(".").toAbsolutePath().normalize().toString()+ _commandLineArgumentConfig.outputFileName());
 		outputText.setFont(new Font(15));
 
 		HBox bottomLeftBox = new HBox(outputText);
@@ -110,19 +106,15 @@ public class TaskSchedulerGUI extends Application {
 		
 		_button  = new Button("Open file in gedit");
 		_button.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
 			public void handle(ActionEvent event) {
 				Process p;
 				try {
 					p = Runtime.getRuntime().exec("gedit " + _commandLineArgumentConfig.outputFileName());
 					p.waitFor();
-					//System.out.println ("exit: " + p.exitValue());
 					p.destroy();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -132,8 +124,6 @@ public class TaskSchedulerGUI extends Application {
 		HBox bottomRightBox = new HBox(_button);
 		bottomRightBox.setPadding(new Insets(20, 20, 25, 850));
 		bottomRightBox.setSpacing(10);
-
-		//HBox bottomBox = new HBox(bottomLeftBox,bottomRightBox);
 
 		VBox root = new VBox(topHBox,separator,middleHBox,separatorTwo, bottomLeftBox,bottomRightBox);
 
