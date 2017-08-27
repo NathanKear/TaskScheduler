@@ -8,9 +8,6 @@ import se306.team7.Metrics;
  * An interface that should be implemented by all view/controller maintained by TaskSchedulerGUI.
  */
 public interface ITaskSchedulerView {
-	
-	int _numOfCores = Metrics.getNumOfCores();
-	int _numOfLevels = Metrics.getLevels();
 
     /**
      * Parameters correspond to the fields in the Metrics class.

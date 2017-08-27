@@ -7,21 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Metrics {
 
-	public enum AlgorithmType {
-		A_STAR("A*"),
-		DFS("DFS");
-
-		private final String algorithmName;
-
-		AlgorithmType(String name) {
-			algorithmName = name;
-		}
-
-		public String getAlgorithmName() {
-			return algorithmName;
-		}
-	}
-
 	//the total number of levels in the task scheduler solution tree
 	private static int _levels;
 	//the total number of cores for execution
@@ -36,8 +21,6 @@ public class Metrics {
 	private static boolean _isMetricsAvailable = false;
 	//the total number of schedules that have been estimated so far
 	private static int _totalSchedulesEstimated;
-
-	public static AlgorithmType _algorithmTypeUsed = AlgorithmType.DFS;
 
 	/**
 	 * When constructing a Metrics object, the following 2 pieces of info should be known beforehand
@@ -139,14 +122,10 @@ public class Metrics {
 		return _coreCurrentLevel;
 	}
 
-	public static AlgorithmType getAlgorithmTypeUsed() {
-		return _algorithmTypeUsed;
-	}
-
-	public static void setAlgorithmTypeUsed(AlgorithmType type) {
-		_algorithmTypeUsed = type;
-	}
-
+	/**
+	 * Gets the total number of schedules that have been cost-estimated so far
+	 * @return
+	 */
 	public static int getTotalSchedulesEstimated() {
 		return _totalSchedulesEstimated;
 	}

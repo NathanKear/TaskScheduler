@@ -212,8 +212,6 @@ public class AStarAlgorithmParallel implements IAlgorithm {
     public Schedule run (Digraph digraph, int numOfProcessors, int threadCount)  {
         _schedules.clear();
 
-        Metrics.setAlgorithmTypeUsed(Metrics.AlgorithmType.A_STAR);
-
         _numOfCores = threadCount;
         Schedule optimalSchedule = getOptimalSchedule(digraph, numOfProcessors);
 

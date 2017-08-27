@@ -21,7 +21,6 @@ public class View_Histogram implements ITaskSchedulerView {
     public BarChart<String, Number> _barChart;
     public XYChart.Series<String, Number> _series;
     private static View_Histogram _view_histogram;
-    private Integer test = new Integer(5);
     private NumberAxis _yAxis;
 
 
@@ -51,7 +50,6 @@ public class View_Histogram implements ITaskSchedulerView {
         //Preparing and adding the initial data
         _series = new XYChart.Series<String, Number>();
 
-		System.out.println(Metrics.getLevels());
         for (int i = 1; i <= Metrics.getLevels(); i++) {
             _series.getData().add(new XYChart.Data<String, Number>(String.valueOf(i), 0));
         }
