@@ -22,7 +22,7 @@ public class View_LineGraph implements ITaskSchedulerView {
 
     private View_LineGraph() {
         //defining the axes
-        _xAxis = new NumberAxis(0, 5, 0.5);
+        _xAxis = new NumberAxis(0, 2, 0.5);
         _xAxis.setLabel("Time (seconds)");
         _xAxis.setAutoRanging(false);
         _xAxis.setAnimated(false);

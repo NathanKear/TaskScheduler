@@ -160,7 +160,7 @@ public class TaskSchedulerGUI extends Application {
 							}
 						}
 					});
-					Thread.sleep(300);
+					Thread.sleep(1);
 				}
 			}
 		};
@@ -187,6 +187,7 @@ public class TaskSchedulerGUI extends Application {
 				//final update
 				for (ITaskSchedulerView view : _views){
 					view.update(Metrics.getCurrentBestCost(), Metrics.getHistogram(), Metrics.getCoreCurrentLevel());
+					_totalSchedulesCostEstimatedText.setText("Total schedules estimated: " + Metrics.getTotalSchedulesEstimated());
 				}
 			}
 		});
